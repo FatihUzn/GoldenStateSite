@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title data-key="title">GoldenState — Mimarlik Studyosu</title>
+<link rel="icon" type="image/png" href="assets/favicon.png"> 
+
+<link rel="preload" as="image" href="assets/for_hero.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
@@ -181,7 +185,8 @@ header {
 /* ... (Geri kalan CSS aynı) ... */
 .hero {
   min-height: 100vh;
-  background: url('assets/for_hero.jpg') center/cover no-repeat;
+  /* 🌟 GÜNCELLEME: Yeni hero görseli */
+  background: url('assets/for_hero.jpg') center/cover no-repeat; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -704,7 +709,7 @@ footer {
       <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
     </div>
     <div class="project-card">
-      <img src="assets/for_cok_amacli.jpg" alt="Cok Amacli Proje" loading="lazy">
+      <img src="assets/for_cok_amacli.jpg" alt="Cok Amacli Proje" loading="lazy"> 
       <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
     </div>
   </div>
@@ -1053,7 +1058,7 @@ document.getElementById('menu-toggle').addEventListener('click', function() {
     // Mobil menü açıldığında, mobil dil seçiciyi göster
     const mobileLangSelector = navbar.querySelector('.language-selector.mobile-only');
     if (mobileLangSelector) {
-        mobileLangSelector.style.display = navbar.classList.contains('open') ? 'flex' : 'none';
+        mobileLangSelector.style.display = 'flex'; // 'flex' olarak değiştirildi
     }
 });
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -1118,11 +1123,23 @@ const projects = {
   restorasyon: [
     "assets/restorasyon1.jpg",
     "assets/restorasyon2.jpg",
-    "assets/restorasyon3.jpg",
+    "assets/restorasyon3.jpg", 
     "assets/restorasyon4.jpg",
     "assets/restorasyon5.jpg"
   ]
 };
+
+// 🌟 YENİ EKLEME: Proje Görsellerini Arka Planda Ön Yükleme (Preload)
+function preloadProjectImages() {
+    // Sadece projelere ait resim URL'lerini topla (hero ve ekip hariç)
+    const allImageUrls = [].concat(...Object.values(projects)); 
+    
+    allImageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+    console.log("Tüm proje görselleri arkaplanda yüklenmeye başladı.");
+}
 
 function loadCategory(category) {
   const grid = document.getElementById("project-grid");
@@ -1178,6 +1195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Sayfa yüklendiğinde varsayılan veya kaydedilmiş dili ayarla
     setLanguage(localStorage.getItem('lang') || 'tr');
+
+    // 🌟 YENİ EKLEME: Proje görsellerini 1 saniye sonra arka planda yüklemeye başla
+    setTimeout(preloadProjectImages, 1000); 
 });
 
 </script>
