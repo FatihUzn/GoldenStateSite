@@ -1,25 +1,20 @@
 <!DOCTYPE html>
-<html lang="tr"> <!-- Dil değiştikçe bu 'lang' etiketi JS ile güncellenecek -->
-<head>
+<html lang="tr"> <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title data-key="title">Golden Palace — Real Estate & Architecture</title>
-<link rel="icon" type="image/png" href="assets/golden_palace_logo.png"> <!-- YOL DÜZELTİLDİ -->
-
-<!-- Ön Yükleme -->
-<link rel="preload" as="image" href="assets/golden_palace_logo.png">
+<link rel="icon" type="image/png" href="assets/golden_palace_logo.png"> <link rel="preload" as="image" href="assets/golden_palace_logo.png">
 <link rel="preload" as="image" href="assets/background.jpg">
 <link rel="preload" as="image" href="assets/for_hero.jpg">
 
-<!-- Fontlar: Playfair Display (Lüks Serif) ve Inter (Modern Sans-Serif) -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<!-- 🌟 YENİ: Arapça font desteği (Noto Sans Arabic) 🌟 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- FontAwesome İkonları -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- HATA DÜZELTMESİ: 'xintegrity' özniteliği 'integrity' olarak düzeltildi. -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-<!-- 🌟 YENİ TEMA STİLLERİ (DOSYA İÇİNE ALINDI) 🌟 -->
 <style>
 /* * TEMA: Golden Palace - Premium Gold + Black
  * AÇIKLAMA: Lüks altın ve siyah tonları, özel parıltı ve animasyon efektleri.
@@ -62,26 +57,27 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   
-  /* 🌟 YENİ ARKA PLAN STİLİ 🌟 */
-  background-image: url('assets/background.jpg'); /* YOL DÜZELTİLDİ */
-  background-size: cover;
-  background-attachment: fixed; /* Arka planı sabit tutar */
+  /* 🌟 GÜNCELLENDİ: GENEL ARKA PLAN GÖRSELİ AYARLARI 🌟 */
+  background-image: url('assets/background.jpg'); 
+  background-size: cover; 
+  background-repeat: no-repeat;
   background-position: center center;
+  background-color: #0a0a0a; 
   
-  /* İçeriklerin okunabilirliğini artırmak için hafif bir overlay */
   position: relative;
-  z-index: 1; /* Diğer elementlerin üzerine çıkmasını sağlar */
+  z-index: 1; 
 }
 
 /* Arka plan görselinin üzerindeki genel karartma */
 body::before {
     content: '';
-    position: fixed; /* Sabit arkaplan ile uyumlu olması için fixed */
+    position: absolute; /* 🌟 DÜZELTME: 'fixed' yerine 'absolute' performans sorununu çözer 🌟 */
     top: 0;
     left: 0;
     width: 100%;
+    min-height: 100%; 
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* %40 siyah karartma (azaltıldı) */
+    background-color: rgba(0, 0, 0, 0.4); /* %40 siyah karartma */
     z-index: -1; /* İçeriklerin arkasında kalmasını sağlar */
 }
 
@@ -104,9 +100,14 @@ h1, h2, h3, h4,
   to { background-position: 200% center; }
 }
 
+/* 🌟 DÜZELTME: EKSİK ANİMASYON EKLENDİ 🌟 */
 @keyframes zoomFadeIn {
   from { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
   to { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 h1 { font-size: 56px; }
@@ -129,14 +130,16 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background: rgba(10, 10, 10, 0.3); /* DÜZELTME: Şeffaflık %30'a ayarlandı */
-  backdrop-filter: blur(8px);
+  /* 🌟 GÜNCELLEME: Başlangıçta gradient, scroll'da opak olacak */
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
+  backdrop-filter: blur(8px); /* Buzlu cam efekti geri eklendi */
   z-index: 1000;
   opacity: 0;
   transform: scale(0.95);
   animation: zoomFadeIn 1s var(--easing) forwards 0.2s;
   box-sizing: border-box; 
   border-bottom: 1px solid var(--border-dark);
+  transition: background 0.3s ease-out; /* 🌟 YENİ: yumuşak geçiş için */
 }
 
 .brand {
@@ -185,6 +188,7 @@ header {
   position: relative;
   overflow: hidden; /* Işık kayması için */
   padding: 5px 0;
+  cursor: pointer; /* 🌟 YENİ: Tıklanabilir olduğunu belirtir */
 }
 .navbar a::after {
   content: '';
@@ -275,7 +279,13 @@ header {
 /* === 6. YENİ LÜKS HERO BÖLÜMÜ (💡 IŞIK OVERLAY 💡) === */
 .hero {
   min-height: 100vh;
-  background: url('assets/for_hero.jpg') center/cover no-repeat; /* 🌟 YOL DÜZELTİLDİ 🌟 */
+  /* 🌟 GÜNCELLENDİ: HERO GÖRSELİ AYARLARI 🌟 */
+  background: url('assets/for_hero.jpg') no-repeat; 
+  background-size: cover; /* 🌟 GÜNCELLENDİ: 'cover' (kapla) olarak ayarlandı 🌟 */
+  background-repeat: no-repeat; /* Tekrarlamayı engelle */
+  background-position: center center; /* 🌟 GÜNCELLENDİ: Ortalandı 🌟 */
+  background-color: #000; /* Kenar boşlukları için */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,6 +293,9 @@ header {
   padding: 0 20px;
   position: relative;
   overflow: hidden;
+  /* 🌟 YENİ: JS'nin opaklığı değiştirebilmesi için 🌟 */
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
 }
 /* Siyah Karartma */
 .hero::after {
@@ -364,6 +377,80 @@ header {
   50% { box-shadow: 0 6px 20px rgba(0,0,0,0.4), var(--gold-shadow-intense); }
 }
 
+
+/* === 7b. 🌟 YENİ: PROJE SAYFASI REZERVASYON FORMU (İSTEĞİNİZ ÜZERİNE) 🌟 === */
+/* Bu form, Projeler sayfasının içine gömülecek */
+.project-reservation-form {
+    margin-bottom: 60px; /* Başlıktan önce boşluk bırak */
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    max-width: 800px; /* 🌟 600px'den 800px'e genişletildi 🌟 */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Tarih seçiciler (Modal'dan kopyalandı) */
+}
+.project-reservation-form .date-picker-group {
+    margin: 0; /* Modal'dan gelen margin'i sıfırla */
+    justify-content: center;
+    
+    /* Kopyalanan stiller */
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.project-reservation-form .date-picker-group div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.project-reservation-form .date-picker-group label {
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+}
+.project-reservation-form .date-picker-group input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-dark);
+    color: var(--text);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+/* Butonlar (Modal'dan kopyalandı) */
+.project-reservation-form .modal-buttons {
+    margin-top: 20px;
+    justify-content: center;
+    
+    /* Kopyalanan stiller */
+    display: flex;
+    gap: 15px;
+}
+
+/* Mobilde form elemanlarını alt alta getir */
+@media (max-width: 500px) {
+    .project-reservation-form .date-picker-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .project-reservation-form .date-picker-group div {
+        width: 100%; /* Mobilde tam genişlik */
+    }
+     .project-reservation-form .modal-buttons .btn {
+        width: 100%; /* Mobilde buton tam genişlik */
+    }
+}
+
+
 /* === 8. DROPDOWN MENÜ (SİZİN ÇÖZÜMÜNÜZ) === */
 .cta-group { position: relative; display: inline-block; margin-top: 20px; }
 .dropdown {
@@ -388,6 +475,7 @@ header {
   padding: 8px 20px;
   border-radius: 6px;
   text-align: center;
+  cursor: pointer; /* 🌟 YENİ 🌟 */
 }
 .dropdown a:hover { background: #000; color: var(--gold-light); }
 .cta-group.open .dropdown { display: flex; }
@@ -408,6 +496,90 @@ section {
   z-index: 10; 
   background-image: none; /* Gradyan karartma kaldırıldı (body'deki yeterli) */
 }
+
+/* 🌟🌟🌟 YENİ: Projeler sayfasını daha yukarı çek 🌟🌟🌟 */
+section#projects {
+    padding-top: 60px; /* Diğer bölümler 100px, burası 60px */
+}
+
+/* 🌟 YENİ: Sayfa Geçiş (SPA) Stilleri 🌟 */
+.page-section {
+    display: none; /* Varsayılan olarak tüm sayfaları gizle */
+    animation: pageFadeIn 0.6s var(--easing); /* İçerik giriş animasyonu */
+}
+.page-section.active {
+    display: block; /* Aktif sayfayı göster */
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌟 Otel rezervasyon formu animasyonu */
+#otel-reservation-container {
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 60px 20px;
+  animation: fadeIn 0.8s ease forwards;
+}
+#otel-reservation-container.show { display: block; }
+
+#otel-reservation-container h2 {
+  color: var(--gold-light);
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+/* 🌟 Popup (müsaitlik) tasarımı */
+.availability-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+.availability-modal.show { display: flex; }
+
+.modal-content {
+  background: #111;
+  border: 2px solid var(--gold-light);
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255,204,102,0.4);
+  text-align: center;
+  padding: 40px 30px;
+  max-width: 420px;
+  animation: scaleIn 0.4s var(--easing);
+}
+.modal-content h3 {
+  color: var(--gold-light);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 🌟 YENİ: Hero'nun sayfa geçişlerinde düzgün çalışması için 🌟 */
+.page-section.hero {
+    display: flex; /* 'block' yerine 'flex' olmalı */
+    opacity: 1; /* Scroll efekti için varsayılan opaklık 1 olmalı */
+    transition: opacity 0.3s ease-out;
+}
+.page-section:not(.active) {
+    display: none;
+}
+
 
 section#services,
 section#contact {
@@ -820,16 +992,389 @@ html[dir="rtl"] .info-item i {
   }
 }
 
+/* === 12. YENİ REZERVASYON MODALI (KALDIRILDI) === */
+/* Modal stilleri artık kullanılmadığı için silinebilir, 
+   ancak form stilleri (.date-picker-group vb.)
+   .project-reservation-form tarafından kullanıldığı için kalmalıdır.
+*/
+.date-picker-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 30px 0;
+}
+.date-picker-group div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.date-picker-group label {
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+}
+.date-picker-group input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-dark);
+    color: var(--text);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(-20deg) saturate(5); 
+    cursor: pointer;
+}
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.modal-buttons .btn-secondary {
+    background: var(--bg);
+    color: var(--gold-light);
+    border-color: var(--gold-dark);
+}
+.modal-buttons .btn-secondary:hover {
+    background: #333;
+    color: var(--gold-light);
+}
+
+/* 🌟 Proje Slider */
+.swiper {
+  width: 90%;
+  max-width: 1100px;
+  margin: 50px auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.swiper-slide img {
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid var(--gold-light);
+}
+
+.swiper-slide h3 {
+  margin-top: 12px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.07);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--gold-light);
+}
+
+/* === 13. 🏠 SATILIK EV GALERİSİ (TEMİZLENMİŞ KOD) === */
+
+/* 1. KAPSAYICI AYARLARI */
+/* Sayfanın (section) kendi boşluğunu sıfırla */
+#page-satilik_kiralik {
+}
+
+/* İç kapsayıcının (div) boşluğunu sıfırla */
+#screen-satilik {
+  width: 100%;
+}
+
+/* 2. İÇERİK KONUMLANDIRMA */
+/* BAŞLIK (H1): Gerekli tüm boşluğu buna veriyoruz */
+#screen-satilik h1 {
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 100px; /* 100px BOŞLUK SADECE BURADA (Menü için) */
+  margin-top: 0;
+  font-size: 48px;
+  background: transparent;
+  color: #ffcc66;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-weight: 900;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+
+/* Altın çizgi (Başlığa ait) */
+#screen-satilik h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #a36f00, #ffcc66, #a36f00);
+  animation: gold-glow 3s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.6);
+}
+
+/* Parlaklık akış animasyonu */
+@keyframes gold-glow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 6px rgba(255, 204, 102, 0.5);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 16px rgba(255, 204, 102, 0.8);
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 6px rgba(255, 204, 102, 0.5);
+  }
+}
+
+/* AÇIKLAMA (P): Başlığın hemen altında */
+#screen-satilik p {
+  color: #cfcfcf;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px; /* Başlıktaki çizgiden sonra 30px boşluk */
+  margin-bottom: 0; /* Alt boşluğu sıfırla */
+  padding-top: 0;
+  background: transparent;
+}
+
+/* GALERİ: Açıklamanın altında */
+#screen-satilik .house-gallery {
+  margin-top: 40px !important; /* Açıklamadan sonra 40px boşluk */
+  padding-top: 0; /* Kendi iç boşluğunu sıfırla */
+}
+
+/* Geri dön linki */
+.back-home {
+  display: inline-block;
+  margin-top: 40px;
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+.back-home:hover {
+  color: var(--text);
+}
+
+/* 3. GALERİ VE MODAL STİLLERİ (Bunlar zaten doğruydu) */
+/* Galeri görünümü */
+.house-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.house-card {
+  width: 350px;
+  height: 280px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.house-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.house-card h3 {
+  background: #000;
+  color: #ffcc66; /* Bu rengin görünmesini istiyoruz */
+  font-family: 'Playfair Display', serif;
+  height: 20%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin: 0;
+  padding: 0 10px;
+  text-align: center;
+
+  /* --- EKLENEN DÜZELTME: Genel Gradient Efektini Sıfırla --- */
+  -webkit-background-clip: initial; /* Arka plan kliplenmesini iptal et */
+  background-clip: initial;
+  -webkit-text-fill-color: initial; /* Metin renginin 'transparent' olmasını iptal et */
+  text-fill-color: initial;
+  /* 'color: #ffcc66' kuralının artık çalışmasını sağlıyoruz */
+}
+.house-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(255,204,102,0.25);
+}
+
+/* Detay Modalı (Overlay) */
+.house-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: none;
+  overflow-y: auto;
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+  box-sizing: border-box;
+}
+.house-detail button {
+  font-family: 'Inter', sans-serif;
+  padding: 10px 20px;
+  background: var(--gold-dark);
+  color: #111;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s var(--easing);
+  border: 1px solid var(--gold-light);
+  font-size: 16px;
+}
+.house-detail button:hover {
+  background: var(--gold-light);
+  color: #000;
+  transform: scale(1.05);
+}
+#house-detail-content h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.house-info {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #111;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+  text-align: left;
+}
+.house-info p {
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 15px;
+  line-height: 1.7;
+  font-family: 'Inter', sans-serif;
+}
+.house-info p strong {
+  color: var(--gold-light);
+  min-width: 120px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+
+/* Detay Galerisi */
+.detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.detail-gallery img {
+  width: 100%;
+  height: 340px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  background: #222;
+  cursor: pointer;
+}
+.detail-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.lightbox img {
+  touch-action: none;
+  user-select: none;
+}
+
+/* 🌟 YENİ: Dinamik içerik eklenecek bölümler için stiller 🌟 */
+/* .latest-grid stilini yeniden kullanalım */
+.page-section .latest-grid {
+    padding: 0 20px; /* Kenar boşlukları */
+}
+/* Başlıkların 'hero' bölümü dışında da güzel görünmesi için */
+.page-section > div:not(.hero) h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    margin-top: 0; /* Sayfa içi başlıklar için üst boşluğu sıfırla */
+    padding-top: 60px; /* Bölümün üstünden boşluk */
+    text-align: center;
+}
+
+
+/* === 16. RADİKAL ÇÖZÜM: 'Satılık' Sayfası Boşluklarını Ezme === */
+
+/* Tüm dış kapsayıcıların boşluklarını ve pozisyonlarını sıfırla */
+#page-satilik_kiralik,
+#page-satilik_kiralik > div,
+#screen-satilik,
+#screen-satilik .screen-inner {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* Sadece BAŞLIĞA (h1) üstten boşluk vererek 
+  içeriğin menünün altına düşmesini sağla 
+*/
+#screen-satilik h1 {
+    position: relative !important;
+    top: 0 !important;
+    padding-top: 100px !important; /* Menü çubuğu için boşluk */
+    margin-top: 0 !important;      /* Kendi üst boşluğunu sıfırla */
+    margin-bottom: 15px !important; /* Altındaki açıklama için boşluk */
+}
+
+/* Başlığın altındaki açıklama yazısı (p) */
+#screen-satilik p {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px !important; /* Galeri için boşluk */
+}
+
+/* Galerinin kendi üst boşluğunu sıfırla (çünkü p'den alıyor) */
+#screen-satilik .house-gallery {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
 </style>
 
 </head>
-<body onload="setLanguage(localStorage.getItem('lang') || 'tr')">
+<body>
 
 <header>
-  <!-- Logo ve Marka Adı (Güncellendi) -->
   <div class="brand">
-    <img src="assets/golden_palace_logo.png" alt="Golden Palace Logo"> <!-- YOL DÜZELTİLDİ -->
-    <div class="brand-text-container">
+    <img src="assets/golden_palace_logo.png" alt="Golden Palace Logo"> <div class="brand-text-container">
         <span class="brand-title" data-key="brand_golden_palace">Golden Palace</span>
         <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
     </div>
@@ -841,175 +1386,349 @@ html[dir="rtl"] .info-item i {
     </div>
    
     <nav class="navbar" id="navbar">
-      <a href="#hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-      <a href="#about" class="nav-link" data-key="nav_about">Hakkımızda</a>
-      <a href="#services" class="nav-link" data-key="nav_services">Hizmetler</a>
-      <a href="#projects" class="nav-link" data-key="nav_projects">Projeler</a>
-      <!-- Ekip Linki Kaldırıldı -->
-      <a href="#contact" class="nav-link" data-key="nav_contact">İletişim</a>
-     
+      <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
+      <a data-page="page-about" class="nav-link" data-key="nav_about">Hakkımızda</a>
+      <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
+      <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
+      <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
       <div class="language-selector mobile-only" style="display: none;">
           <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
           <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> <!-- YENİ ARAPÇA BUTONU -->
-      </div>
+          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
     </nav>
    
     <div class="language-selector desktop-only" style="margin-left: 20px;">
         <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
         <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> <!-- YENİ ARAPÇA BUTONU -->
-    </div>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
   </div>
 </header>
 
-<!-- 🌟 YENİ LÜKS HERO BÖLÜMÜ 🌟 -->
-<section class="hero" id="hero">
+<main id="page-container">
+
+    <section class="hero page-section active" id="hero">
+      <div>
+        <h1 data-key="hero_title">Golden Palace</h1>
+        <p data-key="hero_subtitle">Luxury Architecture Inspired by City & Sea</p>
+        
+        <div class="cta-group" id="discover-cta">
+          <a class="btn btn-hero" href="#projects" data-key="btn_discover">Keşfet</a>
+          <div class="dropdown">
+            <a href="#" data-page="projects" data-category="otel" data-key="drop_hotel">Otelimiz</a>
+            <a href="#" data-page="projects" data-category="insaat" data-key="drop_construction">İnşaat Projeleri</a>
+            <a href="#" data-page="projects" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
+            <!-- 🌟 GÜNCELLEME: data-page="projects" kaldı, JS bunu yakalayıp doğru sayfayı (page-satilik_kiralik) gösterecek -->
+            <a href="#" data-page="projects" data-category="satilik_kiralik" data-key="drop_rental">Satılık ve Kiralık Evlerimiz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- 🔹 OTEL SAYFASI -->
+<section id="page-otel" class="page-section">
+  <div class="hero" style="background-image:url('assets/otel_hero.jpg')">
+    <div>
+      <h1>Otelimiz</h1>
+      <p>Lüks konaklama ve deniz manzaralı suit odalar.</p>
+
+      <!-- 🌟 Parlayan Rezervasyon Butonu -->
+      <div class="modal-buttons">
+        <button class="btn btn-hero" id="hero-reserve-btn">Rezervasyon Yap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🌟 AÇILIR REZERVASYON FORMU -->
+  <div id="otel-reservation-container" class="hidden">
+    <div class="project-reservation-form">
+      <h2>Rezervasyon Formu</h2>
+      <div class="date-picker-group">
+        <div>
+          <label for="otel-checkin">Giriş Tarihi</label>
+          <input type="date" id="otel-checkin">
+        </div>
+        <div>
+          <label for="otel-checkout">Çıkış Tarihi</label>
+          <input type="date" id="otel-checkout">
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn" id="otel-search">Müsaitlik Ara</button>
+        <button class="btn btn-secondary" id="otel-close">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🌟 MÜSAİTLİK POPUP -->
+  <div id="availability-modal" class="availability-modal">
+    <div class="modal-content">
+      <h3 id="availability-message">Sonuç bekleniyor...</h3>
+      <button class="btn" id="close-modal-btn">Tamam</button>
+    </div>
+  </div>
+
+  <!-- 🌟 YENİ: Otel Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
   <div>
-    <h1 data-key="hero_title">Golden Palace</h1>
-    <p data-key="hero_subtitle">Luxury Architecture Inspired by City & Sea</p>
-    <div class="cta-group" id="discover-cta">
-      <!-- 💡 Altın Parlama Animasyonlu Buton 💡 -->
-      <a class="btn btn-hero" href="#projects" data-key="btn_discover">Keşfet</a>
-      <div class="dropdown">
-        <!-- 🌟 DÜZELTME: onclick kaldırıldı, href ve data-category eklendi 🌟 -->
-        <a href="#" data-category="otel" data-key="drop_hotel">Otelimiz</a>
-        <a href="#" data-category="insaat" data-key="drop_construction">İnşaat Projeleri</a>
-        <a href="#" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
-        <a href="#" data-category="satilik_kiralik" data-key="drop_rental">Satılık ve Kiralık Evlerimiz</a>
+    <h2>Otel Galerisi</h2>
+    <div class="latest-grid">
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Lobi" alt="Otel Lobi"> <h3>Lobi ve Resepsiyon</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Suit+Oda" alt="Suit Oda"> <h3>Kral Dairesi</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Havuz" alt="Havuz"> <h3>Sonsuzluk Havuzu</h3>
       </div>
     </div>
   </div>
 </section>
 
-<!-- İçerik Bölümleri -->
-<section id="about">
-    <div class="content">
-        <h2 data-key="about_title">Şehir ve Denizden İlham Alan Yenilik</h2>
-        <p data-key="about_p1">Golden Palace Mimarlık, 2015 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.</p>
-        <p data-key="about_p2">Ekibimiz, her projeye benzersiz bir bakış açısı getirir, sürdürülebilirliği, estetiği ve fonksiyonelliği bir araya getirerek müşterilerimizin beklentilerini aşan sonuçlar ortaya koyar.</p>
-        <ul class="vision-list">
-            <li data-key="about_li1"><i class="fas fa-check-circle"></i> Sürdürülebilir Tasarım Prensipleri</li>
-            <li data-key="about_li2"><i class="fas fa-check-circle"></i> Müşteri Odaklı Proje Yönetimi</li>
-            <li data-key="about_li3"><i class="fas fa-check-circle"></i> Uluslararası Kalite Standartları</li>
-        </ul>
-        <a class="btn" href="#contact" style="margin-top: 30px;" data-key="btn_meet_team">Ekibimizle Tanışın</a>
+
+<!-- 🔹 İNŞAAT SAYFASI -->
+<section id="page-insaat" class="page-section">
+  <div class="hero" style="background-image:url('assets/insaat_hero.jpg')">
+    <div>
+      <h1>İnşaat Projeleri</h1>
+      <p>Modern şehir yapıları ve yenilikçi mühendislik çözümleri.</p>
     </div>
+  </div>
+  
+  <!-- 🌟 YENİ: İnşaat Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
+  <div>
+    <h2>Öne Çıkan İnşaat Projeleri</h2>
+    <div class="latest-grid">
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+1" alt="İnşaat 1"> <h3>Proje: Gökdelen A</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+2" alt="İnşaat 2"> <h3>Proje: Modern Konutlar B</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+3" alt="İnşaat 3"> <h3>Proje: Alışveriş Merkezi C</h3>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="services">
+<!-- 🔹 RESTORASYON SAYFASI -->
+<section id="page-restorasyon" class="page-section">
+  <div class="hero" style="background-image:url('assets/restorasyon_hero.jpg')">
+    <div>
+      <h1>Restorasyon Projeleri</h1>
+      <p>Tarihi yapıları geleceğe taşıyoruz.</p>
+    </div>
+  </div>
+  
+  <!-- 🌟 YENİ: Restorasyon Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
+  <div>
+    <h2>Tamamlanan Restorasyonlar</h2>
+    <div class="latest-grid">
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+1" alt="Restorasyon 1"> <h3>Tarihi Yalı Restorasyonu A</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+2" alt="Restorasyon 2"> <h3>Eski Cami Canlandırma B</h3>
+      </div>
+      <div class="latest-card">
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+3" alt="Restorasyon 3"> <h3>Kervansaray Yenileme C</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 🏠 YENİ SATILIK-KİRALIK SAYFASI 🏠 -->
+<section id="page-satilik_kiralik" class="page-section">
+  <div>
+    <div id="screen-satilik"> <div class="screen-inner">
+
+         <h1 data-key="drop_rental">Satılık & Kiralık Evlerimiz</h1>
+        
+         <p data-key="hero_subtitle">Lüks yaşam alanlarını keşfedin.</p>
+        
+  <div class="house-gallery"> 
+          <div class="house-card" onclick="openHouseDetail('A')">
+            <img src="assets/house-galleryA.jpg" alt="NURİPAŞA BİNA" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+A'">
+            <h3>NURİPAŞA BİNA -SATILIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('B')">
+            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+B'">
+            <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('C')">
+            <img src="assets/house-galleryC.jpg" alt="KAYAŞEHİR EMLAK KONUT" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+C'">
+            <h3>KAYAŞEHİR EMLAK KONUT -SATILIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('D')">
+            <img src="assets/house-galleryD.jpg" alt="BAHÇELİEVLER DUBLEKS" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+D'">
+            <h3>BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('E')">
+            <img src="assets/house-galleryE.jpg" alt="THE İSTANBUL RESIDENCE 2+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+E'">
+            <h3>THE İSTANBUL RESIDENCE 2+1 -KİRALIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('F')">
+            <img src="assets/house-galleryF.jpg" alt="THE İSTANBUL RESIDENCE 1+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+F'">
+            <h3>THE İSTANBUL RESIDENCE 1+1 -KİRALIK-</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('G')">
+            <img src="assets/house-galleryG.jpg" alt="YEDİ MAVİ 3+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+G'">
+            <h3>YEDİ MAVİ SATILIK 3+1</h3>
+          </div>
+          <div class="house-card" onclick="openHouseDetail('H')">
+            <img src="assets/house-galleryH.jpg" alt="YEDİ MAVİ H BLOK" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+H'">
+            <h3>YEDİ MAVİ H BLOK -KİRALIK-</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<section id="page-about" class="page-section">
+  <div id="about" style="padding-top: 60px;">
+    <div class="content">
+      <h2 data-key="about_title">Şehir ve Denizden İlham Alan Yenilik</h2>
+      <p data-key="about_p1">Golden Palace Mimarlık, 1997 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.</p>
+      <p data-key="about_p2">Ekibimiz, her projeye benzersiz bir bakış açısı getirir, sürdürülebilirliği, estetiği ve fonksiyonelliği bir araya getirerek müşterilerimizin beklentilerini aşan sonuçlar ortaya koyar.</p>
+      <ul class="vision-list" style="padding: 0; list-style: none;">
+        <li><i class="fas fa-leaf"></i> <span data-key="about_li1">Sürdürülebilir Tasarım Prensipleri</span></li>
+        <li><i class="fas fa-users"></i> <span data-key="about_li2">Müşteri Odaklı Proje Yönetimi</span></li>
+        <li><i class="fas fa-gem"></i> <span data-key="about_li3">Uluslararası Kalite Standartları</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="page-services" class="page-section">
+  <div style="padding-top: 60px;">
     <h2 data-key="services_title">Hizmetlerimiz</h2>
     <div class="service-grid">
-        <div class="service-card">
-            <i class="fas fa-drafting-compass"></i>
-            <h3 data-key="service_h3_1">Mimari Tasarım</h3>
-            <p data-key="service_p_1">Konsept geliştirmeden uygulama projelerine kadar, yaratıcı ve işlevsel çözümler sunuyoruz.</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-couch"></i>
-            <h3 data-key="service_h3_2">İç Mekan Tasarımı</h3>
-            <p data-key="service_p_2">Mekanlarınızın ruhunu yansıtan, estetik ve ergonomik iç mekan çözümleri.</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-warehouse"></i>
-            <h3 data-key="service_h3_3">Restorasyon ve Koruma</h3>
-            <p data-key="service_p_3">Tarihi ve kültürel miras yapılarını aslına uygun olarak restore ediyor, geleceğe taşıyoruz.</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-tasks"></i>
-            <h3 data-key="service_h3_4">Proje Yönetimi</h3>
-            <p data-key="service_p_4">Projenin başlangıcından teslimine kadar tüm süreçleri titizlikle yönetiyor, zamanında teslimatı sağlıyoruz.</p>
-        </div>
-    </div>
-</section>
+      
+      <div class="service-card">
+        <i class="fas fa-drafting-compass"></i>
+        <h3 data-key="service_h3_1">Mimari Tasarım</h3>
+        <p data-key="service_p_1">Konsept geliştirmeden uygulama projelerine kadar, yaratıcı ve işlevsel çözümler sunuyoruz.</p>
+      </div>
+      
+      <div class="service-card">
+        <i class="fas fa-couch"></i>
+        <h3 data-key="service_h3_2">İç Mekan Tasarımı</h3>
+        <p data-key="service_p_2">Mekanlarınızın ruhunu yansıtan, estetik ve ergonomik iç mekan çözümleri.</p>
+      </div>
+      
+      <div class="service-card">
+        <i class="fas fa-landmark"></i>
+        <h3 data-key="service_h3_3">Restorasyon ve Koruma</h3>
+        <p data-key="service_p_3">Tarihi ve kültürel miras yapılarını aslına uygun olarak restore ediyor, geleceğe taşıyoruz.</p>
+      </div>
+      
+      <div class="service-card">
+        <i class="fas fa-clipboard-list"></i>
+        <h3 data-key="service_h3_4">Proje Yönetimi</h3>
+        <p data-key="service_p_4">Projenin başlangıcından teslimine kadar tüm süreçleri titizlikle yönetiyor, zamanında teslimatı sağlıyoruz.</p>
+      </div>
 
-<section id="projects">
-  <h2 data-key="projects_title_featured">Öne Çıkan Projelerimiz</h2>
-  <div class="project-grid" id="project-grid">
-    <div class="project-card">
-      <img src="assets/for_konut.jpg" alt="Konut Projesi" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="project_h3_residence">Konut Projeleri</h3>
-    </div>
-    <div class="project-card">
-      <img src="assets/for_ticari.jpg" alt="Ticari Proje" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
-    </div>
-    <div class="project-card">
-      <img src="assets/for_cok_amacli.jpg" alt="Cok Amacli Proje" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
     </div>
   </div>
 </section>
 
-<!-- Ekip Bölümü Kaldırıldı -->
-
-<section id="latest-projects">
-  <h2 data-key="projects_title_latest">En Son Tamamlanan Projelerimiz</h2>
-  <div class="latest-grid">
-    <div class="latest-card">
-      <img src="assets/for_proje1.jpg" alt="Modern Residence" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="latest_h3_1">Modern Residence</h3>
+<section id="page-projects" class="page-section">
+  <div style="padding-top: 60px;">
+    
+    <h2 data-key="projects_title_featured">Öne Çıkan Projelerimiz</h2>
+    <div class="project-grid" style="margin-bottom: 80px;">
+      <div class="project-card">
+        <img src="assets/for_konut.jpg" alt="Konut Projesi" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=Konut'">
+        <h3 data-key="project_h3_residence">Konut Projeleri</h3>
+      </div>
+      <div class="project-card">
+        <img src="assets/for_ticari.jpg" alt="Ticari Proje" loading="lazy" onerror="this.src='httpshttps://placehold.co/320x220/111/f59e0b?text=Ticari'">
+        <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
+      </div>
+      <div class="project-card">
+        <img src="assets/for_cok_amacli.jpg" alt="Cok Amacli Proje" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=Çok+Amaçlı'">
+        <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
+      </div>
     </div>
-    <div class="latest-card">
-      <img src="assets/for_proje2.jpg" alt="Commercial Hub" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="latest_h3_2">Commercial Hub</h3>
-    </div>
-    <div class="latest-card">
-      <img src="assets/for_proje3.jpg" alt="Multipurpose Complex" loading="lazy"> <!-- YOL DÜZELTİLDİ -->
-      <h3 data-key="latest_h3_3">Multipurpose Complex</h3>
+    
+    <h2 data-key="projects_title_latest">En Son Tamamlanan Projelerimiz</h2>
+    <div class="latest-grid">
+      <div class="latest-card">
+        <img src="assets/for_latest1.jpg" alt="Modern Residence" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+1'"> 
+        <h3 data-key="latest_h3_1">Modern Residence</h3>
+      </div>
+      <div class="latest-card">
+        <img src="assets/for_latest2.jpg" alt="Commercial Hub" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+2'">
+        <h3 data-key="latest_h3_2">Commercial Hub</h3>
+      </div>
+      <div class="latest-card">
+        <img src="assets/for_latest3.jpg" alt="Multipurpose Complex" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+3'">
+        <h3 data-key="latest_h3_3">Multipurpose Complex</h3>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="page-contact" class="page-section">
+  <div style="padding-top: 60px;">
     <h2 data-key="contact_title">Bize Ulaşın</h2>
     <div class="contact-container">
-        <form class="contact-form">
-            <h3 data-key="contact_form_title">Projenizi Anlatalım</h3>
-            <label for="name" data-key="contact_label_name">Adınız Soyadınız *</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email" data-key="contact_label_email">E-posta Adresiniz *</label>
-            <input type="email" id="email" name="email" required>
-            <label for="subject" data-key="contact_label_subject">Konu</label>
-            <input type="text" id="subject" name="subject">
-            <label for="message" data-key="contact_label_message">Mesajınız *</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <button type="submit" class="btn" data-key="btn_send">Gönder</button>
+      
+      <div class="contact-form">
+        <h3 data-key="contact_form_title">Projenizi Anlatalım</h3>
+        <form onsubmit="alert('Form gönderildi (simülasyon).'); return false;">
+          <label for="name" data-key="contact_label_name">Adınız Soyadınız *</label>
+          <input type="text" id="name" required>
+          
+          <label for="email" data-key="contact_label_email">E-posta Adresiniz *</label>
+          <input type="email" id="email" required>
+          
+          <label for="subject" data-key="contact_label_subject">Konu</label>
+          <input type="text" id="subject">
+          
+          <label for="message" data-key="contact_label_message">Mesajınız *</label>
+          <textarea id="message" rows="5" required></textarea>
+          
+          <button type="submit" class="btn" data-key="btn_send">Gönder</button>
         </form>
-        <div class="contact-info">
-            <div class="info-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <strong data-key="contact_info_address_title">Adresimiz</strong>
-                    <p data-key="contact_info_address_p">Mimar Sinan Cd. No: 42/A, Golden Palace Tower Kat: 12, İstanbul/Türkiye</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class="fas fa-phone"></i>
-                <div>
-                    <strong data-key="contact_info_phone_title">Telefon</strong>
-                    <p data-key="contact_info_phone_p">+90 (212) 555 1923</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <strong data-key="contact_info_email_title">E-posta</strong>
-                    <p data-key="contact_info_email_p">info@goldenpalace.com</p>
-                </div>
-            </div>
+      </div>
+      
+      <div class="contact-info">
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong data-key="contact_info_address_title">Adresimiz</strong>
+            <p data-key="contact_info_address_p">Mimar Sinan Cd. No: 42/A, Golden Palace Tower Kat: 12, İstanbul/Türkiye</p>
+          </div>
         </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <strong data-key="contact_info_phone_title">Telefon</strong>
+            <p data-key="contact_info_phone_p">+90 (212) 555 1923</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong data-key="contact_info_email_title">E-posta</strong>
+            <p data-key="contact_info_email_p">info@goldenpalace.com</p>
+          </div>
+        </div>
+      </div>
+      
     </div>
+  </div>
 </section>
-
-<!-- 🌟 YENİ LÜKS FOOTER 🌟 -->
-<footer>
+</main> <footer>
     <div class="footer-content">
         <div class="footer-logo-container">
-            <img src="assets/golden_palace_logo.png" alt="Golden Palace Logo"> <!-- YOL DÜZELTİLDİ -->
-            <div class="footer-text-container">
+            <img src="assets/golden_palace_logo.png" alt="Golden Palace Logo"> <div class="footer-text-container">
                 <span class="footer-title" data-key="brand_golden_palace">Golden Palace</span>
                 <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
             </div>
@@ -1026,7 +1745,26 @@ html[dir="rtl"] .info-item i {
     </div>
 </footer>
 
-<!-- 🌟 JAVASCRIPT (Dil Desteği, Animasyonlar ve Mobil Menü) 🌟 -->
+<!-- 
+  HATA DÜZELTMESİ:
+  JavaScript kodunun (#page-satilik_kiralik bölümündeki) ihtiyaç duyduğu
+  ancak HTML'de bulunmayan Lightbox yapısı eklendi.
+  Stil için 'availability-modal' sınıfı yeniden kullanıldı ve
+  görüntünün düzgün sığması için bazı inline stiller eklendi.
+-->
+<div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
+  <img id="lightbox-img" src="" alt="Genişletilmiş Görüntü" style="max-width: 90vw; max-height: 90vh; border-radius: 10px; object-fit: contain; cursor: default; touch-action: none; user-select: none;">
+</div>
+
+
+<!-- 🏠 YENİ HTML: Detay ekranı Modalı (SENİN KODUN) -->
+<!-- Sayfanın en üstünde (z-index ile) görünmesi için body sonuna taşındı -->
+<div id="house-detail" class="house-detail">
+  <button onclick="closeHouseDetail()">← Geri</button>
+  <div id="house-detail-content"></div>
+</div>
+
+
 <script>
 // --- ÇEVİRİ SÖZLÜKLERİ (Ekip bölümü kaldırıldı) ---
 const translations = {
@@ -1046,8 +1784,16 @@ const translations = {
         drop_construction: 'İnşaat Projeleri',
         drop_restoration: 'Restorasyon Projeleri',
         drop_rental: 'Satılık ve Kiralık Evlerimiz',
+        modal_title: 'Otel Müsaitliğini Kontrol Et',
+        modal_checkin: 'Giriş Tarihi',
+        modal_checkout: 'Çıkış Tarihi',
+        btn_cancel: 'İptal',
+        btn_search: 'Müsaitlik Ara',
+        alert_dates: 'Lütfen giriş ve çıkış tarihlerini seçin.',
+        alert_invalid_date: 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.',
+        no_rooms: 'Bu tarihlerde müsait oda bulunamadı. Lütfen başka tarihler deneyin.',
         about_title: 'Şehir ve Denizden İlham Alan Yenilik',
-        about_p1: 'Golden Palace Mimarlık, 2015 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.',
+        about_p1: 'Golden Palace Mimarlık, 1997 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.',
         about_p2: 'Ekibimiz, her projeye benzersiz bir bakış açısı getirir, sürdürülebilirliği, estetiği ve fonksiyonelliği bir araya getirerek müşterilerimizin beklentilerini aşan sonuçlar ortaya koyar.',
         about_li1: 'Sürdürülebilir Tasarım Prensipleri',
         about_li2: 'Müşteri Odaklı Proje Yönetimi',
@@ -1101,8 +1847,16 @@ const translations = {
         drop_construction: 'Construction Projects',
         drop_restoration: 'Restoration Projects',
         drop_rental: 'Properties for Sale & Rent',
+        modal_title: 'Check Hotel Availability',
+        modal_checkin: 'Check-in Date',
+        modal_checkout: 'Check-out Date',
+        btn_cancel: 'Cancel',
+        btn_search: 'Search Availability',
+        alert_dates: 'Please select both check-in and check-out dates.',
+        alert_invalid_date: 'Check-out date must be after the check-in date.',
+        no_rooms: 'No available rooms found for these dates. Please try other dates.',
         about_title: 'Innovation Inspired by City and Sea',
-        about_p1: 'Since 2015, Golden Palace Architecture has been shaping modern architecture with its visionary projects. By blending art with engineering, we design not just structures, but living and inspiring spaces.',
+        about_p1: 'Since 1997, Golden Palace Architecture has been shaping modern architecture with its visionary projects. By blending art with engineering, we design not just structures, but living and inspiring spaces.',
         about_p2: 'Our team brings a unique perspective to every project, delivering results that exceed client expectations by combining sustainability, aesthetics, and functionality.',
         about_li1: 'Sustainable Design Principles',
         about_li2: 'Customer-Focused Project Management',
@@ -1156,8 +1910,16 @@ const translations = {
         drop_construction: '建设项目',
         drop_restoration: '修复项目',
         drop_rental: '待售和出租物业',
+        modal_title: '查询酒店空房情况',
+        modal_checkin: '入住日期',
+        modal_checkout: '退房日期',
+        btn_cancel: '取消',
+        btn_search: '搜索空房',
+        alert_dates: '请选择入住和退房日期。',
+        alert_invalid_date: '退房日期必须晚于入住日期。',
+        no_rooms: '未找到这些日期的可用房间。请尝试其他日期。',
         about_title: '受城市和海洋启发的创新',
-        about_p1: '自2015年以来，Golden Palace 建筑凭借其富有远见的项目塑造着现代建筑。 我们将艺术与工程相结合，设计出不仅是结构，更是充满活力和启发性的空间。',
+        about_p1: '自1997年以来，Golden Palace 建筑凭借其富有遠見的项目塑造着现代建筑。 我们将艺术与工程相结合，设计出不仅是结构，更是充满活力和启发性的空间。',
         about_p2: '我们的团队为每个项目带来独特的视角，结合可持续性、美学和功能性，提供超出客户期望的成果。',
         about_li1: '可持续设计原则',
         about_li2: '以客户为中心的项目管理',
@@ -1168,7 +1930,7 @@ const translations = {
         service_p_1: '我们提供从概念开发到实施项目的创造性和功能性解决方案。',
         service_h3_2: '室内设计',
         service_p_2: '反映您空间精神的审美和人体工程学室内解决方案。',
-        service_h3_3: '修复与保护',
+        service_h3_3: '修复与保護',
         service_p_3: '我们恢复历史和文化遗产建筑的原貌，为子孙后代保留它们。',
         service_h3_4: '项目管理',
         service_p_4: '我们从项目开始到交付，都一丝不苟地管理所有流程，确保按時完成。',
@@ -1211,12 +1973,20 @@ const translations = {
         drop_construction: 'مشاريع البناء',
         drop_restoration: 'مشاريع الترميم',
         drop_rental: 'عقارات للبيع والإيجار',
+        modal_title: 'التحقق من توفر الفندق',
+        modal_checkin: 'تاريخ الوصول',
+        modal_checkout: 'تاريخ المغادرة',
+        btn_cancel: 'إلغاء',
+        btn_search: 'البحث عن التوفر',
+        alert_dates: 'يرجى تحديد تاريخي الوصول والمغادرة.',
+        alert_invalid_date: 'يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.',
+        no_rooms: 'لم يتم العثور على غرف متاحة لهذه التواريخ. يرجى تجربة تواريخ أخرى.',
         about_title: 'ابتكار مستوحى من المدينة والبحر',
-        about_p1: 'منذ عام 2015، تقوم جولدن بالاس للهندسة المعمارية بتشكيل العمارة الحديثة بمشاريعها الحالمة. من خلال دمج الفن مع الهندسة، نقوم بتصميم ليس فقط المباني، ولكن مساحات حية وملهمة.',
+        about_p1: 'منذ عام 1997، تقوم جولدن بالاس للهندسة المعمارية بتشكيل العمارة الحديثة بمشاريعها الحالمة. من خلال دمج الفن مع الهندسة، نقوم بتصميم ليس فقط المباني، ولكن مساحات حية وملهمة.',
         about_p2: 'يجلب فريقنا منظورًا فريدًا لكل مشروع، ويجمع بين الاستدامة والجماليات والوظائف لتقديم نتائج تفوق توقعات عملائنا.',
         about_li1: 'مبادئ التصميم المستدام',
         about_li2: 'إدارة المشاريع الموجهة نحو العملاء',
-        about_li3: 'معايير الجودة الدولية',
+        about_li3: 'معייר الجودة الدولية',
         btn_meet_team: 'تعرف على فريقنا',
         services_title: 'خدماتنا',
         service_h3_1: 'التصميم المعماري',
@@ -1251,6 +2021,155 @@ const translations = {
         footer_copyright: '© 2025 جولدن بالاس للهندسة المعمارية. جميع الحقوق محفوظة. | استوديو التصميم والابتكار.',
     },
 };
+
+// --- 🏠 YENİ JAVASCRIPT: 8 Evin Galeri Mantığı (SENİN KODUN) ---
+const houses = {};// 8 ev (A-H)
+
+// 🌟 GÜNCELLEME: Tüm evler (A-H) manuel olarak eklendi 🌟
+
+// --- EV A ---
+const imagesA = [];
+for (let i = 1; i <= 30; i++) { imagesA.push(`assets/house-detail-gallery${i}A.jpg`); }
+houses['A'] = {
+    title: "NURİPAŞA BİNA -SATILIK-",
+    price: "Fiyat Sorunuz",
+    location: "Nuri Paşa, İstanbul",
+    area: "57m2",
+    rooms: "Her katta 1 daire (Toplam 6 kat)",
+    desc: "Bina yaşı 31 yıl ve üzeri. Arsa tapulu.",
+    images: imagesA
+};
+
+// --- EV B ---
+const imagesB = [];
+for (let i = 1; i <= 30; i++) { imagesB.push(`assets/house-detail-gallery${i}B.jpg`); }
+houses['B'] = {
+    title: "BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-",
+    price: "Fiyat Sorunuz",
+    location: "Büyükyalı, İstanbul",
+    area: "220m2",
+    rooms: "3.5+1",
+    desc: "14. kat. VATANDAŞLIĞA UYGUN. Çift balkonlu.",
+    images: imagesB
+};
+
+// --- EV C ---
+const imagesC = [];
+for (let i = 1; i <= 30; i++) { imagesC.push(`assets/house-detail-gallery${i}C.jpg`); }
+houses['C'] = {
+    title: "KAYAŞEHİR EMLAK KONUT BAŞAKŞEHİR EVLERİ -SATILIK-",
+    price: "Fiyat Sorunuz",
+    location: "Kayaşehir, Başakşehir",
+    area: "202 m2",
+    rooms: "4+1",
+    desc: "Kapalı mutfak. Asansörlü. Balkonlu.",
+    images: imagesC
+};
+
+// --- EV D ---
+const imagesD = [];
+for (let i = 1; i <= 30; i++) { imagesD.push(`assets/house-detail-gallery${i}D.jpg`); }
+houses['D'] = {
+    title: "BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-",
+    price: "Fiyat Sorunuz",
+    location: "Bahçelievler, İstanbul",
+    area: "Brüt 300 m2 / Net 260 m2",
+    rooms: "6+2 Dubleks",
+    desc: "Bina yaşı 11-15 yıl. Bina kat sayısı 6, bulunduğu kat 5. Kapalı mutfak. 4 banyolu. Asansörlü.",
+    images: imagesD
+};
+
+// --- EV E ---
+const imagesE = [];
+for (let i = 1; i <= 30; i++) { imagesE.push(`assets/house-detail-gallery${i}E.jpg`); }
+houses['E'] = {
+    title: "THE İSTANBUL RESIDENCE 2+1 -KİRALIK-",
+    price: "Fiyat Sorunuz",
+    location: "The İstanbul Residence",
+    area: "105m2",
+    rooms: "2+1 Eşyalı",
+    desc: "16. kat. Yarı kapalı mutfak. Balkonlu. Jakuzili. Ultra lüx. Şehir ve deniz manzaralı.",
+    images: imagesE
+};
+
+// --- EV F ---
+const imagesF = [];
+for (let i = 1; i <= 30; i++) { imagesF.push(`assets/house-detail-gallery${i}F.jpg`); }
+houses['F'] = {
+    title: "THE İSTANBUL RESIDENCE 1+1 -KİRALIK-",
+    price: "Fiyat Sorunuz",
+    location: "The İstanbul Residence",
+    area: "75m2",
+    rooms: "1+1 Eşyalı",
+    desc: "16. Kat. Açık mutfak. Balkonlu. Deniz manzaralı.",
+    images: imagesF
+};
+
+// --- EV G ---
+const imagesG = [];
+for (let i = 1; i <= 30; i++) { imagesG.push(`assets/house-detail-gallery${i}G.jpg`); }
+houses['G'] = {
+    title: "YEDİ MAVİ SATILIK 3+1",
+    price: "Fiyat Sorunuz",
+    location: "Yedi Mavi, İstanbul",
+    area: "234m2",
+    rooms: "3+1",
+    desc: "4. kat. Peyzaj ve deniz manzaralı. Balkonlu. Ebeveyn banyolu. Kapalı mutfak.",
+    images: imagesG
+};
+
+// --- EV H ---
+const imagesH = [];
+for (let i = 1; i <= 30; i++) { imagesH.push(`assets/house-detail-gallery${i}H.jpg`); }
+houses['H'] = {
+    title: "YEDİ MAVİ H BLOK DAİRE 18 -KİRALIK-",
+    price: "1.500 $ (Kiralık)",
+    location: "Yedi Mavi, H Blok",
+    area: "75m2",
+    rooms: "1+1 Eşyalı",
+    desc: "3. kat. Şehir manzaralı. Açık mutfak. 6 aylık veya 1 yıllık peşin ödeme istenmekte (Dolar kuru üzerinden TL ödemesi yapılabilir).",
+    images: imagesH
+};
+
+function openHouseDetail(letter) {
+  const detail = document.getElementById("house-detail");
+  const content = document.getElementById("house-detail-content");
+  
+  const h = houses[letter];
+  if (!h) {
+      console.error(`'${letter}' için ev detayı bulunamadı.`);
+      return;
+  }
+  
+  // 🌟 GÜNCELLEME: 'onerror' hatası alan resimler 'display:none' yerine
+  // doğrudan DOM'dan 'this.remove()' ile kaldırılacak.
+  content.innerHTML = `
+    <h2>${h.title}</h2>
+    <div class="detail-gallery">
+      ${h.images.map(img => `<img src="${img}" alt="${h.title}" onerror="this.remove()">`).join("")}
+    </div>
+    <div class="house-info">
+      <p><strong>Konum:</strong> ${h.location}</p>
+      <p><strong>Alan:</strong> ${h.area}</p>
+      <p><strong>Oda Sayısı:</strong> ${h.rooms}</p>
+      <p><strong>Fiyat:</strong> ${h.price}</p>
+      <p>${h.desc}</p>
+    </div>
+  `;
+  detail.style.display = "block";
+  document.body.style.overflow = "hidden"; // Arka plan kaydırmayı durdur
+}
+
+// --- 🏠 YENİ EKLENEN FONKSİYON: Detay Ekranını Kapatma ---
+// 🌟 DÜZELTME: Bu fonksiyon artık openHouseDetail'in DIŞINDA ve doğru yerde.
+function closeHouseDetail() {
+  const detail = document.getElementById("house-detail");
+  if (detail) {
+    detail.style.display = "none";
+  }
+  document.body.style.overflow = "auto"; // Arka plan kaydırmayı tekrar etkinleştir
+}
+
 
 // --- Fonksiyonlar ---
 
@@ -1319,7 +2238,7 @@ function setupMobileMenu() {
 
 // Scroll Reveal (Intersection Observer)
 function setupScrollReveal() {
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section.page-section'); // Sadece page-section'ları izle
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1354,33 +2273,57 @@ function setupCardAnimations() {
 // Kategori Yükleme (Dropdown için)
 const projects = {
   otel: [
-    "assets/otel1.jpg", "assets/otel2.jpg", "assets/otel3.jpg", "assets/otel4.jpg", "assets/otel5.jpg"
+    { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.jpg" },
+    { name: "Deniz Manzaralı Suit", price: " gecelik ₺8.500", img: "assets/otel2.jpg" },
+    { name: "Standart Oda", price: " gecelik ₺4.200", img: "assets/otel3.jpg" },
+    { name: "Aile Odası", price: " gecelik ₺6.800", img: "assets/otel4.jpg" },
+    { name: "Ekonomik Oda", price: " gecelik ₺3.500", img: "assets/otel5.jpg" }
   ],
   insaat: [
-    "assets/insaat1.jpg", "assets/insaat2.jpg", "assets/insaat3.jpg", "assets/insaat4.jpg", "assets/insaat5.jpg"
+    { name: "Modern Gökdelen", img: "assets/insaat1.jpg" },
+    { name: "Alışveriş Merkezi", img: "assets/insaat2.jpg" },
+    { name: "Lüks Konut Sitesi", img: "assets/insaat3.jpg" },
+    { name: "Ofis Kuleleri", img: "assets/insaat4.jpg" },
+    { name: "Endüstriyel Tesis", img: "assets/insaat5.jpg" }
   ],
   restorasyon: [
-    "assets/restorasyon1.jpg", "assets/restorasyon2.jpg", "assets/restorasyon3.jpg", "assets/restorasyon4.jpg", "assets/restorasyon5.jpg"
+    { name: "Tarihi Yalı Restorasyonu", img: "assets/restorasyon1.jpg" },
+    { name: "Eski Kilise Canlandırma", img: "assets/restorasyon2.jpg" },
+    { name: "Kervansaray Yenileme", img: "assets/restorasyon3.jpg" },
+    { name: "Tarihi Saat Kulesi", img: "assets/restorasyon4.jpg" },
+    { name: "Şehir Surları", img: "assets/restorasyon5.jpg" }
   ],
+  // 🌟 GÜNCELLEME: 'satilik_kiralik' kategorisi artık bu dinamik listeden YÜKLENMEYECEK.
+  // Kendi statik HTML'ine (house-gallery) sahip.
+  // Bu bloğu silmiyorum, belki ileride başka bir amaçla gerekir.
   satilik_kiralik: [
-    "https://placehold.co/320x220/f59e0b/0a0a0a?text=Satılık+Ev",
-    "https://placehold.co/320x220/f59e0b/0a0a0a?text=Kiralık+Ev",
-    "https://placehold.co/320x220/f59e0b/0a0a0a?text=Satılık+Villa",
-    "https://placehold.co/320x220/f59e0b/0a0a0a?text=Kiralık+Rezidans"
+    { name: "Satılık Lüks Villa", price: "₺45.000.000", img: "https://placehold.co/320x220/f59e0b/0a0a0a?text=Satılık+Ev" },
+    { name: "Kiralık Rezidans", price: "aylık ₺80.000", img: "https://placehold.co/320x220/f59e0b/0a0a0a?text=Kiralık+Ev" }
   ]
 };
 
 function preloadProjectImages() {
-    const allImageUrls = [].concat(...Object.values(projects)); 
+    const allImageUrls = [
+        ...projects.otel.map(p => p.img),
+        ...projects.insaat.map(p => p.img),
+        ...projects.restorasyon.map(p => p.img),
+        ...projects.satilik_kiralik.map(p => p.img)
+    ]; 
     allImageUrls.forEach(url => {
         if (url.startsWith('http')) return; // Placeholder'ları atla
         const img = new Image();
-        img.src = url; // 🌟 YOL DÜZELTİLDİ (assets/ eklendi)
+        img.src = url; 
     });
     console.log("Proje görselleri arka planda yükleniyor.");
 }
 
-function loadCategory(category) {
+function loadCategory(category, checkin = null, checkout = null) {
+  // 🌟 GÜNCELLEME: 'satilik_kiralik' ise hiçbir şey yapma, çünkü o artık kendi sayfası.
+  if (category === 'satilik_kiralik') {
+      console.log("'satilik_kiralik' kendi sayfasına yönlendirildi, loadCategory atlanıyor.");
+      return; 
+  }
+    
   const grid = document.getElementById("project-grid");
   if (!grid) {
       console.error("Proje grid'i bulunamadı (ID: project-grid)");
@@ -1388,45 +2331,84 @@ function loadCategory(category) {
   }
   grid.style.opacity = "0";
 
+  // Müsaitlik başlığını ayarla
+  const titleEl = document.getElementById('projects-title'); // H2 başlığını al
+  const currentLang = localStorage.getItem('lang') || 'tr';
+  
+  // Başlık çevirileri
+  const titles = {
+        'tr': { 'otel': 'Otelimiz', 'insaat': 'İnşaat Projeleri', 'restorasyon': 'Restorasyon Projeleri', 'satilik_kiralik': 'Satılık/Kiralık Evler', 'default_projects': 'Öne Çıkan Projelerimiz' },
+        'en': { 'otel': 'Our Hotel', 'insaat': 'Construction Projects', 'restorasyon': 'Restoration Projects', 'satilik_kiralik': 'Properties for Sale/Rent', 'default_projects': 'Featured Projects' },
+        'zh': { 'otel': '我们的酒店', 'insaat': '建筑', 'restorasyon': '修复', 'satilik_kiralik': '待售/出租', 'default_projects': '特色项目' },
+        'ar': { 'otel': 'فندقنا', 'insaat': 'مشاريع البناء', 'restorasyon': 'مشاريع الترميم', 'satilik_kiralik': 'للبيع/للإيجار', 'default_projects': 'مشاريعنا المميزة' }
+  };
+  
+  if(category === 'otel' && checkin && checkout) {
+      const dateTitle = {
+          'tr': ` için Müsait Odalar (${checkin} - ${checkout})`,
+          'en': ` Available Rooms for (${checkin} - ${checkout})`,
+          'zh': ` 可用房间 (${checkin} - ${checkout})`,
+          'ar': ` الغرف المتاحة لـ (${checkin} - ${checkout})`
+      };
+      titleEl.textContent = titles[currentLang]['otel'] + dateTitle[currentLang];
+  } else {
+      titleEl.textContent = titles[currentLang][category] || titles['en'][category];
+  }
+
+
   setTimeout(() => {
     grid.innerHTML = "";
    
-    const getProjectTitle = (cat) => {
-      const currentLang = localStorage.getItem('lang') || 'tr';
-      const titles = {
-        'tr': { 'otel': 'Otelimiz', 'insaat': 'İnşaat', 'restorasyon': 'Restorasyon', 'satilik_kiralik': 'Satılık/Kiralık' },
-        'en': { 'otel': 'Our Hotel', 'insaat': 'Construction', 'restorasyon': 'Restoration', 'satilik_kiralik': 'For Sale/Rent' },
-        'zh': { 'otel': '我们的酒店', 'insaat': '建筑', 'restorasyon': '修复', 'satilik_kiralik': '待售/出租' },
-        'ar': { 'otel': 'فندقنا', 'insaat': 'البناء', 'restorasyon': 'الترميم', 'satilik_kiralik': 'للبيع/للإيجار' }
-      };
-      
-      const baseTitle = (titles[currentLang] ? titles[currentLang][cat] : titles['en'][cat]);
+    let itemsToDisplay = projects[category];
+    
+    // Otel için rastgele müsaitlik simülasyonu
+    if(category === 'otel' && checkin) {
+        itemsToDisplay = projects.otel.filter(() => Math.random() > 0.3); // %70 şansla göster
+        if (itemsToDisplay.length === 0) {
+            grid.innerHTML = `<p data-key="no_rooms">Bu tarihlerde müsait oda bulunamadı. Lütfen başka tarihler deneyin.</p>`;
+            setLanguage(currentLang); // Metni çevir
+            grid.style.opacity = "1";
+            return;
+        }
+    }
 
-      if (cat === 'satilik_kiralik' || cat === 'otel') {
-          return baseTitle; 
-      }
-      // TR, EN, ZH dilleri için " Projesi" ekle, AR için ekleme
-      if (currentLang === 'ar') {
-          return baseTitle; // Arapça'da "Projesi" eki yok
-      }
-      return baseTitle + " Projesi"; // "İnşaat Projesi", "Restorasyon Projesi"
-    };
-
-    if (!projects[category]) {
-        console.error(`'${category}' kategorisi için proje bulunamadı.`);
+    if (!itemsToDisplay) {
+        console.warn(`'${category}' kategorisi için proje bulunamadı. Varsayılan projeler yükleniyor.`);
+        // Kategori bulunamazsa (veya 'default' ise), varsayılan öne çıkanları göster
+        grid.innerHTML = `
+            <div class="project-card">
+              <img src="assets/for_konut.jpg" alt="Konut Projesi" loading="lazy">
+              <h3 data-key="project_h3_residence">Konut Projeleri</h3>
+            </div>
+            <div class="project-card">
+              <img src="assets/for_ticari.jpg" alt="Ticari Proje" loading="lazy">
+              <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
+            </div>
+            <div class="project-card">
+              <img src="assets/for_cok_amacli.jpg" alt="Cok Amacli Proje" loading="lazy">
+              <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
+            </div>`;
+        titleEl.textContent = titles[currentLang]['default_projects'];
+        setLanguage(currentLang);
         grid.style.opacity = "1";
+        setupCardAnimations(); // Kart animasyonlarını yeniden tetikle
         return;
     }
 
-    projects[category].forEach(src => {
+    itemsToDisplay.forEach(project => {
       const card = document.createElement("div");
       card.className = "project-card";
       card.style.opacity = '0';
       card.style.transform = 'scale(0.9)';
-      const title = getProjectTitle(category);
-      card.innerHTML = `<img src="${src}" alt="${category} projesi" loading="lazy"><h3>${title}</h3>`; // 🌟 YOL DÜZELTİLDİ (assets/ eklendi)
+      
+      const imgSrc = project.img.startsWith('http') ? project.img : `${project.img}`; 
+      
+      const priceHTML = project.price ? `<p class="project-price">${project.price}</p>` : '';
+      
+      card.innerHTML = `<img src="${imgSrc}" alt="${project.name}" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=${project.name}'"><h3>${project.name}</h3>${priceHTML}`;
       grid.appendChild(card);
     });
+    
     const newCards = grid.querySelectorAll('.project-card');
     newCards.forEach((card, i) => {
       setTimeout(() => {
@@ -1437,11 +2419,192 @@ function loadCategory(category) {
     });
     grid.style.opacity = "1";
     
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: "smooth" });
-    }
   }, 300);
+}
+
+// 🌟 YENİ: Scroll Efektleri Fonksiyonu 🌟
+function handleScrollEffects() {
+    const scrollY = window.scrollY;
+    const header = document.querySelector('header');
+    const hero = document.getElementById('hero');
+    
+    // 1. Hero Fade-out Efekti
+    // Sadece 'hero' sayfası aktifken çalış
+    if (hero && hero.classList.contains('active')) {
+        const heroHeight = hero.offsetHeight; 
+        const fadeEnd = heroHeight * 0.7; 
+        
+        let opacity = 1 - (scrollY / fadeEnd);
+        opacity = Math.max(0, Math.min(1, opacity)); 
+        
+        hero.style.opacity = opacity;
+    } else if (hero) {
+        hero.style.opacity = 1; // Diğer sayfalardayken hero'yu görünür tut (gizli ama opak)
+    }
+
+    // 2. Header Opacity Efekti (GRADİENT'TEN OPAK'A)
+    if (header) {
+        // 🌟 GÜNCELLEME: Scroll'da gradient'ten opak'a geçiş
+        const scrollThreshold = 50; // 50px kaydırdıktan sonra değiş
+        const solidBackground = "rgba(10, 10, 10, 0.9)";
+        const gradientBackground = "linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%)";
+        
+        if (scrollY > scrollThreshold) {
+            // 50px'ten fazla kaydıysa, katı arka plan yap
+            header.style.background = solidBackground;
+        } else {
+            // En üstteyse veya 50px'ten az kaydıysa, gradient yap
+            header.style.background = gradientBackground;
+        }
+    }
+}
+
+// 🌟 YENİ: SAYFA İÇİ REZERVASYON FORMU KONTROLLERİ 🌟
+function setupProjectReservation() {
+    // Projeler sayfasındaki formu ve butonu bul
+    const searchBtn = document.getElementById('project-search');
+    if (!searchBtn) {
+        return;
+    }
+
+    // 'Müsaitlik Ara' butonuna tıklandığında
+    searchBtn.addEventListener('click', () => {
+        const checkin = document.getElementById('project-check-in').value;
+        const checkout = document.getElementById('project-check-out').value;
+        const currentLang = localStorage.getItem('lang') || 'tr';
+        
+        if (!checkin || !checkout) {
+            alert(translations[currentLang].alert_dates || 'Lütfen giriş ve çıkış tarihlerini seçin.');
+            return;
+        }
+        if (new Date(checkin) >= new Date(checkout)) {
+             alert(translations[currentLang].alert_invalid_date || 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
+            return;
+        }
+        
+        loadCategory('otel', checkin, checkout); 
+    });
+}
+
+
+// 🌟 YENİ: Sayfa Gösterme Fonksiyonu (SPA) 🌟
+function showPage(pageId) {
+    // Tüm sayfaları gizle
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // İstenen sayfayı göster
+    const newPage = document.getElementById(pageId);
+    if (newPage) {
+        newPage.classList.add('active');
+        window.scrollTo(0, 0); // Sayfanın başına git
+        
+        // Scroll-reveal animasyonlarını yeniden tetiklemek için 'visible' sınıfını kaldır/ekle
+        newPage.classList.remove('visible');
+        setTimeout(() => {
+            // Sadece bu bölümdeki .project-card, .service-card vb. için animasyonu tetikle
+             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card'); // 🏠 .house-card eklendi
+             cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                  card.style.transition = 'all 1s cubic-bezier(0.25, 1, 0.5, 1)';
+                  card.style.opacity = '1';
+                  card.style.transform = 'scale(1)';
+                }, index * 100);
+             });
+             // Genel bölüm görünürlüğü
+             newPage.classList.add('visible');
+        }, 50); // Küçük bir gecikme
+        
+    } else {
+        console.error(`Sayfa bulunamadı: ${pageId}`);
+    }
+    
+    // Hero scroll efektini sadece ana sayfada etkinleştir
+    const hero = document.getElementById('hero');
+    if (hero) {
+        // 🌟 DÜZELTME: hero.style.opacity her zaman 1 olmalı (sadece scroll'da değişmeli)
+        // hero.style.opacity = (pageId === 'hero') ? 1 : 0;
+        // Scroll handler zaten aktif sayfayı kontrol ediyor
+    }
+}
+
+// 🌟 Otel Rezervasyon Aç/Kapat (Ayrı sayfada)
+const reserveBtn = document.getElementById("hero-reserve-btn");
+const reservationContainer = document.getElementById("otel-reservation-container");
+const closeBtn = document.getElementById("otel-close");
+
+if (reserveBtn && reservationContainer) {
+  reserveBtn.addEventListener("click", () => {
+    reservationContainer.classList.add("show");
+    reservationContainer.scrollIntoView({ behavior: "smooth" });
+  });
+}
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    reservationContainer.classList.remove("show");
+    // Formu kapattıktan sonra sayfanın başına git
+    const heroOtel = document.getElementById('page-otel');
+    if (heroOtel) {
+        heroOtel.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
+
+// 🌟 Müsaitlik Popup + E-posta oluşturma (Ayrı sayfada)
+const searchBtn = document.getElementById("otel-search");
+const modal = document.getElementById("availability-modal");
+const message = document.getElementById("availability-message");
+const closeModalBtn = document.getElementById("close-modal-btn");
+
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    const checkin = document.getElementById("otel-checkin").value;
+    const checkout = document.getElementById("otel-checkout").value;
+
+    if (!checkin || !checkout) {
+      message.textContent = "⚠️ Lütfen giriş ve çıkış tarihlerini seçin.";
+      modal.classList.add("show");
+      return;
+    }
+
+    const random = Math.random();
+    if (random > 0.5) {
+      message.innerHTML = "✅ Müsait odalar bulundu!<br><br><strong>Rezervasyon işlemini başlatmak için aşağıdaki butona tıklayın.</strong>";
+
+      // Eski mail butonunu temizle (varsa)
+      const oldMailBtn = message.parentElement.querySelector('.btn-mail');
+      if (oldMailBtn) oldMailBtn.remove();
+      
+      const mailBtn = document.createElement("button");
+      mailBtn.textContent = "E-posta ile Rezervasyon Yap";
+      mailBtn.classList.add("btn", "btn-mail");
+      mailBtn.style.marginTop = "15px";
+
+      mailBtn.addEventListener("click", () => {
+        const subject = encodeURIComponent("Rezervasyon Talebi - Golden Palace Otel");
+        const body = encodeURIComponent(`Merhaba,%0A%0A${checkin} - ${checkout} tarihleri arasında rezervasyon yapmak istiyorum.%0A%0Aİyi günler.`);
+        window.location.href = `mailto:info@goldenpalace.com?subject=${subject}&body=${body}`;
+      });
+
+      message.parentElement.appendChild(mailBtn);
+    } else {
+      message.textContent = "❌ Maalesef bu tarihlerde müsait oda bulunamadı.";
+      // Eski mail butonunu temizle (varsa)
+      const oldMailBtn = message.parentElement.querySelector('.btn-mail');
+      if (oldMailBtn) oldMailBtn.remove();
+    }
+
+    modal.classList.add("show");
+  });
+}
+
+if (closeModalBtn) {
+  closeModalBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
 }
 
 
@@ -1466,9 +2629,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Fonksiyonları Başlat ---
     setupMobileMenu();
-    setupScrollReveal();
+    setupProjectReservation(); 
 
-    // 🌟 "Keşfet" Menüsü Düzeltmesi (Sizin kodunuzla birleştirildi) 🌟
+    // 🌟 YENİ: "Keşfet" Menüsü (Dropdown) Tıklama 🌟
     const cta = document.getElementById("discover-cta");
     if (cta) {
         const button = cta.querySelector(".btn");
@@ -1480,27 +2643,316 @@ document.addEventListener('DOMContentLoaded', () => {
             cta.classList.toggle("open");
         });
         document.addEventListener("click", e => {
-            if (!cta.contains(e.target)) cta.classList.remove("open");
+            if (cta && !cta.contains(e.target)) cta.classList.remove("open");
         });
 
-        dropdown.querySelectorAll("a[data-category]").forEach(link => {
+        // Dropdown linklerine Kategori veya Modal bağla
+        dropdown.querySelectorAll("a[data-page]").forEach(link => {
             link.addEventListener("click", e => {
-            e.preventDefault();
-            const cat = link.getAttribute("data-category");
-            loadCategory(cat);
-            cta.classList.remove("open");
+                e.preventDefault();
+                e.stopPropagation();
+                const cat = link.getAttribute("data-category");
+                
+                // --- 🌟🌟🌟 GÜNCELLENMİŞ MANTIK (İsteğiniz üzerine) 🌟🌟🌟 ---
+                // Her kategori kendi özel sayfasına yönlendirilecek.
+                
+                if (cat === 'otel') {
+                    showPage('page-otel');
+                } else if (cat === 'insaat') {
+                    showPage('page-insaat');
+                } else if (cat === 'restorasyon') {
+                    showPage('page-restorasyon');
+                } else if (cat === 'satilik_kiralik') {
+                    showPage('page-satilik_kiralik');
+                } else {
+                    // Varsayılan olarak ana projeler sayfasını göster
+                    const page = link.getAttribute("data-page");
+                    showPage(page || 'projects');
+                    if(page === 'projects') {
+                        loadCategory(cat || 'default');
+                    }
+                }
+                // --- GÜNCELLEME SONU ---
+                
+                cta.classList.remove("open");
             });
         });
     } else {
          console.error("CTA Grubu 'discover-cta' bulunamadı!");
     }
+    
+    // 🌟 YENİ: NavBar (SPA) Tıklamaları 🌟
+    document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = link.getAttribute('data-page');
+            showPage(pageId);
+            
+            const projectForm = document.getElementById('project-reservation-form');
+            if (projectForm) projectForm.style.display = 'none';
+            
+            if (pageId === 'projects') {
+                loadCategory('default'); // Varsayılan görünümü yükle
+            }
+        });
+    });
+    
+    // 🌟 YENİ: 'Satılık' sayfasındaki 'Anasayfaya Dön' linki
+    const backSatilik = document.getElementById('back-satilik');
+    if (backSatilik) {
+        backSatilik.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('hero'); // Anasayfaya (hero) git
+        });
+    }
+
+    // --- Scroll Efektini Başlat ---
+    window.addEventListener('scroll', handleScrollEffects);
 });
 
 // Kart animasyonlarını 'load' event'i ile başlat (görseller yüklendikten sonra)
 window.addEventListener("load", () => {
-    setupCardAnimations();
+    setupCardAnimations(); // Bu, ilk yüklenen hero sayfasındaki kartlar için
 });
 
 </script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- 🌟 GÜNCELLEME: Swiper başlatma ve tıklama mantığı -->
+<script>
+// 🌟 Swiper başlatma (otomatik dönen)
+const swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  spaceBetween: 40,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+// 🌟 Tıklanınca ilgili kategoriye yönlendirme (GÜNCELLENDİ)
+// '.project-card' yerine daha spesifik seçici
+document.querySelectorAll(".swiper-slide.project-card[data-category]").forEach(card => {
+  card.addEventListener("click", () => {
+    const cat = card.getAttribute("data-category");
+    
+    // --- 🌟🌟🌟 GÜNCELLENMİŞ MANTIK (Dropdown ile aynı) 🌟🌟🌟 ---
+    if (cat === 'otel') {
+        showPage('page-otel');
+    } else if (cat === 'insaat') {
+        showPage('page-insaat');
+    } else if (cat === 'restorasyon') {
+        showPage('page-restorasyon');
+    } else if (cat === 'satilik_kiralik') {
+        showPage('page-satilik_kiralik');
+    } else {
+        // Varsayılan
+        showPage("projects");
+        loadCategory(cat || 'default');
+    }
+    // --- GÜNCELLEME SONU ---
+  });
+});
+</script>
+
+<!-- 
+  HATA DÜZELTMESİ: 
+  Bu script bloğu (Lightbox Sistemi) <section> etiketinin içindeydi ve
+  HTML yapısını bozuyordu. Çalışması için <script> etiketleri içine alındı
+  ve ihtiyaç duyduğu HTML elemanları (örn: #lightbox) yüklendikten 
+  sonra çalışması için sayfanın sonuna taşındı.
+-->
+
+<script>
+// --- Lightbox Sistemi (GÜNCELLENDİ: Döngüsüz Kapanma Özelliği) ---
+        
+let currentImages = [];   // aktif galeri içindeki fotoğrafların listesi
+let currentIndex = 0;     // hangi fotoğrafın açık olduğunu takip eder
+
+// Lightbox'ı açan, listeyi oluşturan ve kapatan ana event listener
+document.addEventListener("click", function(e) {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  
+  // 1. Bir galeri fotoğrafına tıklanırsa (AÇMA)
+  const clickedImg = e.target.closest(".detail-gallery img");
+  
+  if (clickedImg) {
+    // Tıkladığı anda, o galeriye ait GÜNCEL listeyi al
+    const gallery = clickedImg.closest(".detail-gallery");
+    currentImages = Array.from(gallery.querySelectorAll("img"));
+    currentIndex = currentImages.indexOf(clickedImg);
+    
+    // Lightbox'ı aç ve tıklanan resmin src'sini ver
+    if (lightbox && lightboxImg) {
+        lightboxImg.src = clickedImg.src;
+        lightbox.style.display = "flex";
+    } else {
+        console.error("Lightbox HTML elemanları bulunamadı (#lightbox veya #lightbox-img)");
+    }
+  }
+
+  // 2. Lightbox'ın arka planına tıklanırsa (KAPATMA)
+  if (e.target.id === "lightbox") {
+    lightbox.style.display = "none";
+  }
+});
+
+// --- Lightbox Fotoğraf Geçiş Fonksiyonları (YENİ MANTIK) ---
+function showNextImage() {
+  if (!currentImages.length) return;
+
+  // 🌟 YENİ MANTIK: Son resimde miyiz?
+  if (currentIndex === currentImages.length - 1) {
+    // Evet, son resim. Kapat.
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox) {
+        lightbox.style.display = "none";
+    }
+    return; // Fonksiyonu durdur
+  } 
+  
+  // Son resim değil, bir sonrakine geç
+  currentIndex++;
+  const lightboxImg = document.getElementById("lightbox-img");
+  if (lightboxImg) {
+    lightboxImg.src = currentImages[currentIndex].src;
+    lightboxImg.style.transition = "transform 0s"; // Zoom'u sıfırla
+    lightboxImg.style.transform = "scale(1)";
+    scale = 1;
+  }
+}
+
+function showPrevImage() {
+  if (!currentImages.length) return;
+
+  // 🌟 YENİ MANTIK: İlk resimde miyiz?
+  if (currentIndex === 0) {
+    // Evet, ilk resim. Kapat.
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox) {
+        lightbox.style.display = "none";
+    }
+    return; // Fonksiyonu durdur
+  } 
+  
+  // İlk resim değil, bir öncekine geç
+  currentIndex--;
+  const lightboxImg = document.getElementById("lightbox-img");
+  if (lightboxImg) {
+    lightboxImg.src = currentImages[currentIndex].src;
+    lightboxImg.style.transition = "transform 0s"; // Zoom'u sıfırla
+    lightboxImg.style.transform = "scale(1)";
+    scale = 1;
+  }
+}
+
+// --- Klavye (Ok ve ESC) Desteği ---
+document.addEventListener("keydown", function (e) {
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox && lightbox.style.display === "flex") {
+    if (e.key === "ArrowRight") {
+      showNextImage();
+    } else if (e.key === "ArrowLeft") {
+      showPrevImage();
+    } else if (e.key === "Escape") { // ESC tuşu ile kapatma
+      lightbox.style.display = "none";
+    }
+  }
+});
+
+// --- Mobil Swipe (Kaydırma) Desteği ---
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50; // Min. 50px kaydırma
+
+const lightbox = document.getElementById("lightbox"); // lightbox'ı burada tanımla
+
+if (lightbox) {
+    lightbox.addEventListener("touchstart", function(e) {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchEndX = 0;
+      }
+    }, { passive: true });
+
+    lightbox.addEventListener("touchmove", function(e) {
+      if (e.touches.length === 1) {
+        touchEndX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    lightbox.addEventListener("touchend", function(e) {
+      const lightboxImg = document.getElementById("lightbox-img");
+      const currentScale = lightboxImg.style.transform ? parseFloat(lightboxImg.style.transform.replace("scale(", "")) : 1;
+      
+      if (currentScale > 1 || e.touches.length > 0) return;
+      if (touchStartX === 0 || touchEndX === 0) return; 
+      
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > swipeThreshold) { 
+        if (diff > 0) { 
+          showNextImage(); // Sola kaydırdı (sonraki)
+        } else { 
+          showPrevImage(); // Sağa kaydırdı (önceki)
+        }
+      }
+      touchStartX = 0;
+      touchEndX = 0;
+    });
+}
+
+// --- Mobil Pinch-to-Zoom (dokunarak büyütme) ---
+let scale = 1;
+let startDistance = 0;
+const lightboxImg = document.getElementById("lightbox-img");
+
+if (lightboxImg) {
+    lightboxImg.addEventListener("touchstart", function (e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const dx = e.touches[0].pageX - e.touches[1].pageX;
+        const dy = e.touches[0].pageY - e.touches[1].pageY;
+        startDistance = Math.hypot(dx, dy);
+      }
+    }, { passive: false });
+
+    lightboxImg.addEventListener("touchmove", function (e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const dx = e.touches[0].pageX - e.touches[1].pageX;
+        const dy = e.touches[0].pageY - e.touches[1].pageY;
+        const newDistance = Math.hypot(dx, dy);
+        let pinchScale = newDistance / startDistance;
+        scale = Math.min(Math.max(1, pinchScale), 3); // 1x ile 3x arası
+        lightboxImg.style.transform = `scale(${scale})`;
+      }
+    }, { passive: false });
+
+    lightboxImg.addEventListener("touchend", function () {
+      if (scale !== 1) {
+        lightboxImg.style.transition = "transform 0.3s ease";
+        lightboxImg.style.transform = "scale(1)";
+        scale = 1;
+        setTimeout(() => lightboxImg.style.transition = "", 300);
+      }
+    });
+}
+</script>
+
+
 </body>
 </html>
