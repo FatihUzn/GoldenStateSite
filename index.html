@@ -2152,11 +2152,11 @@ function openHouseDetail(letter) {
   
   // 🌟 GÜNCELLEME: 'onerror' hatası alan resimler 'display:none' yerine
   // doğrudan DOM'dan 'this.remove()' ile kaldırılacak.
+// ... (openHouseDetail fonksiyonunun içi)
+  
   content.innerHTML = `
     <h2>${h.title}</h2>
-    <div class="detail-gallery">
-      ${h.images.map(img => `<img src="${img}" alt="${h.title}" onerror="this.remove()">`).join("")}
-    </div>
+    
     <div class="house-info">
       <p><strong>Konum:</strong> ${h.location}</p>
       <p><strong>Alan:</strong> ${h.area}</p>
@@ -2164,8 +2164,13 @@ function openHouseDetail(letter) {
       <p><strong>Fiyat:</strong> ${h.price}</p>
       <p>${h.desc}</p>
     </div>
+
+    <div class="detail-gallery">
+      ${h.images.map(img => `<img src="${img}" alt="${h.title}" onerror="this.remove()">`).join("")}
+    </div>
   `;
   detail.style.display = "block";
+  // ...
   document.body.style.overflow = "hidden"; // Arka plan kaydırmayı durdur
 }
 
@@ -2965,6 +2970,7 @@ if (lightboxImg) {
 
 </body>
 </html>
+
 
 
 
