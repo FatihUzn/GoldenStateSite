@@ -1311,6 +1311,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: scale(1.05);
 }
 
+  /* === 14. 🌟 YENİ: BÜYÜTÜLMÜŞ FOTOĞRAF (LIGHTBOX) ÇERÇEVESİ === */
+#lightbox-img {
+  border: 4px solid var(--gold-light);
+  box-shadow: var(--gold-shadow-intense);
+  box-sizing: border-box; 
+  /* Not: border-radius zaten HTML'deki inline stilden (style="") geliyor */
+}
 .lightbox img {
   touch-action: none;
   user-select: none;
@@ -2958,6 +2965,7 @@ if (lightboxImg) {
 
 </body>
 </html>
+
 
 
 
