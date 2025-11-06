@@ -3049,7 +3049,7 @@ if (closeModalBtn) {
 
 // 🌟 DÜZELTME: Sayfa yüklendiğinde tüm fonksiyonları çalıştır 🌟
 document.addEventListener('DOMContentLoaded', () => {
-    
+    window.scrollTo(0, 0); // 🌟 YENİ EKLENEN KOD: Sayfayı en üste zorla
     // --- Dil Seçicileri Ayarla ---
     const desktopLangSelector = document.querySelector('.language-selector.desktop-only');
     const mobileLangSelector = document.querySelector('.language-selector.mobile-only');
@@ -3395,3 +3395,4 @@ if (lightboxImg) {
 
 </body>
 </html>
+
