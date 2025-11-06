@@ -1439,49 +1439,41 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: var(--gold-shadow-intense);
 }
 
-/* === 16. RADİKAL ÇÖZÜM: 'Satılık' Sayfası Boşluklarını Ezme === */
-
-/* Tüm dış kapsayıcıların boşluklarını ve pozisyonlarını sıfırla */
-#page-satilik_kiralik,
-#page-satilik_kiralik > div,
-#screen-satilik,
-#screen-satilik .screen-inner {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-}
-
-/* Sadece BAŞLIĞA (h1) üstten boşluk vererek 
-  içeriğin menünün altına düşmesini sağla 
-*/
-#screen-satilik h1 {
-    position: relative !important;
-    top: 0 !important;
-    padding-top: 100px !important; /* Menü çubuğu için boşluk */
-    margin-top: 0 !important;      /* Kendi üst boşluğunu sıfırla */
-    margin-bottom: 15px !important; /* Altındaki açıklama için boşluk */
-}
-
-/* Başlığın altındaki açıklama yazısı (p) */
-#screen-satilik p {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 40px !important; /* Galeri için boşluk */
-}
-
-/* Galerinin kendi üst boşluğunu sıfırla (çünkü p'den alıyor) */
-#screen-satilik .house-gallery {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
 
 /* 💡 FOTOĞRAF NETLİK DÜZELTMESİ (Lightbox Arka Planı) 💡 */
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
 }
+
+/* === YENİ EKLENEN GERİ BUTONU STİLİ === */
+.btn-page-back {
+  /* Pozisyon */
+  position: absolute;
+  top: 100px; /* Header'ın (navbar) hemen altına */
+  left: 40px;
+  z-index: 100; /* Diğer içeriğin üzerinde */
+
+  /* Görünüm (house-detail button'dan kopyalandı) */
+  font-family: 'Inter', sans-serif;
+  padding: 10px 20px;
+  background: var(--gold-dark);
+  color: #111;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s var(--easing);
+  border: 1px solid var(--gold-light);
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-page-back:hover {
+  background: var(--gold-light);
+  color: #000;
+  transform: scale(1.05);
+}
+
 </style>
 
 </head>
@@ -1543,6 +1535,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <!-- 🔹 OTEL SAYFASI -->
 <section id="page-otel" class="page-section">
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
   <div class="hero" style="background-image:url('assets/otel_hero.jpg')">
     <div>
       <h1>Otelimiz</h1>
@@ -1654,8 +1647,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <!-- 🔹 İNŞAAT SAYFASI -->
 <section id="page-insaat" class="page-section">
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
   <div class="hero" style="background-image:url('assets/insaat_hero.jpg')">
-    <div>
       <h1>İnşaat Projeleri</h1>
       <p>Modern şehir yapıları ve yenilikçi mühendislik çözümleri.</p>
     </div>
@@ -1707,8 +1700,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <!-- 🔹 RESTORASYON SAYFASI -->
 <section id="page-restorasyon" class="page-section">
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
   <div class="hero" style="background-image:url('assets/restorasyon_hero.jpg')">
-    <div>
       <h1>Restorasyon Projeleri</h1>
       <p>Tarihi yapıları geleceğe taşıyoruz.</p>
     </div>
@@ -1732,7 +1725,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 </section>
 
 <section id="page-satilik_kiralik" class="page-section">
-  
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
   <div class="new-layout-container">
 
     <h2>Satılık Mülklerimiz</h2>
@@ -2570,6 +2563,18 @@ function openHouseDetail(letter) {
   const content = document.getElementById("house-detail-content");
   
   const h = houses[letter];
+
+  // --- YENİ EKLENEN FİYAT LİNKİ KONTROLÜ ---
+  let priceHTML = '';
+  if (letter.startsWith('OTEL')) {
+      // Bu bir otel odası, link ekle
+      priceHTML = `<p><strong>Fiyat:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${h.price}</a></p>`;
+  } else {
+      // Bu bir ev veya inşaat, normal metin göster
+      priceHTML = `<p><strong>Fiyat:</strong> ${h.price}</p>`;
+  }
+  // --- KONTROL SONU ---
+
   if (!h) {
       console.error(`'${letter}' için ev detayı bulunamadı.`);
       return;
@@ -2582,11 +2587,11 @@ function openHouseDetail(letter) {
   content.innerHTML = `
     <h2>${h.title}</h2>
     
-    <div class="house-info">
+   <div class="house-info">
       <p><strong>Konum:</strong> ${h.location}</p>
       <p><strong>Alan:</strong> ${h.area}</p>
       <p><strong>Oda Sayısı:</strong> ${h.rooms}</p>
-      <p><strong>Fiyat:</strong> ${h.price}</p>
+      ${priceHTML}
       <p>${h.desc}</p>
     </div>
 
