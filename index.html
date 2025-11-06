@@ -1534,50 +1534,43 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             <a href="#" data-page="projects" data-category="otel" data-key="drop_hotel">Otelimiz</a>
             <a href="#" data-page="projects" data-category="insaat" data-key="drop_construction">İnşaat Projeleri</a>
             <a href="#" data-page="projects" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
-            <!-- 🌟 GÜNCELLEME: data-page="projects" kaldı, JS bunu yakalayıp doğru sayfayı (page-satilik_kiralik) gösterecek -->
             <a href="#" data-page="projects" data-category="satilik_kiralik" data-key="drop_rental">Satılık ve Kiralık Evlerimiz</a>
           </div>
         </div>
       </div>
     </section>
 
-<!-- 🔹 OTEL SAYFASI -->
 <section id="page-otel" class="page-section">
   <div class="hero" style="background-image:url('assets/otel_hero.jpg')">
     <div>
-      <h1>Otelimiz</h1>
-      <p>Lüks konaklama ve deniz manzaralı suit odalar.</p>
-
-      <!-- 🌟 Parlayan Rezervasyon Butonu -->
+      <h1 data-key="otel_hero_title">Otelimiz</h1>
+      <p data-key="otel_hero_subtitle">Lüks konaklama ve deniz manzaralı suit odalar.</p>
       <div class="modal-buttons">
-        <button class="btn btn-hero" id="hero-reserve-btn">Rezervasyon Yap</button>
+        <button class="btn btn-hero" id="hero-reserve-btn" data-key="otel_reserve_btn">Rezervasyon Yap</button>
       </div>
     </div>
   </div>
 
-  <!-- 🌟 AÇILIR REZERVASYON FORMU -->
   <div id="otel-reservation-container" class="hidden">
     <div class="project-reservation-form">
-      <h2>Rezervasyon Formu</h2>
+      <h2 data-key="otel_form_title">Rezervasyon Formu</h2>
       <div class="date-picker-group">
         <div>
-          <label for="otel-checkin">Giriş Tarihi</label>
+          <label for="otel-checkin" data-key="otel_form_checkin">Giriş Tarihi</label>
           <input type="date" id="otel-checkin">
         </div>
         <div>
-          <label for="otel-checkout">Çıkış Tarihi</label>
+          <label for="otel-checkout" data-key="otel_form_checkout">Çıkış Tarihi</label>
           <input type="date" id="otel-checkout">
         </div>
       </div>
-
       <div class="modal-buttons">
-        <button class="btn" id="otel-search">Müsaitlik Ara</button>
-        <button class="btn btn-secondary" id="otel-close">Kapat</button>
+        <button class="btn" id="otel-search" data-key="otel_form_search">Müsaitlik Ara</button>
+        <button class="btn btn-secondary" id="otel-close" data-key="otel_form_close">Kapat</button>
       </div>
     </div>
   </div>
 
-  <!-- 🌟 MÜSAİTLİK POPUP -->
   <div id="availability-modal" class="availability-modal">
     <div class="modal-content">
       <h3 id="availability-message">Sonuç bekleniyor...</h3>
@@ -1586,146 +1579,123 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   </div>
 
   <div style="padding-top: 60px;">
-    <h2 style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
+    <h2 data-key="otel_gallery_title" style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
         Oda ve Süitlerimiz
     </h2>
-    <p style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
+    <p data-key="otel_gallery_subtitle" style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
         Detaylı incelemek için görsellere tıklayın.
     </p>
 
     <div class="house-gallery">
-        
         <div class="house-card" onclick="openHouseDetail('OTEL1')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Kral+Dairesi" alt="Kral Dairesi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Kral Dairesi</h3>
+            <h3 data-key="otel_card_1">Kral Dairesi</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL2')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Suit+Oda" alt="Suit Oda" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Deniz Manzaralı Suit</h3>
+            <h3 data-key="otel_card_2">Deniz Manzaralı Suit</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL3')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Aile+Odası" alt="Aile Odası" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Aile Odası</h3>
+            <h3 data-key="otel_card_3">Aile Odası</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL4')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Standart+Oda" alt="Standart Oda (Deniz)" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Standart Oda (Deniz)</h3>
+            <h3 data-key="otel_card_4">Standart Oda (Deniz)</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL5')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Standart+Oda" alt="Standart Oda (Kara)" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Standart Oda (Kara)</h3>
+            <h3 data-key="otel_card_5">Standart Oda (Kara)</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL6')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Lobi" alt="Lobi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Lobi & Resepsiyon</h3>
+            <h3 data-key="otel_card_6">Lobi & Resepsiyon</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL7')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Restoran" alt="Restoran" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Ana Restoran</h3>
+            <h3 data-key="otel_card_7">Ana Restoran</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL8')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Havuz" alt="Havuz" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Sonsuzluk Havuzu</h3>
+            <h3 data-key="otel_card_8">Sonsuzluk Havuzu</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL9')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Spa" alt="Spa" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Spa & Wellness</h3>
+            <h3 data-key="otel_card_9">Spa & Wellness</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('OTEL10')">
-            <img src="https://placehold.co/350x280/111/f59e0b?text=Spor+Salonu" alt="Spor Salonu" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Fitness Merkezi</h3>
+            <img src="https.placehold.co/350x280/111/f59e0b?text=Spor+Salonu" alt="Spor Salonu" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3 data-key="otel_card_10">Fitness Merkezi</h3>
         </div>
-
     </div>
-
-</div>
- 
+  </div>
 </section>
 
 
-<!-- 🔹 İNŞAAT SAYFASI -->
 <section id="page-insaat" class="page-section">
   <div class="hero" style="background-image:url('assets/insaat_hero.jpg')">
     <div>
-      <h1>İnşaat Projeleri</h1>
-      <p>Modern şehir yapıları ve yenilikçi mühendislik çözümleri.</p>
+      <h1 data-key="insaat_hero_title">İnşaat Projeleri</h1>
+      <p data-key="insaat_hero_subtitle">Modern şehir yapıları ve yenilikçi mühendislik çözümleri.</p>
     </div>
   </div>
   
-<div style="padding-top: 60px;">
-    <h2 style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
+  <div style="padding-top: 60px;">
+    <h2 data-key="insaat_gallery_title" style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
         İnşaat Projelerimiz
     </h2>
-    <p style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
+    <p data-key="insaat_gallery_subtitle" style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
         Detaylı incelemek için görsellere tıklayın.
     </p>
 
     <div class="house-gallery">
-        
         <div class="house-card" onclick="openHouseDetail('INSAAT1')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Proje+Gökdelen" alt="Proje Gökdelen" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Gökdelen A</h3>
+            <h3 data-key="insaat_card_1">Proje: Gökdelen A</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('INSAAT2')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Modern+Konutlar" alt="Modern Konutlar" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Modern Konutlar B</h3>
+            <h3 data-key="insaat_card_2">Proje: Modern Konutlar B</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('INSAAT3')">
             <img src="https://placehold.co/350x280/111/f59e0b?text=Alışveriş+Merkezi" alt="Alışveriş Merkezi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Alışveriş Merkezi C</h3>
+            <h3 data-key="insaat_card_3">Proje: Alışveriş Merkezi C</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('INSAAT4')">
-            <img src="https://placehold.co/350x280/111/f59e0b?text=Ofis+Kuleleri" alt="Ofis Kuleleri" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Ofis Kuleleri D</h3>
+            <img src="https.placehold.co/350x280/111/f59e0b?text=Ofis+Kuleleri" alt="Ofis Kuleleri" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3 data-key="insaat_card_4">Proje: Ofis Kuleleri D</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('INSAAT5')">
-            <img src="https://placehold.co/350x280/111/f59e0b?text=Endüstriyel+Tesis" alt="Endüstriyel Tesis" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Endüstriyel Tesis E</h3>
+            <img src="https.placehold.co/350x280/111/f59e0b?text=Endüstriyel+Tesis" alt="Endüstriyel Tesis" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3 data-key="insaat_card_5">Proje: Endüstriyel Tesis E</h3>
         </div>
-
         <div class="house-card" onclick="openHouseDetail('INSAAT6')">
-            <img src="https://placehold.co/350x280/111/f59e0b?text=Villa+Projesi" alt="Villa Projesi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
-            <h3>Proje: Lüks Villa Sitesi F</h3>
+            <img src="https.placehold.co/350x280/111/f59e0b?text=Villa+Projesi" alt="Villa Projesi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3 data-key="insaat_card_6">Proje: Lüks Villa Sitesi F</h3>
         </div>
-
     </div>
-</div>
+  </div>
 </section>
 
-<!-- 🔹 RESTORASYON SAYFASI -->
 <section id="page-restorasyon" class="page-section">
   <div class="hero" style="background-image:url('assets/restorasyon_hero.jpg')">
     <div>
-      <h1>Restorasyon Projeleri</h1>
-      <p>Tarihi yapıları geleceğe taşıyoruz.</p>
+      <h1 data-key="resto_hero_title">Restorasyon Projeleri</h1>
+      <p data-key="resto_hero_subtitle">Tarihi yapıları geleceğe taşıyoruz.</p>
     </div>
   </div>
   
-  <!-- 🌟 YENİ: Restorasyon Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
   <div>
-    <h2>Tamamlanan Restorasyonlar</h2>
+    <h2 data-key="resto_gallery_title">Tamamlanan Restorasyonlar</h2>
     <div class="latest-grid">
       <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+1" alt="Restorasyon 1"> <h3>Tarihi Yalı Restorasyonu A</h3>
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+1" alt="Restorasyon 1"> <h3 data-key="resto_card_1">Tarihi Yalı Restorasyonu A</h3>
       </div>
       <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+2" alt="Restorasyon 2"> <h3>Eski Cami Canlandırma B</h3>
+        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+2" alt="Restorasyon 2"> <h3 data-key="resto_card_2">Eski Cami Canlandırma B</h3>
       </div>
       <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+3" alt="Restorasyon 3"> <h3>Kervansaray Yenileme C</h3>
+        <img src="https.placehold.co/340x240/111/f59e0b?text=Restorasyon+3" alt="Restorasyon 3"> <h3 data-key="resto_card_3">Kervansaray Yenileme C</h3>
       </div>
     </div>
   </div>
@@ -1735,7 +1705,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   
   <div class="new-layout-container">
 
-    <h2>Satılık Mülklerimiz</h2>
+    <h2 data-key="satilik_title">Satılık Mülklerimiz</h2>
 
     <div class="house-gallery">
         <div class="house-card" onclick="openHouseDetail('A')">
@@ -1743,41 +1713,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             <h3>NURİPAŞA BİNA -SATILIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('B')">
-            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+B'">
+            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+B'">
             <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('C')">
-            <img src="assets/house-galleryC.jpg" alt="KAYAŞEHİR EMLAK KONUT" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+C'">
+            <img src="assets/house-galleryC.jpg" alt="KAYAŞEHİR EMLAK KONUT" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+C'">
             <h3>KAYAŞEHİR EMLAK KONUT -SATILIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('D')">
-            <img src="assets/house-galleryD.jpg" alt="BAHÇELİEVLER DUBLEKS" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+D'">
+            <img src="assets/house-galleryD.jpg" alt="BAHÇELİEVLER DUBLEKS" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+D'">
             <h3>BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('G')">
-            <img src="assets/house-galleryG.jpg" alt="YEDİ MAVİ 3+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+G'">
+            <img src="assets/house-galleryG.jpg" alt="YEDİ MAVİ 3+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+G'">
             <h3>YEDİ MAVİ SATILIK 3+1</h3>
         </div>
     </div>
 
-
-    <h2 style="margin-top: 80px;">Kiralık Mülklerimiz</h2>
+    <h2 style="margin-top: 80px;" data-key="kiralik_title">Kiralık Mülklerimiz</h2>
 
     <div class="house-gallery">
         <div class="house-card" onclick="openHouseDetail('B')">
-            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+B'">
+            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+B'">
             <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('E')">
-            <img src="assets/house-galleryE.jpg" alt="THE İSTANBUL RESIDENCE 2+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+E'">
+            <img src="assets/house-galleryE.jpg" alt="THE İSTANBUL RESIDENCE 2+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+E'">
             <h3>THE İSTANBUL RESIDENCE 2+1 -KİRALIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('F')">
-            <img src="assets/house-galleryF.jpg" alt="THE İSTANBUL RESIDENCE 1+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+F'">
+            <img src="assets/house-galleryF.jpg" alt="THE İSTANBUL RESIDENCE 1+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+F'">
             <h3>THE İSTANBUL RESIDENCE 1+1 -KİRALIK-</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('H')">
-            <img src="assets/house-galleryH.jpg" alt="YEDİ MAVİ H BLOK" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+H'">
+            <img src="assets/house-galleryH.jpg" alt="YEDİ MAVİ H BLOK" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+H'">
             <h3>YEDİ MAVİ H BLOK -KİRALIK-</h3>
         </div>
     </div>
@@ -1789,8 +1758,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   <div id="about" style="padding-top: 60px;">
     <div class="content">
       <h2 data-key="about_title">Şehir ve Denizden İlham Alan Yenilik</h2>
-      <p data-key="about_p1">Golden Palace Mimarlık, 1997 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.</p>
-      <p data-key="about_p2">Ekibimiz, her projeye benzersiz bir bakış açısı getirir, sürdürülebilirliği, estetiği ve fonksiyonelliği bir araya getirerek müşterilerimizin beklentilerini aşan sonuçlar ortaya koyar.</p>
+      <p data-key="about_p1">Golden Palace Mimarlık, 1997 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir...</p>
+      <p data-key="about_p2">Ekibimiz, her projeye benzersiz bir bakış açısı getirir...</p>
       <ul class="vision-list" style="padding: 0; list-style: none;">
         <li><i class="fas fa-leaf"></i> <span data-key="about_li1">Sürdürülebilir Tasarım Prensipleri</span></li>
         <li><i class="fas fa-users"></i> <span data-key="about_li2">Müşteri Odaklı Proje Yönetimi</span></li>
@@ -1804,38 +1773,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   <div style="padding-top: 60px;">
     <h2 data-key="services_title">Hizmetlerimiz</h2>
     <div class="service-grid">
-      
       <div class="service-card">
         <i class="fas fa-drafting-compass"></i>
         <h3 data-key="service_h3_1">Mimari Tasarım</h3>
-        <p data-key="service_p_1">Konsept geliştirmeden uygulama projelerine kadar, yaratıcı ve işlevsel çözümler sunuyoruz.</p>
+        <p data-key="service_p_1">Konsept geliştirmeden uygulama projelerine kadar...</p>
       </div>
-      
       <div class="service-card">
         <i class="fas fa-couch"></i>
         <h3 data-key="service_h3_2">İç Mekan Tasarımı</h3>
-        <p data-key="service_p_2">Mekanlarınızın ruhunu yansıtan, estetik ve ergonomik iç mekan çözümleri.</p>
+        <p data-key="service_p_2">Mekanlarınızın ruhunu yansıtan...</p>
       </div>
-      
       <div class="service-card">
         <i class="fas fa-landmark"></i>
         <h3 data-key="service_h3_3">Restorasyon ve Koruma</h3>
-        <p data-key="service_p_3">Tarihi ve kültürel miras yapılarını aslına uygun olarak restore ediyor, geleceğe taşıyoruz.</p>
+        <p data-key="service_p_3">Tarihi ve kültürel miras yapılarını...</p>
       </div>
-      
       <div class="service-card">
         <i class="fas fa-clipboard-list"></i>
         <h3 data-key="service_h3_4">Proje Yönetimi</h3>
-        <p data-key="service_p_4">Projenin başlangıcından teslimine kadar tüm süreçleri titizlikle yönetiyor, zamanında teslimatı sağlıyoruz.</p>
+        <p data-key="service_p_4">Projenin başlangıcından teslimine kadar...</p>
       </div>
-
     </div>
   </div>
 </section>
 
 <section id="page-projects" class="page-section">
   <div style="padding-top: 60px;">
-    
     <h2 data-key="projects_title_featured">Öne Çıkan Projelerimiz</h2>
     <div class="project-grid" style="margin-bottom: 80px;">
       <div class="project-card">
@@ -1843,7 +1806,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         <h3 data-key="project_h3_residence">Konut Projeleri</h3>
       </div>
       <div class="project-card">
-        <img src="assets/for_ticari.jpg" alt="Ticari Proje" loading="lazy" onerror="this.src='httpshttps://placehold.co/320x220/111/f59e0b?text=Ticari'">
+        <img src="assets/for_ticari.jpg" alt="Ticari Proje" loading="lazy" onerror="this.src='https.placehold.co/320x220/111/f59e0b?text=Ticari'">
         <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
       </div>
       <div class="project-card">
@@ -1851,7 +1814,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
       </div>
     </div>
-    
     <h2 data-key="projects_title_latest">En Son Tamamlanan Projelerimiz</h2>
     <div class="latest-grid">
       <div class="latest-card">
@@ -1874,26 +1836,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   <div style="padding-top: 60px;">
     <h2 data-key="contact_title">Bize Ulaşın</h2>
     <div class="contact-container">
-      
       <div class="contact-form">
         <h3 data-key="contact_form_title">Projenizi Anlatalım</h3>
         <form onsubmit="alert('Form gönderildi (simülasyon).'); return false;">
           <label for="name" data-key="contact_label_name">Adınız Soyadınız *</label>
           <input type="text" id="name" required>
-          
           <label for="email" data-key="contact_label_email">E-posta Adresiniz *</label>
           <input type="email" id="email" required>
-          
           <label for="subject" data-key="contact_label_subject">Konu</label>
           <input type="text" id="subject">
-          
           <label for="message" data-key="contact_label_message">Mesajınız *</label>
           <textarea id="message" rows="5" required></textarea>
-          
           <button type="submit" class="btn" data-key="btn_send">Gönder</button>
         </form>
       </div>
-      
       <div class="contact-info">
         <div class="info-item">
           <i class="fas fa-map-marker-alt"></i>
@@ -1917,11 +1873,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </section>
-</main> <footer>
+</main>
+
+ <footer>
     <div class="footer-content">
         <div class="footer-logo-container">
             <img src="./assets/golden_palace_logo.png" alt="Golden Palace Logo"> <div class="footer-text-container">
@@ -1963,6 +1920,514 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <script>
 // --- ÇEVİRİ SÖZLÜKLERİ (Ekip bölümü kaldırıldı) ---
+// --- ÇEVİRİ SÖZLÜKLERİ (TÜM YENİ SAYFALAR EKLENDİ) ---
+const translations = {
+    'tr': {
+        title: 'Golden Palace — Real Estate & Architecture',
+        hero_title: 'Golden Palace',
+        hero_subtitle: 'Şehir ve Denizden İlham Alan Lüks Mimari',
+        brand_golden_palace: 'Golden Palace',
+        brand_realstate: 'Real Estate & Architecture',
+        nav_home: 'Anasayfa',
+        nav_about: 'Hakkımızda',
+        nav_services: 'Hizmetler',
+        nav_projects: 'Projeler',
+        nav_contact: 'İletişim',
+        btn_discover: 'Keşfet',
+        drop_hotel: 'Otelimiz',
+        drop_construction: 'İnşaat Projeleri',
+        drop_restoration: 'Restorasyon Projeleri',
+        drop_rental: 'Satılık ve Kiralık Evlerimiz',
+        
+        // Eski Modal Çevirileri (JS'nin başka bölümleri kullanabilir)
+        modal_title: 'Otel Müsaitliğini Kontrol Et',
+        modal_checkin: 'Giriş Tarihi',
+        modal_checkout: 'Çıkış Tarihi',
+        btn_cancel: 'İptal',
+        btn_search: 'Müsaitlik Ara',
+        alert_dates: 'Lütfen giriş ve çıkış tarihlerini seçin.',
+        alert_invalid_date: 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.',
+        no_rooms: 'Bu tarihlerde müsait oda bulunamadı. Lütfen başka tarihler deneyin.',
+        
+        // Hakkımızda
+        about_title: 'Şehir ve Denizden İlham Alan Yenilik',
+        about_p1: 'Golden Palace Mimarlık, 1997 yılından bu yana vizyoner projeleriyle modern mimariye yön vermektedir. Sanatı mühendislikle birleştirerek, sadece yapılar değil, yaşayan ve ilham veren mekanlar tasarlıyoruz.',
+        about_p2: 'Ekibimiz, her projeye benzersiz bir bakış açısı getirir, sürdürülebilirliği, estetiği ve fonksiyonelliği bir araya getirerek müşterilerimizin beklentilerini aşan sonuçlar ortaya koyar.',
+        about_li1: 'Sürdürülebilir Tasarım Prensipleri',
+        about_li2: 'Müşteri Odaklı Proje Yönetimi',
+        about_li3: 'Uluslararası Kalite Standartları',
+        
+        // Hizmetler
+        services_title: 'Hizmetlerimiz',
+        service_h3_1: 'Mimari Tasarım',
+        service_p_1: 'Konsept geliştirmeden uygulama projelerine kadar, yaratıcı ve işlevsel çözümler sunuyoruz.',
+        service_h3_2: 'İç Mekan Tasarımı',
+        service_p_2: 'Mekanlarınızın ruhunu yansıtan, estetik ve ergonomik iç mekan çözümleri.',
+        service_h3_3: 'Restorasyon ve Koruma',
+        service_p_3: 'Tarihi ve kültürel miras yapılarını aslına uygun olarak restore ediyor, geleceğe taşıyoruz.',
+        service_h3_4: 'Proje Yönetimi',
+        service_p_4: 'Projenin başlangıcından teslimine kadar tüm süreçleri titizlikle yönetiyor, zamanında teslimatı sağlıyoruz.',
+        
+        // Projeler
+        projects_title_featured: 'Öne Çıkan Projelerimiz',
+        project_h3_residence: 'Konut Projeleri',
+        project_h3_commercial: 'Ticari Projeler',
+        project_h3_multipurpose: 'Çok Amaçlı Alanlar',
+        projects_title_latest: 'En Son Tamamlanan Projelerimiz',
+        latest_h3_1: 'Modern Residence',
+        latest_h3_2: 'Commercial Hub',
+        latest_h3_3: 'Multipurpose Complex',
+        
+        // İletişim
+        contact_title: 'Bize Ulaşın',
+        contact_form_title: 'Projenizi Anlatalım',
+        contact_label_name: 'Adınız Soyadınız *',
+        contact_label_email: 'E-posta Adresiniz *',
+        contact_label_subject: 'Konu',
+        contact_label_message: 'Mesajınız *',
+        btn_send: 'Gönder',
+        contact_info_address_title: 'Adresimiz',
+        contact_info_address_p: 'Mimar Sinan Cd. No: 42/A, Golden Palace Tower Kat: 12, İstanbul/Türkiye',
+        contact_info_phone_title: 'Telefon',
+        contact_info_phone_p: '+90 (212) 555 1923',
+        contact_info_email_title: 'E-posta',
+        contact_info_email_p: 'info@goldenpalace.com',
+        footer_copyright: '© 2025 Golden Palace Mimarlık. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.',
+
+        // --- 🌟 YENİ EKLENEN ÇEVİRİLER ---
+
+        // Otel Sayfası (page-otel)
+        otel_hero_title: 'Otelimiz',
+        otel_hero_subtitle: 'Lüks konaklama ve deniz manzaralı suit odalar.',
+        otel_reserve_btn: 'Rezervasyon Yap',
+        otel_form_title: 'Rezervasyon Formu',
+        otel_form_checkin: 'Giriş Tarihi',
+        otel_form_checkout: 'Çıkış Tarihi',
+        otel_form_search: 'Müsaitlik Ara',
+        otel_form_close: 'Kapat',
+        otel_gallery_title: 'Oda ve Süitlerimiz',
+        otel_gallery_subtitle: 'Detaylı incelemek için görsellere tıklayın.',
+        otel_card_1: 'Kral Dairesi',
+        otel_card_2: 'Deniz Manzaralı Suit',
+        otel_card_3: 'Aile Odası',
+        otel_card_4: 'Standart Oda (Deniz)',
+        otel_card_5: 'Standart Oda (Kara)',
+        otel_card_6: 'Lobi & Resepsiyon',
+        otel_card_7: 'Ana Restoran',
+        otel_card_8: 'Sonsuzluk Havuzu',
+        otel_card_9: 'Spa & Wellness',
+        otel_card_10: 'Fitness Merkezi',
+        
+        // Otel Modalı (JavaScript Uyarıları)
+        otel_alert_select_dates: '⚠️ Lütfen giriş ve çıkış tarihlerini seçin.',
+        otel_alert_success: '✅ Müsait odalar bulundu!<br><br><strong>Rezervasyon işlemini başlatmak için aşağıdaki butona tıklayın.</strong>',
+        otel_alert_success_btn: 'E-posta ile Rezervasyon Yap',
+        otel_alert_fail: '❌ Maalesef bu tarihlerde müsait oda bulunamadı.',
+
+        // İnşaat Sayfası (page-insaat)
+        insaat_hero_title: 'İnşaat Projeleri',
+        insaat_hero_subtitle: 'Modern şehir yapıları ve yenilikçi mühendislik çözümleri.',
+        insaat_gallery_title: 'İnşaat Projelerimiz',
+        insaat_gallery_subtitle: 'Detaylı incelemek için görsellere tıklayın.',
+        insaat_card_1: 'Proje: Gökdelen A',
+        insaat_card_2: 'Proje: Modern Konutlar B',
+        insaat_card_3: 'Proje: Alışveriş Merkezi C',
+        insaat_card_4: 'Proje: Ofis Kuleleri D',
+        insaat_card_5: 'Proje: Endüstriyel Tesis E',
+        insaat_card_6: 'Proje: Lüks Villa Sitesi F',
+
+        // Restorasyon Sayfası (page-restorasyon)
+        resto_hero_title: 'Restorasyon Projeleri',
+        resto_hero_subtitle: 'Tarihi yapıları geleceğe taşıyoruz.',
+        resto_gallery_title: 'Tamamlanan Restorasyonlar',
+        resto_card_1: 'Tarihi Yalı Restorasyonu A',
+        resto_card_2: 'Eski Cami Canlandırma B',
+        resto_card_3: 'Kervansaray Yenileme C',
+
+        // Satılık/Kiralık Sayfa (page-satilik_kiralik)
+        satilik_title: 'Satılık Mülklerimiz',
+        kiralik_title: 'Kiralık Mülklerimiz',
+        // Not: Evlerin başlıkları (NURİPAŞA BİNA vb.) özel isim olduğu için çevrilmemiştir.
+    },
+    'en': {
+        title: 'Golden Palace — Real Estate & Architecture',
+        hero_title: 'Golden Palace',
+        hero_subtitle: 'Luxury Architecture Inspired by City & Sea',
+        brand_golden_palace: 'Golden Palace',
+        brand_realstate: 'Real Estate & Architecture',
+        nav_home: 'Home',
+        nav_about: 'About Us',
+        nav_services: 'Services',
+        nav_projects: 'Projects',
+        nav_contact: 'Contact',
+        btn_discover: 'Discover',
+        drop_hotel: 'Our Hotel',
+        drop_construction: 'Construction Projects',
+        drop_restoration: 'Restoration Projects',
+        drop_rental: 'Properties for Sale & Rent',
+        
+        // Eski Modal
+        modal_title: 'Check Hotel Availability',
+        modal_checkin: 'Check-in Date',
+        modal_checkout: 'Check-out Date',
+        btn_cancel: 'Cancel',
+        btn_search: 'Search Availability',
+        alert_dates: 'Please select both check-in and check-out dates.',
+        alert_invalid_date: 'Check-out date must be after the check-in date.',
+        no_rooms: 'No available rooms found for these dates. Please try other dates.',
+        
+        // Hakkımızda
+        about_title: 'Innovation Inspired by City and Sea',
+        about_p1: 'Since 1997, Golden Palace Architecture has been shaping modern architecture with its visionary projects. By blending art with engineering, we design not just structures, but living and inspiring spaces.',
+        about_p2: 'Our team brings a unique perspective to every project, delivering results that exceed client expectations by combining sustainability, aesthetics, and functionality.',
+        about_li1: 'Sustainable Design Principles',
+        about_li2: 'Customer-Focused Project Management',
+        about_li3: 'International Quality Standards',
+        
+        // Hizmetler
+        services_title: 'Our Services',
+        service_h3_1: 'Architectural Design',
+        service_p_1: 'We offer creative and functional solutions, from concept development to implementation projects.',
+        service_h3_2: 'Interior Design',
+        service_p_2: 'Aesthetic and ergonomic interior solutions that reflect the spirit of your spaces.',
+        service_h3_3: 'Restoration and Preservation',
+        service_p_3: 'We restore historical and cultural heritage structures to their original state, preserving them for the future.',
+        service_h3_4: 'Project Management',
+        service_p_4: 'We meticulously manage all processes from project inception to delivery, ensuring on-time completion.',
+        
+        // Projeler
+        projects_title_featured: 'Featured Projects',
+        project_h3_residence: 'Residential Projects',
+        project_h3_commercial: 'Commercial Projects',
+        project_h3_multipurpose: 'Multi-Purpose Areas',
+        projects_title_latest: 'Our Latest Completed Projects',
+        latest_h3_1: 'Modern Residence',
+        latest_h3_2: 'Commercial Hub',
+        latest_h3_3: 'Multipurpose Complex',
+        
+        // İletişim
+        contact_title: 'Contact Us',
+        contact_form_title: 'Tell Us About Your Project',
+        contact_label_name: 'Full Name *',
+        contact_label_email: 'Email Address *',
+        contact_label_subject: 'Subject',
+        contact_label_message: 'Your Message *',
+        btn_send: 'Send',
+        contact_info_address_title: 'Our Address',
+        contact_info_address_p: 'Mimar Sinan Cd. No: 42/A, Golden Palace Tower Floor: 12, Istanbul/Turkey',
+        contact_info_phone_title: 'Phone',
+        contact_info_phone_p: '+90 (212) 555 1923',
+        contact_info_email_title: 'Email',
+        contact_info_email_p: 'info@goldenpalace.com',
+        footer_copyright: '© 2025 Golden Palace Architecture. All rights reserved. | Design and Innovation Studio.',
+        
+        // --- 🌟 NEW TRANSLATIONS ---
+
+        // Hotel Page
+        otel_hero_title: 'Our Hotel',
+        otel_hero_subtitle: 'Luxury accommodation and sea-view suites.',
+        otel_reserve_btn: 'Make a Reservation',
+        otel_form_title: 'Reservation Form',
+        otel_form_checkin: 'Check-in Date',
+        otel_form_checkout: 'Check-out Date',
+        otel_form_search: 'Check Availability',
+        otel_form_close: 'Close',
+        otel_gallery_title: 'Our Rooms and Suites',
+        otel_gallery_subtitle: 'Click on the images for details.',
+        otel_card_1: 'King Suite',
+        otel_card_2: 'Sea View Suite',
+        otel_card_3: 'Family Room',
+        otel_card_4: 'Standard Room (Sea)',
+        otel_card_5: 'Standard Room (Land)',
+        otel_card_6: 'Lobby & Reception',
+        otel_card_7: 'Main Restaurant',
+        otel_card_8: 'Infinity Pool',
+        otel_card_9: 'Spa & Wellness',
+        otel_card_10: 'Fitness Center',
+
+        // Hotel Modal (JS Alerts)
+        otel_alert_select_dates: '⚠️ Please select both check-in and check-out dates.',
+        otel_alert_success: '✅ Available rooms found!<br><br><strong>Click the button below to start your reservation.</strong>',
+        otel_alert_success_btn: 'Reserve via Email',
+        otel_alert_fail: '❌ Unfortunately, no rooms are available for these dates.',
+
+        // Construction Page
+        insaat_hero_title: 'Construction Projects',
+        insaat_hero_subtitle: 'Modern city structures and innovative engineering solutions.',
+        insaat_gallery_title: 'Our Construction Projects',
+        insaat_gallery_subtitle: 'Click on the images for details.',
+        insaat_card_1: 'Project: Skyscraper A',
+        insaat_card_2: 'Project: Modern Residences B',
+        insaat_card_3: 'Project: Shopping Mall C',
+        insaat_card_4: 'Project: Office Towers D',
+        insaat_card_5: 'Project: Industrial Facility E',
+        insaat_card_6: 'Project: Luxury Villa Complex F',
+
+        // Restoration Page
+        resto_hero_title: 'Restoration Projects',
+        resto_hero_subtitle: 'Carrying historical structures into the future.',
+        resto_gallery_title: 'Completed Restorations',
+        resto_card_1: 'Historical Mansion Restoration A',
+        resto_card_2: 'Old Mosque Revival B',
+        resto_card_3: 'Caravanserai Renewal C',
+
+        // Sale/Rent Page
+        satilik_title: 'Properties for Sale',
+        kiralik_title: 'Properties for Rent',
+    },
+    'zh': {
+        title: 'Golden Palace — 房地产与建筑',
+        hero_title: 'Golden Palace',
+        hero_subtitle: '灵感源于城市与海洋的奢华建筑',
+        brand_golden_palace: 'Golden Palace',
+        brand_realstate: '房地产与建筑',
+        nav_home: '首页',
+        nav_about: '关于我们',
+        nav_services: '服务',
+        nav_projects: '项目',
+        nav_contact: '联系我们',
+        btn_discover: '探索',
+        drop_hotel: '我们的酒店',
+        drop_construction: '建设项目',
+        drop_restoration: '修复项目',
+        drop_rental: '待售和出租物业',
+        
+        // Eski Modal
+        modal_title: '查询酒店空房情况',
+        modal_checkin: '入住日期',
+        modal_checkout: '退房日期',
+        btn_cancel: '取消',
+        btn_search: '搜索空房',
+        alert_dates: '请选择入住和退房日期。',
+        alert_invalid_date: '退房日期必须晚于入住日期。',
+        no_rooms: '未找到这些日期的可用房间。请尝试其他日期。',
+        
+        // Hakkımızda
+        about_title: '受城市和海洋启发的创新',
+        about_p1: '自1997年以来，Golden Palace 建筑凭借其富有遠見的项目塑造着现代建筑。 我们将艺术与工程相结合，设计出不仅是结构，更是充满活力和启发性的空间。',
+        about_p2: '我们的团队为每个项目带来独特的视角，结合可持续性、美学和功能性，提供超出客户期望的成果。',
+        about_li1: '可持续设计原则',
+        about_li2: '以客户为中心的项目管理',
+        about_li3: '国际质量标准',
+        
+        // Hizmetler
+        services_title: '我们的服务',
+        service_h3_1: '建筑设计',
+        service_p_1: '我们提供从概念开发到实施项目的创造性和功能性解决方案。',
+        service_h3_2: '室内设计',
+        service_p_2: '反映您空间精神的审美和人体工程学室内解决方案。',
+        service_h3_3: '修复与保護',
+        service_p_3: '我们恢复历史和文化遗产建筑的原貌，为子孙后代保留它们。',
+        service_h3_4: '项目管理',
+        service_p_4: '我们从项目开始到交付，都一丝不苟地管理所有流程，确保按時完成。',
+        
+        // Projeler
+        projects_title_featured: '特色项目',
+        project_h3_residence: '住宅项目',
+        project_h3_commercial: '商业项目',
+        project_h3_multipurpose: '多用途区域',
+        projects_title_latest: '我们最新的已完成项目',
+        latest_h3_1: '现代住宅',
+        latest_h3_2: '商业中心',
+        latest_h3_3: '多功能综合体',
+        
+        // İletişim
+        contact_title: '联系我们',
+        contact_form_title: '告诉我们您的项目',
+        contact_label_name: '全名 *',
+        contact_label_email: '电子邮件地址 *',
+        contact_label_subject: '主题',
+        contact_label_message: '您的消息 *',
+        btn_send: '发送',
+        contact_info_address_title: '我们的地址',
+        contact_info_address_p: 'Mimar Sinan Cd. No: 42/A, Golden Palace Tower 楼层: 12, 伊斯坦布尔/土耳其',
+        contact_info_phone_title: '电话',
+        contact_info_phone_p: '+90 (212) 555 1923',
+        contact_info_email_title: '电子邮件',
+        contact_info_email_p: 'info@goldenpalace.com',
+        footer_copyright: '© 2025 Golden Palace Architecture. All rights reserved. | Design and Innovation Studio。',
+        
+        // --- 🌟 NEW TRANSLATIONS ---
+
+        // Hotel Page
+        otel_hero_title: '我们的酒店',
+        otel_hero_subtitle: '豪华住宿和海景套房。',
+        otel_reserve_btn: '预订',
+        otel_form_title: '预订表格',
+        otel_form_checkin: '入住日期',
+        otel_form_checkout: '退房日期',
+        otel_form_search: '查询空房',
+        otel_form_close: '关闭',
+        otel_gallery_title: '我们的客房和套房',
+        otel_gallery_subtitle: '点击图片查看详情。',
+        otel_card_1: '皇家套房',
+        otel_card_2: '海景套房',
+        otel_card_3: '家庭房',
+        otel_card_4: '标准间（海景）',
+        otel_card_5: '标准间（陆景）',
+        otel_card_6: '大堂和接待处',
+        otel_card_7: '主餐厅',
+        otel_card_8: '无边泳池',
+        otel_card_9: '水疗与健康中心',
+        otel_card_10: '健身中心',
+        
+        // Hotel Modal (JS Alerts)
+        otel_alert_select_dates: '⚠️ 请选择入住和退房日期。',
+        otel_alert_success: '✅ 找到可用房间！<br><br><strong>点击下方按钮开始预订。</strong>',
+        otel_alert_success_btn: '通过电子邮件预订',
+        otel_alert_fail: '❌ 抱歉，这些日期没有可用房间。',
+
+        // Construction Page
+        insaat_hero_title: '建设项目',
+        insaat_hero_subtitle: '现代城市结构和创新工程解决方案。',
+        insaat_gallery_title: '我们的建设项目',
+        insaat_gallery_subtitle: '点击图片查看详情。',
+        insaat_card_1: '项目：摩天大楼 A',
+        insaat_card_2: '项目：现代住宅 B',
+        insaat_card_3: '项目：购物中心 C',
+        insaat_card_4: '项目：办公大楼 D',
+        insaat_card_5: '项目：工业设施 E',
+        insaat_card_6: '项目：豪华别墅 F',
+
+        // Restoration Page
+        resto_hero_title: '修复项目',
+        resto_hero_subtitle: '将历史建筑带入未来。',
+        resto_gallery_title: '已完成的修复',
+        resto_card_1: '历史宅邸修复 A',
+        resto_card_2: '古老清真寺复兴 B',
+        resto_card_3: '商队旅馆更新 C',
+
+        // Sale/Rent Page
+        satilik_title: '待售物业',
+        kiralik_title: '待租物业',
+    },
+    'ar': { 
+        title: 'جولدن بالاس — العقارات والهندسة المعمارية',
+        hero_title: 'جولدن بالاس',
+        hero_subtitle: 'هندسة معمارية فاخرة مستوحاة من المدينة والبحر',
+        brand_golden_palace: 'جولدن بالاس',
+        brand_realstate: 'العقارات والهندسة المعمارية',
+        nav_home: 'الرئيسية',
+        nav_about: 'من نحن',
+        nav_services: 'خدماتنا',
+        nav_projects: 'المشاريع',
+        nav_contact: 'اتصل بنا',
+        btn_discover: 'اكتشف',
+        drop_hotel: 'فندقنا',
+        drop_construction: 'مشاريع البناء',
+        drop_restoration: 'مشاريع الترميم',
+        drop_rental: 'عقارات للبيع والإيجار',
+        
+        // Eski Modal
+        modal_title: 'التحقق من توفر الفندق',
+        modal_checkin: 'تاريخ الوصول',
+        modal_checkout: 'تاريخ المغادرة',
+        btn_cancel: 'إلغاء',
+        btn_search: 'البحث عن التوفر',
+        alert_dates: 'يرجى تحديد تاريخي الوصول والمغادرة.',
+        alert_invalid_date: 'يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.',
+        no_rooms: 'لم يتم العثور على غرف متاحة لهذه التواريخ. يرجى تجربة تواريخ أخرى.',
+        
+        // Hakkımızda
+        about_title: 'ابتكار مستوحى من المدينة والبحر',
+        about_p1: 'منذ عام 1997، تقوم جولدن بالاس للهندسة المعمارية بتشكيل العمارة الحديثة بمشاريعها الحالمة. من خلال دمج الفن مع الهندسة، نقوم بتصميم ليس فقط المباني، ولكن مساحات حية وملهمة.',
+        about_p2: 'يجلب فريقنا منظورًا فريدًا لكل مشروع، ويجمع بين الاستدامة والجماليات والوظائف لتقديم نتائج تفوق توقعات عملائنا.',
+        about_li1: 'مبادئ التصميم المستدام',
+        about_li2: 'إدارة المشاريع الموجهة نحو العملاء',
+        about_li3: 'معايير الجودة الدولية',
+        
+        // Hizmetler
+        services_title: 'خدماتنا',
+        service_h3_1: 'التصميم المعماري',
+        service_p_1: 'نقدم حلولاً إبداعية ووظيفية، من تطوير المفهوم إلى مشاريع التنفيذ.',
+        service_h3_2: 'التصميم الداخلي',
+        service_p_2: 'حلول داخلية جمالية ومريحة تعكس روح مساحاتك.',
+        service_h3_3: 'الترميم والحفاظ',
+        service_p_3: 'نقوم بترميم المباني التراثية والتاريخية إلى حالتها الأصلية، والحفاظ عليها للمستقبل.',
+        service_h3_4: 'إدارة المشاريع',
+        service_p_4: 'ندير جميع العمليات بدقة من بداية المشروع حتى التسليم، ونضمن الإنجاز في الوقت المحدد.',
+        
+        // Projeler
+        projects_title_featured: 'مشاريعنا المميزة',
+        project_h3_residence: 'مشاريع سكنية',
+        project_h3_commercial: 'مشاريع تجارية',
+        project_h3_multipurpose: 'مناطق متعددة الأغراض',
+        projects_title_latest: 'أحدث مشاريعنا المنجزة',
+        latest_h3_1: 'الإقامة الحديثة',
+        latest_h3_2: 'المركز التجاري',
+        latest_h3_3: 'مجمع متعدد الأغراض',
+        
+        // İletişim
+        contact_title: 'اتصل بنا',
+        contact_form_title: 'أخبرنا عن مشروعك',
+        contact_label_name: 'الاسم الكامل *',
+        contact_label_email: 'عنوان البريد الإلكتروني *',
+        contact_label_subject: 'الموضوع',
+        contact_label_message: 'رسالتك *',
+        btn_send: 'إرسال',
+        contact_info_address_title: 'عنواننا',
+        contact_info_address_p: 'شارع معمار سنان رقم 42/أ، برج جولدن بالاس الطابق 12، إسطنبول/تركيا',
+        contact_info_phone_title: 'هاتف',
+        contact_info_phone_p: '+90 (212) 555 1923',
+        contact_info_email_title: 'بريد إلكتروني',
+        contact_info_email_p: 'info@goldenpalace.com',
+        footer_copyright: '© 2025 جولدن بالاس للهندسة المعمارية. جميع الحقوق محفوظة. | استوديو التصميم والابتكار.',
+        
+        // --- 🌟 NEW TRANSLATIONS ---
+
+        // Hotel Page
+        otel_hero_title: 'فندقنا',
+        otel_hero_subtitle: 'إقامة فاخرة وأجنحة مطلة على البحر.',
+        otel_reserve_btn: 'احجز الآن',
+        otel_form_title: 'نموذج الحجز',
+        otel_form_checkin: 'تاريخ الوصول',
+        otel_form_checkout: 'تاريخ المغادرة',
+        otel_form_search: 'البحث عن التوفر',
+        otel_form_close: 'إغلاق',
+        otel_gallery_title: 'غرفنا وأجنحتنا',
+        otel_gallery_subtitle: 'انقر على الصور لمزيد من التفاصيل.',
+        otel_card_1: 'الجناح الملكي',
+        otel_card_2: 'جناح مطل على البحر',
+        otel_card_3: 'غرفة عائلية',
+        otel_card_4: 'غرفة قياسية (بحر)',
+        otel_card_5: 'غرفة قياسية (بر)',
+        otel_card_6: 'الردهة والاستقبال',
+        otel_card_7: 'المطعم الرئيسي',
+        otel_card_8: 'حمام السباحة اللامتناهي',
+        otel_card_9: 'المنتجع الصحي والعافية',
+        otel_card_10: 'مركز اللياقة البدنية',
+
+        // Hotel Modal (JS Alerts)
+        otel_alert_select_dates: '⚠️ يرجى تحديد تاريخي الوصول والمغادرة.',
+        otel_alert_success: '✅ تم العثور على غرف متاحة!<br><br><strong>انقر على الزر أدناه لبدء الحجز.</strong>',
+        otel_alert_success_btn: 'الحجز عبر البريد الإلكتروني',
+        otel_alert_fail: '❌ للأسف، لا توجد غرف متاحة في هذه التواريخ.',
+
+        // Construction Page
+        insaat_hero_title: 'مشاريع البناء',
+        insaat_hero_subtitle: 'هياكل مدن حديثة وحلول هندسية مبتكرة.',
+        insaat_gallery_title: 'مشاريع البناء لدينا',
+        insaat_gallery_subtitle: 'انقر على الصور لمزيد من التفاصيل.',
+        insaat_card_1: 'مشروع: ناطحة سحاب أ',
+        insaat_card_2: 'مشروع: مساكن حديثة ب',
+        insaat_card_3: 'مشروع: مركز تسوق ج',
+        insaat_card_4: 'مشروع: أبراج مكتبية د',
+        insaat_card_5: 'مشروع: منشأة صناعية هـ',
+        insaat_card_6: 'مشروع: مجمع فلل فاخرة و',
+
+        // Restoration Page
+        resto_hero_title: 'مشاريع الترميم',
+        resto_hero_subtitle: 'ننقل المباني التاريخية إلى المستقبل.',
+        resto_gallery_title: 'الترميمات المكتملة',
+        resto_card_1: 'ترميم قصر تاريخي أ',
+        resto_card_2: 'إحياء مسجد قديم ب',
+        resto_card_3: 'تجديد خان ج',
+
+        // Sale/Rent Page
+        satilik_title: 'عقارات للبيع',
+        kiralik_title: 'عقارات للإيجار',
+    },
+};
 const translations = {
     'tr': {
         title: 'Golden Palace — Real Estate & Architecture',
@@ -2906,25 +3371,60 @@ function setupProjectReservation() {
         return;
     }
 
-    // 'Müsaitlik Ara' butonuna tıklandığında
-    searchBtn.addEventListener('click', () => {
-        const checkin = document.getElementById('project-check-in').value;
-        const checkout = document.getElementById('project-check-out').value;
-        const currentLang = localStorage.getItem('lang') || 'tr';
-        
-        if (!checkin || !checkout) {
-            alert(translations[currentLang].alert_dates || 'Lütfen giriş ve çıkış tarihlerini seçin.');
-            return;
-        }
-        if (new Date(checkin) >= new Date(checkout)) {
-             alert(translations[currentLang].alert_invalid_date || 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
-            return;
-        }
-        
-        loadCategory('otel', checkin, checkout); 
-    });
-}
+// 🌟 Müsaitlik Popup + E-posta oluşturma (Ayrı sayfada)
+const searchBtn = document.getElementById("otel-search");
+const modal = document.getElementById("availability-modal");
+const message = document.getElementById("availability-message");
+const closeModalBtn = document.getElementById("close-modal-btn");
 
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    const checkin = document.getElementById("otel-checkin").value;
+    const checkout = document.getElementById("otel-checkout").value;
+    
+    // 🌟 YENİ: Dil optimizasyonu
+    const currentLang = localStorage.getItem('lang') || 'tr';
+    const langData = translations[currentLang];
+
+    if (!checkin || !checkout) {
+      // 🌟 DÜZELTME: Türkçe metin yerine anahtar kullanıldı
+      message.textContent = langData['otel_alert_select_dates'];
+      modal.classList.add("show");
+      return;
+    }
+
+    const random = Math.random();
+    if (random > 0.5) {
+      // 🌟 DÜZELTME: Türkçe metin yerine anahtar kullanıldı
+      message.innerHTML = langData['otel_alert_success'];
+
+      const oldMailBtn = message.parentElement.querySelector('.btn-mail');
+      if (oldMailBtn) oldMailBtn.remove();
+      
+      const mailBtn = document.createElement("button");
+      // 🌟 DÜZELTME: Türkçe metin yerine anahtar kullanıldı
+      mailBtn.textContent = langData['otel_alert_success_btn'];
+      mailBtn.classList.add("btn", "btn-mail");
+      mailBtn.style.marginTop = "15px";
+
+      mailBtn.addEventListener("click", () => {
+        const subject = encodeURIComponent("Rezervasyon Talebi - Golden Palace Otel");
+        const body = encodeURIComponent(`Merhaba,%0A%0A${checkin} - ${checkout} tarihleri arasında rezervasyon yapmak istiyorum.%0A%0Aİyi günler.`);
+        window.location.href = `mailto:info@goldenpalace.com?subject=${subject}&body=${body}`;
+      });
+
+      message.parentElement.appendChild(mailBtn);
+    } else {
+      // 🌟 DÜZELTME: Türkçe metin yerine anahtar kullanıldı
+      message.textContent = langData['otel_alert_fail'];
+      
+      const oldMailBtn = message.parentElement.querySelector('.btn-mail');
+      if (oldMailBtn) oldMailBtn.remove();
+    }
+
+    modal.classList.add("show");
+  });
+}
 
 // 🌟 YENİ: Sayfa Gösterme Fonksiyonu (SPA) 🌟
 function showPage(pageId) {
