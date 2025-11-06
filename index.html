@@ -335,6 +335,7 @@ header {
 .hero h1 {
   font-weight: 900;
   letter-spacing: 1px;
+  font-size: 48px;
 }
 .hero p {
   font-family: 'Inter', sans-serif;
@@ -991,6 +992,15 @@ html[dir="rtl"] .info-item i {
       margin-right: 0; /* Mobilde zaten dikey */
   }
 }
+/* 🌟 YENİ: Başlık Altı Çizgisi (Önbelleği yenmek için) 🌟 */
+.title-gold-line {
+    width: 100px;
+    height: 2px !important; /* 2px olmaya zorluyoruz */
+    background: var(--gold-dark);
+    margin: 0 auto 40px auto;
+    border-radius: 2px;
+    box-shadow: var(--gold-shadow);
+}
 
 /* === 12. YENİ REZERVASYON MODALI (KALDIRILDI) === */
 /* Modal stilleri artık kullanılmadığı için silinebilir, 
@@ -1337,6 +1347,97 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: center;
 }
 
+/* === 15. YENİ SATILIK/KİRALIK SAYFA DÜZENİ (MOCKUP) === */
+
+/* Sayfanın arka planını ve varsayılan boşluklarını ayarla */
+#page-satilik_kiralik {
+    background-image: none !important; /* Kemerli hero resmini kaldır */
+    background-color: #111111 !important; /* Mockup'taki gibi koyu arka plan */
+    padding-top: 100px !important; /* Menü çubuğu için boşluk */
+    padding-bottom: 100px !important;
+}
+
+/* İçeriği genişleten ve ortalayan konteyner */
+.new-layout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Mockup'taki Başlık (H2) Stili */
+#page-satilik_kiralik h2 {
+    font-family: 'Inter', sans-serif !important; /* Playfair yerine Inter */
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    text-align: left !important; /* Sola hizalı */
+    color: var(--gold-light) !important; /* Altın rengi */
+    
+    /* Eski gradient metin efektlerini sıfırla */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+    
+    /* Mockup'taki altın çizgi */
+    border-bottom: 2px solid var(--gold-dark);
+    padding-bottom: 10px;
+    margin-bottom: 40px; /* Galeri ile aradaki boşluk */
+}
+
+/* Mockup'taki Galeri (Grid) Stili */
+#page-satilik_kiralik .house-gallery {
+    display: grid !important;
+    /* Resimdeki gibi 4 sütunlu (veya sığarsa 5) bir grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Mockup'taki KART (house-card) Stili */
+#page-satilik_kiralik .house-card {
+    width: 100%; /* Genişlik grid'den gelecek */
+    height: auto; /* Yükseklik içeriğe göre ayarlanacak */
+    background: #1c1c1c; /* Kartın arka planı */
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Kartın içindeki resim */
+#page-satilik_kiralik .house-card img {
+    height: 260px; /* Resimlerin yüksekliği sabit */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0; /* Sadece üst köşeler */
+}
+
+/* Kartın içindeki başlık (H3) */
+#page-satilik_kiralik .house-card h3 {
+    display: block !important; /* Artık gizli değil, GÖSTER */
+    height: auto !important; /* Yüksekliği sıfırla */
+    background: transparent !important; /* Arka planı kaldır */
+    color: #f5f5f5 !important; /* Metin rengi beyaz */
+    font-family: 'Inter', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    text-align: left !important; /* Sola hizalı */
+    padding: 15px !important;
+    margin: 0 !important;
+    
+    /* Eski gradient metin efektlerini sıfırla */
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+}
+
+/* Kartın hover efekti */
+#page-satilik_kiralik .house-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--gold-shadow-intense);
+}
 
 /* === 16. RADİKAL ÇÖZÜM: 'Satılık' Sayfası Boşluklarını Ezme === */
 
@@ -1376,6 +1477,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 0 !important;
 }
 
+/* 💡 FOTOĞRAF NETLİK DÜZELTMESİ (Lightbox Arka Planı) 💡 */
+#lightbox {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: none !important;
+}
 </style>
 
 </head>
@@ -1479,21 +1585,70 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     </div>
   </div>
 
-  <!-- 🌟 YENİ: Otel Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
-  <div>
-    <h2>Otel Galerisi</h2>
-    <div class="latest-grid">
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Lobi" alt="Otel Lobi"> <h3>Lobi ve Resepsiyon</h3>
-      </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Suit+Oda" alt="Suit Oda"> <h3>Kral Dairesi</h3>
-      </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Havuz" alt="Havuz"> <h3>Sonsuzluk Havuzu</h3>
-      </div>
+  <div style="padding-top: 60px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
+        Oda ve Süitlerimiz
+    </h2>
+    <p style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
+        Detaylı incelemek için görsellere tıklayın.
+    </p>
+
+    <div class="house-gallery">
+        
+        <div class="house-card" onclick="openHouseDetail('OTEL1')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Kral+Dairesi" alt="Kral Dairesi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Kral Dairesi</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL2')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Suit+Oda" alt="Suit Oda" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Deniz Manzaralı Suit</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL3')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Aile+Odası" alt="Aile Odası" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Aile Odası</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL4')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Standart+Oda" alt="Standart Oda (Deniz)" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Standart Oda (Deniz)</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL5')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Standart+Oda" alt="Standart Oda (Kara)" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Standart Oda (Kara)</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL6')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Lobi" alt="Lobi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Lobi & Resepsiyon</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL7')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Restoran" alt="Restoran" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Ana Restoran</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL8')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Havuz" alt="Havuz" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Sonsuzluk Havuzu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL9')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Spa" alt="Spa" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Spa & Wellness</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('OTEL10')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Spor+Salonu" alt="Spor Salonu" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Fitness Merkezi</h3>
+        </div>
+
     </div>
-  </div>
+
+</div>
+ 
 </section>
 
 
@@ -1506,21 +1661,48 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     </div>
   </div>
   
-  <!-- 🌟 YENİ: İnşaat Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
-  <div>
-    <h2>Öne Çıkan İnşaat Projeleri</h2>
-    <div class="latest-grid">
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+1" alt="İnşaat 1"> <h3>Proje: Gökdelen A</h3>
-      </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+2" alt="İnşaat 2"> <h3>Proje: Modern Konutlar B</h3>
-      </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=İnşaat+3" alt="İnşaat 3"> <h3>Proje: Alışveriş Merkezi C</h3>
-      </div>
+<div style="padding-top: 60px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; text-align: center; margin-bottom: 20px; color: #ffcc66; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; text-fill-color: initial;">
+        İnşaat Projelerimiz
+    </h2>
+    <p style="color: #cfcfcf; text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 40px;">
+        Detaylı incelemek için görsellere tıklayın.
+    </p>
+
+    <div class="house-gallery">
+        
+        <div class="house-card" onclick="openHouseDetail('INSAAT1')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Proje+Gökdelen" alt="Proje Gökdelen" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Gökdelen A</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('INSAAT2')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Modern+Konutlar" alt="Modern Konutlar" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Modern Konutlar B</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('INSAAT3')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Alışveriş+Merkezi" alt="Alışveriş Merkezi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Alışveriş Merkezi C</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('INSAAT4')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Ofis+Kuleleri" alt="Ofis Kuleleri" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Ofis Kuleleri D</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('INSAAT5')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Endüstriyel+Tesis" alt="Endüstriyel Tesis" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Endüstriyel Tesis E</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('INSAAT6')">
+            <img src="https://placehold.co/350x280/111/f59e0b?text=Villa+Projesi" alt="Villa Projesi" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>Proje: Lüks Villa Sitesi F</h3>
+        </div>
+
     </div>
-  </div>
+</div>
 </section>
 
 <!-- 🔹 RESTORASYON SAYFASI -->
@@ -1549,53 +1731,58 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   </div>
 </section>
 
-<!-- 🔹 🏠 YENİ SATILIK-KİRALIK SAYFASI 🏠 -->
 <section id="page-satilik_kiralik" class="page-section">
-  <div>
-    <div id="screen-satilik"> <div class="screen-inner">
+  
+  <div class="new-layout-container">
 
-         <h1 data-key="drop_rental">Satılık & Kiralık Evlerimiz</h1>
-        
-         <p data-key="hero_subtitle">Lüks yaşam alanlarını keşfedin.</p>
-        
-  <div class="house-gallery"> 
-          <div class="house-card" onclick="openHouseDetail('A')">
+    <h2>Satılık Mülklerimiz</h2>
+
+    <div class="house-gallery">
+        <div class="house-card" onclick="openHouseDetail('A')">
             <img src="assets/house-galleryA.jpg" alt="NURİPAŞA BİNA" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+A'">
             <h3>NURİPAŞA BİNA -SATILIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('B')">
-            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+B'">
-            <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('C')">
-            <img src="assets/house-galleryC.jpg" alt="KAYAŞEHİR EMLAK KONUT" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+C'">
-            <h3>KAYAŞEHİR EMLAK KONUT -SATILIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('D')">
-            <img src="assets/house-galleryD.jpg" alt="BAHÇELİEVLER DUBLEKS" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+D'">
-            <h3>BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('E')">
-            <img src="assets/house-galleryE.jpg" alt="THE İSTANBUL RESIDENCE 2+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+E'">
-            <h3>THE İSTANBUL RESIDENCE 2+1 -KİRALIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('F')">
-            <img src="assets/house-galleryF.jpg" alt="THE İSTANBUL RESIDENCE 1+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+F'">
-            <h3>THE İSTANBUL RESIDENCE 1+1 -KİRALIK-</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('G')">
-            <img src="assets/house-galleryG.jpg" alt="YEDİ MAVİ 3+1" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+G'">
-            <h3>YEDİ MAVİ SATILIK 3+1</h3>
-          </div>
-          <div class="house-card" onclick="openHouseDetail('H')">
-            <img src="assets/house-galleryH.jpg" alt="YEDİ MAVİ H BLOK" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Ev+H'">
-            <h3>YEDİ MAVİ H BLOK -KİRALIK-</h3>
-          </div>
         </div>
-      </div>
+        <div class="house-card" onclick="openHouseDetail('B')">
+            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+B'">
+            <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('C')">
+            <img src="assets/house-galleryC.jpg" alt="KAYAŞEHİR EMLAK KONUT" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+C'">
+            <h3>KAYAŞEHİR EMLAK KONUT -SATILIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('D')">
+            <img src="assets/house-galleryD.jpg" alt="BAHÇELİEVLER DUBLEKS" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+D'">
+            <h3>BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('G')">
+            <img src="assets/house-galleryG.jpg" alt="YEDİ MAVİ 3+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+G'">
+            <h3>YEDİ MAVİ SATILIK 3+1</h3>
+        </div>
     </div>
+
+
+    <h2 style="margin-top: 80px;">Kiralık Mülklerimiz</h2>
+
+    <div class="house-gallery">
+        <div class="house-card" onclick="openHouseDetail('B')">
+            <img src="assets/house-galleryB.jpg" alt="BÜYÜKYALI" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+B'">
+            <h3>BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('E')">
+            <img src="assets/house-galleryE.jpg" alt="THE İSTANBUL RESIDENCE 2+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+E'">
+            <h3>THE İSTANBUL RESIDENCE 2+1 -KİRALIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('F')">
+            <img src="assets/house-galleryF.jpg" alt="THE İSTANBUL RESIDENCE 1+1" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+F'">
+            <h3>THE İSTANBUL RESIDENCE 1+1 -KİRALIK-</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('H')">
+            <img src="assets/house-galleryH.jpg" alt="YEDİ MAVİ H BLOK" onerror="this.src='https.placehold.co/350x224/111/f59e0b?text=Ev+H'">
+            <h3>YEDİ MAVİ H BLOK -KİRALIK-</h3>
+        </div>
+    </div>
+
   </div>
-  
 </section>
 
 <section id="page-about" class="page-section">
@@ -2138,6 +2325,244 @@ houses['H'] = {
     rooms: "1+1 Eşyalı",
     desc: "3. kat. Şehir manzaralı. Açık mutfak. 6 aylık veya 1 yıllık peşin ödeme istenmekte (Dolar kuru üzerinden TL ödemesi yapılabilir).",
     images: imagesH
+};
+
+// --- 10 YENİ OTEL ODASI (GALERİ) VERİSİ EKLENİYOR ---
+
+// --- 10 YENİ OTEL ODASI (GALERİ) VERİSİ EKLENİYOR (GÜNCELLENDİ) ---
+
+// --- OTEL 1 (Kral Dairesi - ks...) ---
+const imagesOtel1 = [
+    "assets/ks1.jpg", "assets/ks2.jpg", "assets/ks3.png", "assets/ks4.JPG", "assets/ks5.png", 
+    "assets/ks6.JPG", "assets/ks7.jpg", "assets/ks8.jpg", "assets/ks9.jpg", "assets/ks10.jpg", 
+    "assets/ks11.jpeg", "assets/ks12.jpg", "assets/ks13.jpeg", "assets/ks14.jpeg", "assets/ks15.png", 
+    "assets/ks16.jpeg"
+];
+houses['OTEL1'] = {
+    title: "Kral Dairesi",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "120 m2",
+    rooms: "1 Yatak Odası + 1 Salon",
+    desc: "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel1
+};
+
+// --- OTEL 2 (Suit Oda 1+1 - b1_plus...) ---
+const imagesOtel2 = [
+    "assets/b1_plus1.png", "assets/b1_plus2.png", "assets/b1_plus3.png", "assets/b1_plus4.JPG", 
+    "assets/b1_plus5.jpeg", "assets/b1_plus6.png", "assets/b1_plus7.png", "assets/b1_plus8.jpg", 
+    "assets/b1_plus9.jpeg", "assets/b1_plus10.jpeg"
+];
+houses['OTEL2'] = {
+    title: "Suit Oda (1+1)",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "75 m2",
+    rooms: "1+1",
+    desc: "Geniş balkonlu, oturma alanlı ve deniz manzaralı suit oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel2
+};
+
+// --- OTEL 3 (Aile Odası 2+1 - b2_plus...) ---
+const imagesOtel3 = [
+    "assets/b2_plus1.jpeg", "assets/b2_plus2.png", "assets/b2_plus3.png", "assets/b2_plus4.jpeg", 
+    "assets/b2_plus5.png", "assets/b2_plus6.jpg", "assets/b2_plus7.png", "assets/b2_plus8.jpeg", 
+    "assets/b2_plus9.jpeg"
+];
+houses['OTEL3'] = {
+    title: "Aile Odası (2+1)",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "60 m2",
+    rooms: "2 Yatak Odası (Ara Kapılı)",
+    desc: "Çocuklar için ayrı yatak odası bulunan konforlu aile odası. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel3
+};
+
+// --- OTEL 4 (Superior Oda - fs...) ---
+const imagesOtel4 = [
+    "assets/fs1.png", "assets/fs2.png", "assets/fs3.png", "assets/fs4.png", "assets/fs5.jpeg", 
+    "assets/fs6.png", "assets/fs7.png", "assets/fs8.JPG", "assets/fs9.jpeg", "assets/fs10.jpeg"
+];
+houses['OTEL4'] = {
+    title: "Superior Oda",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "35 m2",
+    rooms: "1 Yatak Odası",
+    desc: "Balkonlu ve deniz manzaralı standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel4
+};
+
+// --- OTEL 5 (Ekonomik Oda - em...) ---
+const imagesOtel5 = [
+    "assets/em1.png", "assets/em2.png", "assets/em3.jpeg", "assets/em4.JPG", 
+    "assets/em5.jpeg", "assets/em6.jpeg"
+];
+houses['OTEL5'] = {
+    title: "Ekonomik Oda",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "32 m2",
+    rooms: "1 Yatak Odası",
+    desc: "Kara manzaralı, ekonomik ve konforlu standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel5
+};
+
+// --- OTEL 6 (Standart Oda - st...) ---
+const imagesOtel6 = [
+    "assets/st1.png", "assets/st2.png", "assets/st3.png", "assets/st4.jpeg", 
+    "assets/st5.png", "assets/st6.jpeg", "assets/st7.jpeg"
+];
+houses['OTEL6'] = {
+    title: "Standart Oda",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "30 m2",
+    rooms: "1 Yatak Odası",
+    desc: "Modern tasarımlı standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel6
+};
+
+// --- OTEL 7 (Deluxe Oda - sf...) ---
+const imagesOtel7 = [
+    "assets/sf1.png", "assets/sf2.png", "assets/sf3.jpeg", "assets/sf4.jpeg", 
+    "assets/sf5.png", "assets/sf6.jpeg", "assets/sf7.jpeg"
+];
+houses['OTEL7'] = {
+    title: "Deluxe Oda",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "40 m2",
+    rooms: "1 Yatak Odası",
+    desc: "Daha geniş oturma alanına sahip Deluxe oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel7
+};
+
+// --- OTEL 8 (Junior Suit - shr...) ---
+const imagesOtel8 = [
+    "assets/shr1.png", "assets/shr2.png", "assets/shr3.png", "assets/shr4.jpeg", 
+    "assets/shr5.jpeg", "assets/shr6.jpg", "assets/shr7.png", "assets/shr8.png"
+];
+houses['OTEL8'] = {
+    title: "Junior Suit",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "45 m2",
+    rooms: "1+1 (Açık Plan)",
+    desc: "Oturma alanı ve yatak odasının birleştiği geniş Junior Süit. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel8
+};
+
+// --- OTEL 9 (Superior Twin Oda - stf...) ---
+const imagesOtel9 = [
+    "assets/stf1.png", "assets/stf2.png", "assets/stf3.png", "assets/stf4.png", 
+    "assets/stf5.png", "assets/stf6.jpg", "assets/stf7.jpeg", "assets/stf8.jpeg"
+];
+houses['OTEL9'] = {
+    title: "Superior Twin Oda (Ayrı Yataklı)",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "38 m2",
+    rooms: "1 Yatak Odası (2 Ayrı Yatak)",
+    desc: "İki adet tek kişilik yatak bulunan Superior oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel9
+};
+
+// --- OTEL 10 (Standart Twin Oda - stw...) ---
+const imagesOtel10 = [
+    "assets/stw1.png", "assets/stw2.png", "assets/stw3.png", "assets/stw4.jpg", 
+    "assets/stw5.png", "assets/stw6.jpeg", "assets/stw7.jpeg"
+];
+houses['OTEL10'] = {
+    title: "Standart Twin Oda (Ayrı Yataklı)",
+    price: "Gecelik Fiyat Sorunuz",
+    location: "Golden Palace Otel",
+    area: "30 m2",
+    rooms: "1 Yatak Odası (2 Ayrı Yatak)",
+    desc: "İki adet tek kişilik yatak bulunan standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    images: imagesOtel10
+};
+
+// --- YENİ: İNŞAAT PROJELERİ (6 Adet) ---
+
+// --- İNŞAAT 1 (Gökdelen A) ---
+const imagesInsaat1 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat1.push(`assets/insaat-gallery${i}-1.jpg`); }
+houses['INSAAT1'] = {
+    title: "Proje: Gökdelen A",
+    price: "Detaylı Bilgi Alın",
+    location: "İstanbul, Finans Merkezi",
+    area: "150.000 m2",
+    rooms: "Ofis + Rezidans",
+    desc: "Modern mimari, LEED sertifikalı, 50 katlı karma kullanım projesi. (Placeholder açıklama).",
+    images: imagesInsaat1
+};
+
+// --- İNŞAAT 2 (Modern Konutlar B) ---
+const imagesInsaat2 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat2.push(`assets/insaat-gallery${i}-2.jpg`); }
+houses['INSAAT2'] = {
+    title: "Proje: Modern Konutlar B",
+    price: "Fiyat Sorunuz",
+    location: "İstanbul, Çekmeköy",
+    area: "80.000 m2",
+    rooms: "2+1, 3+1, 4+1 Daireler",
+    desc: "Geniş peyzaj alanları, sosyal tesisler ve aileye uygun konut projesi. (Placeholder açıklama).",
+    images: imagesInsaat2
+};
+
+// --- İNŞAAT 3 (Alışveriş Merkezi C) ---
+const imagesInsaat3 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat3.push(`assets/insaat-gallery${i}-3.jpg`); }
+houses['INSAAT3'] = {
+    title: "Proje: Alışveriş Merkezi C",
+    price: "Kiralama için Bilgi Alın",
+    location: "Ankara, Çankaya",
+    area: "120.000 m2 Kiralanabilir Alan",
+    rooms: "200+ Mağaza",
+    desc: "Bölgenin yeni buluşma noktası, sinema salonları ve gurme lezzet katı. (Placeholder açıklama).",
+    images: imagesInsaat3
+};
+
+// --- İNŞAAT 4 (Ofis Kuleleri D) ---
+const imagesInsaat4 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat4.push(`assets/insaat-gallery${i}-4.jpg`); }
+houses['INSAAT4'] = {
+    title: "Proje: Ofis Kuleleri D",
+    price: "Kiralama için Bilgi Alın",
+    location: "İzmir, Bayraklı",
+    area: "60.000 m2",
+    rooms: "A Sınıfı Ofisler",
+    desc: "Deniz manzaralı, modern teknolojiye sahip A sınıfı ofis alanları. (Placeholder açıklama).",
+    images: imagesInsaat4
+};
+
+// --- İNŞAAT 5 (Endüstriyel Tesis E) ---
+const imagesInsaat5 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat5.push(`assets/insaat-gallery${i}-5.jpg`); }
+houses['INSAAT5'] = {
+    title: "Proje: Endüstriyel Tesis E",
+    price: "Detaylı Bilgi Alın",
+    location: "Kocaeli, Gebze OSB",
+    area: "45.000 m2",
+    rooms: "Üretim + Lojistik",
+    desc: "Yüksek tavanlı lojistik ve üretim tesisi. (Placeholder açıklama).",
+    images: imagesInsaat5
+};
+
+// --- İNŞAAT 6 (Lüks Villa Sitesi F) ---
+const imagesInsaat6 = [];
+for (let i = 1; i <= 30; i++) { imagesInsaat6.push(`assets/insaat-gallery${i}-6.jpg`); }
+houses['INSAAT6'] = {
+    title: "Proje: Lüks Villa Sitesi F",
+    price: "Fiyat Sorunuz",
+    location: "Bodrum, Yalıkavak",
+    area: "Her biri 450 m2",
+    rooms: "5+2 Müstakil Villalar",
+    desc: "Özel havuzlu, deniz manzaralı 20 adet lüks villa projesi. (Placeholder açıklama).",
+    images: imagesInsaat6
 };
 
 function openHouseDetail(letter) {
@@ -2970,7 +3395,6 @@ if (lightboxImg) {
 
 </body>
 </html>
-
 
 
 
