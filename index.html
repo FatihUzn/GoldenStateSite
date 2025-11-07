@@ -1474,6 +1474,169 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: scale(1.05);
 }
 
+/* === 16. YENİ: RESTORASYON KARTI (BEFORE/AFTER) STİLLERİ === */
+.restoration-card {
+    width: 100%;
+    max-width: 500px; /* Kartın max genişliği, 2 resim sığsın */
+    justify-self: center;
+    padding: 15px;
+    /* Opaklık, transform ve geçişler ana .restoration-card sınıfından gelecek */
+}
+
+.restoration-card h3 {
+    margin-bottom: 20px; /* Başlık ile resimler arası boşluk */
+    font-size: 20px;
+    /* H3'ün altın gradienti ana kuraldan geliyor */
+}
+
+.img-comparison-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* İki resim arası boşluk */
+}
+
+.img-wrapper {
+    position: relative;
+    width: 50%; /* Her resim kabı, konteynerin %50'si */
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    overflow: hidden; /* Etiket taşmasın */
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 220px; /* Yükseklik sabit olsun */
+    object-fit: cover;
+    display: block; /* Alt boşluğu engelle */
+}
+
+.img-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--gold-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    z-index: 5; /* Resmin üstünde */
+}
+
+/* 🌟 DÜZELTME: Yeni kartı hover efektine dahil etme */
+/* Zaten var olan bu kuralı bulun ve .restoration-card'ı ekleyin */
+.project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--gold-shadow-intense);
+  border-color: var(--gold-dark);
+}
+
+/* 🌟 DÜZELTME: Yeni kartı "Kartlar" listesine ekleme */
+/* Zaten var olan bu kuralı bulun ve .restoration-card'ı ekleyin */
+.project-card, .latest-card, .service-card, .restoration-card {
+  background: var(--section-bg);
+  border-radius: 14px;
+  border: 1px solid var(--border-dark);
+  overflow: hidden;
+  transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing), border-color 0.4s var(--easing);
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* === 17. YENİ: RESİM GÖRÜNTÜLEYİCİ MODAL STİLLERİ === */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Koyu arka plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Diğer her şeyin üstünde */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.image-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex; /* İçindeki resimlerin yan yana durması için */
+    gap: 10px; /* Resimler arası boşluk */
+    transform: scale(0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-modal-overlay.show .image-modal-content {
+    transform: scale(1);
+}
+
+.image-modal-image-wrapper {
+    position: relative;
+    background-color: var(--section-bg);
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Resmin içine tam sığması için */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal-image-wrapper img {
+    max-width: 100%;
+    max-height: 80vh; /* Ekran yüksekliğinin %80'i kadar büyüsün */
+    height: auto;
+    object-fit: contain; /* Resmin oranlarını koruyarak sığdır */
+    display: block;
+}
+
+.image-modal-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--gold-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    z-index: 5;
+}
+
+.image-modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gold-light);
+    color: #111; /* Koyu arka plan rengi */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    z-index: 1001; /* Modalı ve resimlerin üzerinde */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close-btn:hover {
+    background-color: var(--gold-dark);
+}
 </style>
 
 </head>
@@ -1698,28 +1861,190 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 </div>
 </section>
 
-<!-- 🔹 RESTORASYON SAYFASI -->
 <section id="page-restorasyon" class="page-section">
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
+  
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');" data-key="btn_back">← Geri</a>
   <div class="hero" style="background-image:url('assets/restorasyon_hero.jpg')">
-      <h1>Restorasyon Projeleri</h1>
-      <p>Tarihi yapıları geleceğe taşıyoruz.</p>
+      <h1 data-key="page_restorasyon_h1">Restorasyon Projeleri</h1>
+      <p data-key="page_restorasyon_p">Tarihi yapıları geleceğe taşıyoruz.</p>
     </div>
   </div>
   
-  <!-- 🌟 YENİ: Restorasyon Galerisi (İsteğiniz üzerine H2/H3 içerik) -->
-  <div>
-    <h2>Tamamlanan Restorasyonlar</h2>
+  <div style="padding-top: 60px;">
+    
+    <h2 data-key="restoration_title">Proje Galerisi (Önce & Sonra)</h2>
+    
     <div class="latest-grid">
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+1" alt="Restorasyon 1"> <h3>Tarihi Yalı Restorasyonu A</h3>
+
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-1-before.jpg" alt="Restorasyon 1 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-1-after.jpeg" alt="Restorasyon 1 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
       </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+2" alt="Restorasyon 2"> <h3>Eski Cami Canlandırma B</h3>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-2-before.jpg" alt="Restorasyon 2 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-2-after.jpg" alt="Restorasyon 2 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
       </div>
-      <div class="latest-card">
-        <img src="https://placehold.co/340x240/111/f59e0b?text=Restorasyon+3" alt="Restorasyon 3"> <h3>Kervansaray Yenileme C</h3>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-3-before.jpg" alt="Restorasyon 3 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-3-after.jpeg" alt="Restorasyon 3 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
       </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-4-before.jpg" alt="Restorasyon 4 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-4-after.jpeg" alt="Restorasyon 4 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-5-before.jpg" alt="Restorasyon 5 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-5-after.jpg" alt="Restorasyon 5 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-6-before.jpg" alt="Restorasyon 6 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-6-after.jpg" alt="Restorasyon 6 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-7-before.jpg" alt="Restorasyon 7 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-7-after.jpg" alt="Restorasyon 7 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-8-before.jpg" alt="Restorasyon 8 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-8-after.jpg" alt="Restorasyon 8 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-9-before.jpg" alt="Restorasyon 9 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-9-after.jpg" alt="Restorasyon 9 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-10-before.jpg" alt="Restorasyon 10 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-10-after.jpg" alt="Restorasyon 10 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-11-before.jpg" alt="Restorasyon 11 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-11-after.jpg" alt="Restorasyon 11 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-12-before.jpg" alt="Restorasyon 12 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-12-after.jpg" alt="Restorasyon 12 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+
+      <div class="restoration-card">
+        <div class="img-comparison-container">
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_before">ÖNCE</span>
+            <img src="assets/restorasyon-13-before.jpg" alt="Restorasyon 13 - Önce" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Önce'">
+          </div>
+          <div class="img-wrapper">
+            <span class="img-label" data-key="label_after">SONRA</span>
+            <img src="assets/restorasyon-13-after.jpg" alt="Restorasyon 13 - Sonra" loading="lazy" onerror="this.src='https://placehold.co/240x220/111/f59e0b?text=Sonra'">
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
@@ -2019,8 +2344,66 @@ const translations = {
         contact_info_email_title: 'E-posta',
         contact_info_email_p: 'info@goldenpalace.com',
         footer_copyright: '© 2025 Golden Palace Mimarlık. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.',
+        restoration_title: 'Tamamlanan Restorasyonlar',
+        label_before: 'ÖNCE',
+        label_after: 'SONRA',
+        btn_back: '← Geri',
+        page_otel_h1: 'Otelimiz',
+        page_otel_p: 'Lüks konaklama ve deniz manzaralı suit odalar.',
+        btn_hero_reserve: 'Rezervasyon Yap',
+        form_otel_h2: 'Rezervasyon Formu',
+        form_otel_label_checkin: 'Giriş Tarihi',
+        form_otel_label_checkout: 'Çıkış Tarihi',
+        form_otel_btn_search: 'Müsaitlik Ara',
+        form_otel_btn_close: 'Kapat',
+        modal_avail_h3: 'Sonuç bekleniyor...',
+        btn_modal_ok: 'Tamam',
+        page_otel_gallery_h2: 'Oda ve Süitlerimiz',
+        page_gallery_p: 'Detaylı incelemek için görsellere tıklayın.',
+        page_otel_room_1: 'Kral Dairesi',
+        page_otel_room_2: 'Deniz Manzaralı Suit',
+        page_otel_room_3: 'Aile Odası',
+        page_otel_room_4: 'Standart Oda (Deniz)',
+        page_otel_room_5: 'Standart Oda (Kara)',
+        page_otel_room_6: 'Lobi & Resepsiyon',
+        page_otel_room_7: 'Ana Restoran',
+        page_otel_room_8: 'Sonsuzluk Havuzu',
+        page_otel_room_9: 'Spa & Wellness',
+        page_otel_room_10: 'Fitness Merkezi',
+        page_insaat_h1: 'İnşaat Projeleri',
+        page_insaat_p: 'Modern şehir yapıları ve yenilikçi mühendislik çözümleri.',
+        page_insaat_gallery_h2: 'İnşaat Projelerimiz',
+        page_insaat_proj_1: 'Proje: Gökdelen A',
+        page_insaat_proj_2: 'Proje: Modern Konutlar B',
+        page_insaat_proj_3: 'Proje: Alışveriş Merkezi C',
+        page_insaat_proj_4: 'Proje: Ofis Kuleleri D',
+        page_insaat_proj_5: 'Proje: Endüstriyel Tesis E',
+        page_insaat_proj_6: 'Proje: Lüks Villa Sitesi F',
+        page_restorasyon_h1: 'Restorasyon Projeleri',
+        page_restorasyon_p: 'Tarihi yapıları geleceğe taşıyoruz.',
+        page_satilik_h2: 'Satılık Mülklerimiz',
+        page_satilik_1: 'NURİPAŞA BİNA -SATILIK-',
+        page_satilik_2: 'BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-',
+        page_satilik_3: 'KAYAŞEHİR EMLAK KONUT -SATILIK-',
+        page_satilik_4: 'BAHÇELİEVLER 6+2 DUBLEKS -SATILIK-',
+        page_satilik_5: 'YEDİ MAVİ SATILIK 3+1',
+        page_kiralik_h2: 'Kiralık Mülklerimiz',
+        page_kiralik_1: 'THE İSTANBUL RESIDENCE 2+1 -KİRALIK-',
+        page_kiralik_2: 'THE İSTANBUL RESIDENCE 1+1 -KİRALIK-',
+        page_kiralik_3: 'YEDİ MAVİ H BLOK -KİRALIK-',
+        btn_modal_detay_geri: '← Geri',
+        modal_avail_alert_select: '⚠️ Lütfen giriş ve çıkış tarihlerini seçin.',
+        modal_avail_success: '✅ Müsait odalar bulundu!<br><br><strong>Rezervasyon işlemini başlatmak için aşağıdaki butona tıklayın.</strong>',
+        btn_mail_reserve: 'E-posta ile Rezervasyon Yap',
+        modal_avail_fail: '❌ Maalesef bu tarihlerde müsait oda bulunamadı.',
+        js_konum: 'Konum',
+        js_alan: 'Alan',
+        js_oda_sayisi: 'Oda Sayısı',
+        js_fiyat: 'Fiyat',
+        restoration_title: 'Proje Galerisi (Önce & Sonra)',
     },
     'en': {
+        restoration_title: 'Project Gallery (Before & After)',
         title: 'Golden Palace — Real Estate & Architecture',
         hero_title: 'Golden Palace',
         hero_subtitle: 'Luxury Architecture Inspired by City & Sea',
@@ -2082,8 +2465,68 @@ const translations = {
         contact_info_email_title: 'Email',
         contact_info_email_p: 'info@goldenpalace.com',
         footer_copyright: '© 2025 Golden Palace Architecture. All rights reserved. | Design and Innovation Studio.',
+        restoration_title: 'Completed Restorations',
+        restoration_h3_1: 'Historic Mansion Restoration A',
+        restoration_h3_2: 'Old Mosque Revival B',
+        restoration_h3_3: 'Caravanserai Renovation C',
+        label_before: 'BEFORE',
+        label_after: 'AFTER',
+        btn_back: '← Back',
+        page_otel_h1: 'Our Hotel',
+        page_otel_p: 'Luxury accommodation and suites with sea views.',
+        btn_hero_reserve: 'Make a Reservation',
+        form_otel_h2: 'Reservation Form',
+        form_otel_label_checkin: 'Check-in Date',
+        form_otel_label_checkout: 'Check-out Date',
+        form_otel_btn_search: 'Search Availability',
+        form_otel_btn_close: 'Close',
+        modal_avail_h3: 'Waiting for result...',
+        btn_modal_ok: 'OK',
+        page_otel_gallery_h2: 'Our Rooms and Suites',
+        page_gallery_p: 'Click on the images for details.',
+        page_otel_room_1: 'King Suite',
+        page_otel_room_2: 'Sea View Suite',
+        page_otel_room_3: 'Family Room',
+        page_otel_room_4: 'Standard Room (Sea)',
+        page_otel_room_5: 'Standard Room (Land)',
+        page_otel_room_6: 'Lobby & Reception',
+        page_otel_room_7: 'Main Restaurant',
+        page_otel_room_8: 'Infinity Pool',
+        page_otel_room_9: 'Spa & Wellness',
+        page_otel_room_10: 'Fitness Center',
+        page_insaat_h1: 'Construction Projects',
+        page_insaat_p: 'Modern city structures and innovative engineering solutions.',
+        page_insaat_gallery_h2: 'Our Construction Projects',
+        page_insaat_proj_1: 'Project: Skyscraper A',
+        page_insaat_proj_2: 'Project: Modern Residences B',
+        page_insaat_proj_3: 'Project: Shopping Mall C',
+        page_insaat_proj_4: 'Project: Office Towers D',
+        page_insaat_proj_5: 'Project: Industrial Facility E',
+        page_insaat_proj_6: 'Project: Luxury Villa Site F',
+        page_restorasyon_h1: 'Restoration Projects',
+        page_restorasyon_p: 'We carry historical buildings into the future.',
+        page_satilik_h2: 'Properties for Sale',
+        page_satilik_1: 'NURİPAŞA BUILDING -FOR SALE-',
+        page_satilik_2: 'BÜYÜKYALI 3.5+1 -FOR SALE/RENT-',
+        page_satilik_3: 'KAYAŞEHİR EMLAK KONUT -FOR SALE-',
+        page_satilik_4: 'BAHÇELİEVLER 6+2 DUPLEX -FOR SALE-',
+        page_satilik_5: 'YEDİ MAVİ 3+1 FOR SALE',
+        page_kiralik_h2: 'Properties for Rent',
+        page_kiralik_1: 'THE İSTANBUL RESIDENCE 2+1 -FOR RENT-',
+        page_kiralik_2: 'THE İSTANBUL RESIDENCE 1+1 -FOR RENT-',
+        page_kiralik_3: 'YEDİ MAVİ H BLOCK -FOR RENT-',
+        btn_modal_detay_geri: '← Back',
+        modal_avail_alert_select: '⚠️ Please select check-in and check-out dates.',
+        modal_avail_success: '✅ Rooms are available!<br><br><strong>Click the button below to start your reservation.</strong>',
+        btn_mail_reserve: 'Reserve via Email',
+        modal_avail_fail: '❌ Unfortunately, no rooms are available for these dates.',
+        js_konum: 'Location',
+        js_alan: 'Area',
+        js_oda_sayisi: 'Rooms',
+        js_fiyat: 'Price',
     },
     'zh': {
+        restoration_title: '项目画廊 (之前 & 之后)',
         title: 'Golden Palace — 房地产与建筑',
         hero_title: 'Golden Palace',
         hero_subtitle: '灵感源于城市与海洋的奢华建筑',
@@ -2145,8 +2588,68 @@ const translations = {
         contact_info_email_title: '电子邮件',
         contact_info_email_p: 'info@goldenpalace.com',
         footer_copyright: '© 2025 Golden Palace Architecture. All rights reserved. | Design and Innovation Studio。',
+        restoration_title: '已完成的修复',
+        restoration_h3_1: '历史公馆修复 A',
+        restoration_h3_2: '古老清真寺复兴 B',
+        restoration_h3_3: '商队旅馆翻新 C',
+        label_before: '之前',
+        label_after: '之后',
+        btn_back: '← 返回',
+        page_otel_h1: '我们的酒店',
+        page_otel_p: '豪华住宿与海景套房。',
+        btn_hero_reserve: '预订',
+        form_otel_h2: '预订表格',
+        form_otel_label_checkin: '入住日期',
+        form_otel_label_checkout: '退房日期',
+        form_otel_btn_search: '查询空房',
+        form_otel_btn_close: '关闭',
+        modal_avail_h3: '等待结果...',
+        btn_modal_ok: '确定',
+        page_otel_gallery_h2: '我们的客房与套房',
+        page_gallery_p: '点击图片查看详情。',
+        page_otel_room_1: '帝王套房',
+        page_otel_room_2: '海景套房',
+        page_otel_room_3: '家庭房',
+        page_otel_room_4: '标准间 (海景)',
+        page_otel_room_5: '标准间 (陆景)',
+        page_otel_room_6: '大堂与接待处',
+        page_otel_room_7: '主餐厅',
+        page_otel_room_8: '无边泳池',
+        page_otel_room_9: '水疗与健康中心',
+        page_otel_room_10: '健身中心',
+        page_insaat_h1: '建设项目',
+        page_insaat_p: '现代城市结构与创新工程解决方案。',
+        page_insaat_gallery_h2: '我们的建设项目',
+        page_insaat_proj_1: '项目：摩天大楼 A',
+        page_insaat_proj_2: '项目：现代住宅 B',
+        page_insaat_proj_3: '项目：购物中心 C',
+        page_insaat_proj_4: '项目：办公大楼 D',
+        page_insaat_proj_5: '项目：工业设施 E',
+        page_insaat_proj_6: '项目：豪华别墅 F',
+        page_restorasyon_h1: '修复项目',
+        page_restorasyon_p: '我们将历史建筑带向未来。',
+        page_satilik_h2: '待售物业',
+        page_satilik_1: 'NURİPAŞA 大楼 -待售-',
+        page_satilik_2: 'BÜYÜKYALI 3.5+1 -待售/出租-',
+        page_satilik_3: 'KAYAŞEHİR EMLAK KONUT -待售-',
+        page_satilik_4: 'BAHÇELİEVLER 6+2 复式 -待售-',
+        page_satilik_5: 'YEDİ MAVİ 3+1 待售',
+        page_kiralik_h2: '出租物业',
+        page_kiralik_1: 'THE İSTANBUL RESIDENCE 2+1 -出租-',
+        page_kiralik_2: 'THE İSTANBUL RESIDENCE 1+1 -出租-',
+        page_kiralik_3: 'YEDİ MAVİ H 座 -出租-',
+        btn_modal_detay_geri: '← 返回',
+        modal_avail_alert_select: '⚠️ 请选择入住和退房日期。',
+        modal_avail_success: '✅ 找到可用房间！<br><br><strong>点击下方按钮开始预订。</strong>',
+        btn_mail_reserve: '通过电子邮件预订',
+        modal_avail_fail: '❌ 抱歉，这些日期没有可用房间。',
+        js_konum: '位置',
+        js_alan: '面积',
+        js_oda_sayisi: '房间',
+        js_fiyat: '价格',
     },
     'ar': { // 🌟 YENİ ARAPÇA ÇEVİRİ BLOĞU 🌟
+        restoration_title: 'معرض المشروع (قبل & بعد)',
         title: 'جولدن بالاس — العقارات والهندسة المعمارية',
         hero_title: 'جولدن بالاس',
         hero_subtitle: 'هندسة معمارية فاخرة مستوحاة من المدينة والبحر',
@@ -2208,6 +2711,65 @@ const translations = {
         contact_info_email_title: 'بريد إلكتروني',
         contact_info_email_p: 'info@goldenpalace.com',
         footer_copyright: '© 2025 جولدن بالاس للهندسة المعمارية. جميع الحقوق محفوظة. | استوديو التصميم والابتكار.',
+        restoration_title: 'الترميمات المكتملة',
+        restoration_h3_1: 'ترميم القصر التاريخي A',
+        restoration_h3_2: 'إحياء المسجد القديم B',
+        restoration_h3_3: 'تجديد الخان C',
+        label_before: 'قبل',
+        label_after: 'بعد',
+        btn_back: '← رجوع',
+        page_otel_h1: 'فندقنا',
+        page_otel_p: 'إقامة فاخرة وأجنحة مطلة على البحر.',
+        btn_hero_reserve: 'قم بالحجز',
+        form_otel_h2: 'نموذج الحجز',
+        form_otel_label_checkin: 'تاريخ الوصول',
+        form_otel_label_checkout: 'تاريخ المغادرة',
+        form_otel_btn_search: 'البحث عن التوفر',
+        form_otel_btn_close: 'إغلاق',
+        modal_avail_h3: 'في انتظار النتيجة...',
+        btn_modal_ok: 'موافق',
+        page_otel_gallery_h2: 'غرفنا وأجنحتنا',
+        page_gallery_p: 'انقر على الصور للتفاصيل.',
+        page_otel_room_1: 'الجناح الملكي',
+        page_otel_room_2: 'جناح مطل على البحر',
+        page_otel_room_3: 'غرفة عائلية',
+        page_otel_room_4: 'غرفة قياسية (بحر)',
+        page_otel_room_5: 'غرفة قياسية (بر)',
+        page_otel_room_6: 'الردهة والاستقبال',
+        page_otel_room_7: 'المطعم الرئيسي',
+        page_otel_room_8: 'حمام سباحة إنفينيتي',
+        page_otel_room_9: 'سبا وعافية',
+        page_otel_room_10: 'مركز اللياقة البدنية',
+        page_insaat_h1: 'مشاريع البناء',
+        page_insaat_p: 'هياكل مدن حديثة وحلول هندسية مبتكرة.',
+        page_insaat_gallery_h2: 'مشاريع البناء لدينا',
+        page_insaat_proj_1: 'مشروع: ناطحة سحاب A',
+        page_insaat_proj_2: 'مشروع: مساكن حديثة B',
+        page_insaat_proj_3: 'مشروع: مركز تسوق C',
+        page_insaat_proj_4: 'مشروع: أبراج مكتبية D',
+        page_insaat_proj_5: 'مشروع: منشأة صناعية E',
+        page_insaat_proj_6: 'مشروع: موقع فيلات فاخرة F',
+        page_restorasyon_h1: 'مشاريع الترميم',
+        page_restorasyon_p: 'نحن ننقل المباني التاريخية إلى المستقبل.',
+        page_satilik_h2: 'عقارات للبيع',
+        page_satilik_1: 'مبنى NURİPAŞA -للبيع-',
+        page_satilik_2: 'BÜYÜKYALI 3.5+1 -للبيع/للإيجار-',
+        page_satilik_3: 'KAYAŞEHİR EMLAK KONUT -للبيع-',
+        page_satilik_4: 'BAHÇELİEVLER 6+2 دوبلكس -للبيع-',
+        page_satilik_5: 'YEDİ MAVİ 3+1 للبيع',
+        page_kiralik_h2: 'عقارات للإيجار',
+        page_kiralik_1: 'THE İSTANBUL RESIDENCE 2+1 -للإيجار-',
+        page_kiralik_2: 'THE İSTANBUL RESIDENCE 1+1 -للإيجار-',
+        page_kiralik_3: 'YEDİ MAVİ H BLOCK -للإيجار-',
+        btn_modal_detay_geri: '← رجوع',
+        modal_avail_alert_select: '⚠️ يرجى تحديد تاريخي الوصول والمغادرة.',
+        modal_avail_success: '✅ تم العثور على غرف متاحة!<br><br><strong>انقر على الزر أدناه لبدء الحجز.</strong>',
+        btn_mail_reserve: 'الحجز عبر البريد الإلكتروني',
+        modal_avail_fail: '❌ للأسف، لا توجد غرف متاحة لهذه التواريخ.',
+        js_konum: 'الموقع',
+        js_alan: 'المساحة',
+        js_oda_sayisi: 'الغرف',
+        js_fiyat: 'السعر',
     },
 };
 
@@ -2584,14 +3146,18 @@ function openHouseDetail(letter) {
   // doğrudan DOM'dan 'this.remove()' ile kaldırılacak.
 // ... (openHouseDetail fonksiyonunun içi)
   
+// Fonksiyonun başında mevcut dili al
+  const currentLang = localStorage.getItem('lang') || 'tr';
+  const langData = translations[currentLang] || translations['tr'];
+
   content.innerHTML = `
     <h2>${h.title}</h2>
     
    <div class="house-info">
-      <p><strong>Konum:</strong> ${h.location}</p>
-      <p><strong>Alan:</strong> ${h.area}</p>
-      <p><strong>Oda Sayısı:</strong> ${h.rooms}</p>
-      ${priceHTML}
+      <p><strong>${langData.js_konum || 'Konum'}:</strong> ${h.location}</p>
+      <p><strong>${langData.js_alan || 'Alan'}:</strong> ${h.area}</p>
+      <p><strong>${langData.js_oda_sayisi || 'Oda Sayısı'}:</strong> ${h.rooms}</p>
+      ${priceHTML.replace('Fiyat:', `<strong>${langData.js_fiyat || 'Fiyat'}:</strong>`)}
       <p>${h.desc}</p>
     </div>
 
@@ -2703,7 +3269,7 @@ function setupScrollReveal() {
 
 // Kart animasyonları (load)
 function setupCardAnimations() {
-    const cardSelector = '.project-card, .latest-card, .service-card, .team-card';
+    const cardSelector = '.project-card, .latest-card, .service-card, .restoration-card';
     const cards = document.querySelectorAll(cardSelector);
     cards.forEach((card, index) => {
       setTimeout(() => {
@@ -2948,7 +3514,7 @@ function showPage(pageId) {
         newPage.classList.remove('visible');
         setTimeout(() => {
             // Sadece bu bölümdeki .project-card, .service-card vb. için animasyonu tetikle
-             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card'); // 🏠 .house-card eklendi
+             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card'); // 🏠 .house-card eklendi
              cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'scale(0.9)';
@@ -3005,25 +3571,29 @@ const closeModalBtn = document.getElementById("close-modal-btn");
 
 if (searchBtn) {
   searchBtn.addEventListener("click", () => {
+    // Fonksiyonun başında mevcut dili ve çeviri verisini al
+    const currentLang = localStorage.getItem('lang') || 'tr';
+    const langData = translations[currentLang] || translations['tr'];
+
     const checkin = document.getElementById("otel-checkin").value;
     const checkout = document.getElementById("otel-checkout").value;
 
     if (!checkin || !checkout) {
-      message.textContent = "⚠️ Lütfen giriş ve çıkış tarihlerini seçin.";
+      message.innerHTML = langData.modal_avail_alert_select; // innerHTML kullan
       modal.classList.add("show");
       return;
     }
 
     const random = Math.random();
     if (random > 0.5) {
-      message.innerHTML = "✅ Müsait odalar bulundu!<br><br><strong>Rezervasyon işlemini başlatmak için aşağıdaki butona tıklayın.</strong>";
+      message.innerHTML = langData.modal_avail_success; // innerHTML kullan
 
       // Eski mail butonunu temizle (varsa)
       const oldMailBtn = message.parentElement.querySelector('.btn-mail');
       if (oldMailBtn) oldMailBtn.remove();
       
       const mailBtn = document.createElement("button");
-      mailBtn.textContent = "E-posta ile Rezervasyon Yap";
+      mailBtn.textContent = langData.btn_mail_reserve; // Burayı da çevir
       mailBtn.classList.add("btn", "btn-mail");
       mailBtn.style.marginTop = "15px";
 
@@ -3035,7 +3605,7 @@ if (searchBtn) {
 
       message.parentElement.appendChild(mailBtn);
     } else {
-      message.textContent = "❌ Maalesef bu tarihlerde müsait oda bulunamadı.";
+      message.innerHTML = langData.modal_avail_fail; // innerHTML kullan
       // Eski mail butonunu temizle (varsa)
       const oldMailBtn = message.parentElement.querySelector('.btn-mail');
       if (oldMailBtn) oldMailBtn.remove();
@@ -3159,58 +3729,10 @@ window.addEventListener("load", () => {
     setupCardAnimations(); // Bu, ilk yüklenen hero sayfasındaki kartlar için
 });
 
+
 </script>
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- 🌟 GÜNCELLEME: Swiper başlatma ve tıklama mantığı -->
-<script>
-// 🌟 Swiper başlatma (otomatik dönen)
-const swiper = new Swiper(".mySwiper", {
-  slidesPerView: 3,
-  spaceBetween: 40,
-  centeredSlides: true,
-  loop: true,
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  breakpoints: {
-    0: { slidesPerView: 1 },
-    768: { slidesPerView: 2 },
-    1024: { slidesPerView: 3 }
-  }
-});
-
-// 🌟 Tıklanınca ilgili kategoriye yönlendirme (GÜNCELLENDİ)
-// '.project-card' yerine daha spesifik seçici
-document.querySelectorAll(".swiper-slide.project-card[data-category]").forEach(card => {
-  card.addEventListener("click", () => {
-    const cat = card.getAttribute("data-category");
-    
-    // --- 🌟🌟🌟 GÜNCELLENMİŞ MANTIK (Dropdown ile aynı) 🌟🌟🌟 ---
-    if (cat === 'otel') {
-        showPage('page-otel');
-    } else if (cat === 'insaat') {
-        showPage('page-insaat');
-    } else if (cat === 'restorasyon') {
-        showPage('page-restorasyon');
-    } else if (cat === 'satilik_kiralik') {
-        showPage('page-satilik_kiralik');
-    } else {
-        // Varsayılan
-        showPage("projects");
-        loadCategory(cat || 'default');
-    }
-    // --- GÜNCELLEME SONU ---
-  });
-});
-</script>
 
 <!-- 
   HATA DÜZELTMESİ: 
@@ -3395,8 +3917,88 @@ if (lightboxImg) {
       }
     });
 }
+// === YENİ: RESTORASYON RESİM GÖRÜNTÜLEYİCİ MODAL İŞLEVSELLİĞİ ===
+document.addEventListener('DOMContentLoaded', () => {
+    const modalOverlay = document.getElementById('restorationImageModal');
+    // Modalın var olup olmadığını kontrol et (önemli)
+    if (!modalOverlay) {
+        console.error("Restorasyon modal HTML'i bulunamadı!");
+        return; 
+    }
+
+    const modalCloseBtn = modalOverlay.querySelector('.image-modal-close-btn');
+    const modalBeforeImage = document.getElementById('modalBeforeImage');
+    const modalAfterImage = document.getElementById('modalAfterImage');
+
+    // Modalı kapatma fonksiyonu
+    function closeImageModal() {
+        modalOverlay.classList.remove('show');
+        modalBeforeImage.src = ''; // Kaynakları temizle
+        modalAfterImage.src = '';
+    }
+
+    // 1. Kapat butonuna tıklandığında
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeImageModal);
+    }
+
+    // 2. Arka plana tıklandığında (resimlerin dışına)
+    modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) {
+            closeImageModal();
+        }
+    });
+
+    // 3. ESC tuşuna basıldığında
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('show')) {
+            closeImageModal();
+        }
+    });
+
+    // 4. Her bir restoration-card'a tıklama eventi ekle
+    // Not: Bu event'i 'page-container'a delege ediyoruz ki dinamik
+    // yüklenen sayfada da çalışsın.
+    const pageContainer = document.getElementById('page-container');
+    if (pageContainer) {
+        pageContainer.addEventListener('click', (event) => {
+            // Tıklanan elemanın bir .restoration-card içinde olup olmadığını kontrol et
+            const card = event.target.closest('.restoration-card');
+            if (card) {
+                // Tıklamanın doğrudan resmin veya wrapper'ın üzerine olduğundan emin ol
+                if (event.target.closest('.img-wrapper') || event.target.closest('.img-comparison-container')) {
+
+                    const beforeImg = card.querySelector('.img-wrapper:first-child img');
+                    const afterImg = card.querySelector('.img-wrapper:last-child img');
+
+                    if (beforeImg && afterImg) {
+                        modalBeforeImage.src = beforeImg.src;
+                        modalAfterImage.src = afterImg.src;
+
+                        // Modalı göster
+                        modalOverlay.classList.add('show');
+                    }
+                }
+            }
+        });
+    }
+});
+// === MODAL İŞLEVSELLİĞİ SONU ===
 </script>
 
+<div id="restorationImageModal" class="image-modal-overlay">
+  <button class="image-modal-close-btn" data-key="btn_close_modal_x">✖</button>
+  <div class="image-modal-content">
+    <div class="image-modal-image-wrapper">
+      <span class="image-modal-label" id="modalBeforeLabel" data-key="label_before">ÖNCE</span>
+      <img id="modalBeforeImage" src="" alt="Önceki Hali">
+    </div>
+    <div class="image-modal-image-wrapper">
+      <span class="image-modal-label" id="modalAfterLabel" data-key="label_after">SONRA</span>
+      <img id="modalAfterImage" src="" alt="Sonraki Hali">
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
