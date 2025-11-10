@@ -34,9 +34,8 @@ async function openHouseDetail(letter) {
   if (!allGalleriesData) {
     try {
       
-      // 🌟🌟🌟 DEĞİŞİKLİK BURADA: Önbelleği kırmak için ?v=1.1 eklendi 🌟🌟🌟
+      // Önbelleği kırmak için ?v=1.1 eklendi
       const response = await fetch('data/galleries.json?v=1.1'); 
-      // 🌟🌟🌟 DEĞİŞİKLİK SONU 🌟🌟🌟
       
       if (!response.ok) {
         throw new Error('Galeri verisi data/galleries.json yüklenemedi');
@@ -482,11 +481,6 @@ function handleScrollEffects() {
 
 // Proje Rezervasyon Formu
 function setupProjectReservation() {
-    // DİKKAT: Bu fonksiyon artık 'page-projects' HTML'i 
-    // yüklendikten sonra çağrılmalı veya event delegation kullanılmalı.
-    // Şimdilik 'DOMContentLoaded' içinde bırakıyoruz, ancak
-    // 'page-projects' ilk yüklendiğinde çalışmayabilir.
-    
     // GÜNCELLEME: Event Delegation (Olay Aktarımı) kullanalım
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'project-search') {
@@ -599,12 +593,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (mobileLangSelector) mobileLangSelector.style.display = 'none';
     }
     
-    // 🌟 YENİ: Dili 'await' ile yükle
-    try {
-        await setLanguage(localStorage.getItem('lang') || 'tr');
-    } catch (e) {
-        console.error("İlk dil yüklenemedi:", e);
+    // 🌟🌟🌟 DİL OPTİMİZASYONU BAŞLANGICI 🌟🌟🌟
+    let finalLang = 'tr'; // Varsayılan dil
+    const supportedLangs = ['tr', 'en', 'zh', 'ar'];
+    
+    // 1. Kullanıcının kayıtlı bir dili var mı?
+    const savedLang = localStorage.getItem('lang');
+    
+    if (savedLang && supportedLangs.includes(savedLang)) {
+        finalLang = savedLang;
+    } else {
+        // 2. Kayıtlı dil yoksa, tarayıcı dilini algıla
+        const browserLang = navigator.language.split('-')[0]; // 'en-US' -> 'en'
+        if (supportedLangs.includes(browserLang)) {
+            finalLang = browserLang;
+        }
+        // Tarayıcı dili desteklenmiyorsa (örn: 'de', 'fr'), varsayılan 'tr' olarak kalır.
     }
+
+    // 3. Tespit edilen son dili yükle
+    try {
+        await setLanguage(finalLang);
+    } catch (e) {
+        console.error("Dil yüklenemedi:", e);
+        await setLanguage('tr'); // Hata olursa Türkçe'ye dön
+    }
+    // 🌟🌟🌟 DİL OPTİMİZASYONU SONU 🌟🌟🌟
     
     // Görselleri Arka Planda Yükle
     setTimeout(preloadProjectImages, 1000); 
