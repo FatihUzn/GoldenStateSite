@@ -1352,7 +1352,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .image-modal-image-wrapper {
     position: relative;
     background-color: var(--section-bg);
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--gold-dark);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -1386,10 +1386,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: var(--gold-light);
     color: #111;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    border-radius: 8%;
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -1398,6 +1399,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: background-color 0.3s ease;
     z-index: 1001;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Inter', sans-serif;
 }
 .image-modal-close-btn:hover {
     background-color: var(--gold-dark);
