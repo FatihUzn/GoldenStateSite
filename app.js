@@ -33,30 +33,38 @@ async function openHouseDetail(letter) {
   const detail = document.getElementById("house-detail");
   const content = document.getElementById("house-detail-content");
   
+  // Orijinal veriyi (fallback için) al
   const h = allGalleriesData[letter]; 
   if (!h) {
       console.error(`'${letter}' için ev detayı bulunamadı.`);
       return;
   }
   
+  // Geçerli dili ve dil verisini al
   const currentLang = localStorage.getItem('lang') || 'tr';
   const langData = translations[currentLang] || {}; 
 
+  // Dil dosyalarından aranacak anahtarları oluştur
   const titleKey = `prop_${letter}_title`;
   const locationKey = `prop_${letter}_location`;
   const areaKey = `prop_${letter}_area`;
   const roomsKey = `prop_${letter}_rooms`;
   const descKey = `prop_${letter}_desc`;
   const priceKey = `prop_${letter}_price`;
+
+  // Fiyatı dil dosyasından al (bulamazsa galleries.json'dan al)
   const priceText = langData[priceKey] || h.price;
   let priceHTML = '';
 
   if (letter.startsWith('OTEL')) {
+      // Otel fiyatı özel link içeriyor
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
   } else {
+      // Normal mülk fiyatı
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
   }
   
+  // HTML'i oluştururken DİL VERİSİNİ KULLAN
   content.innerHTML = `
     <h2>${langData[titleKey] || h.title}</h2>
     
@@ -76,6 +84,15 @@ async function openHouseDetail(letter) {
   detail.style.display = "block";
   document.body.style.overflow = "hidden"; 
 }
+
+function closeHouseDetail() {
+  const detail = document.getElementById("house-detail");
+  if (detail) {
+    detail.style.display = "none";
+  }
+  document.body.style.overflow = "auto"; 
+}
+
 async function setLanguage(lang) {
     let langData;
 
@@ -124,7 +141,7 @@ async function setLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-// === DEĞİŞİKLİK: showPage fonksiyonu güncellendi ===
+// === showPage fonksiyonu MOBİL GERİ TUŞU için güncellendi ===
 async function showPage(pageId) {
     
     // URL hash'i boşsa veya # ise 'hero' sayfasını varsay
@@ -171,8 +188,7 @@ async function showPage(pageId) {
 
     if (newPage) {
         
-        // === DEĞİŞİKLİK: URL hash'ini güncelle ===
-        // Sadece URL zaten bu değilse güncelle (sonsuz döngüye girmemek için)
+        // URL hash'ini güncelle (sonsuz döngüye girmemek için kontrol et)
         if (location.hash.replace('#', '') !== pageId) {
             location.hash = pageId;
         }
@@ -217,7 +233,6 @@ async function showPage(pageId) {
         location.hash = 'hero'; // Sayfa bulunamazsa anasayfaya dön
     }
 }
-// === DEĞİŞİKLİK BİTTİ ===
 
 function setupMobileMenu() {
     const menuToggle = document.getElementById('menu-toggle');
@@ -361,7 +376,6 @@ function loadCategory(category, checkin = null, checkout = null) {
             </div>`;
         if (titleEl) titleEl.textContent = titles['default_projects'];
         grid.style.opacity = "1";
-        // setupCardAnimations(); // Bu artık showPage içinde yapılıyor
         return;
     }
 
@@ -542,7 +556,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     setupMobileMenu();
     setupProjectReservation(); 
-    // setupScrollReveal(); // Artık showPage içinde
 
     const cta = document.getElementById("discover-cta");
     if (cta) {
@@ -558,14 +571,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (cta && !cta.contains(e.target)) cta.classList.remove("open");
         });
 
-        // === DEĞİŞİKLİK: Dropdown linkleri artık hash'i değiştiriyor ===
+        // === Dropdown linkleri artık hash'i değiştiriyor ===
         dropdown.querySelectorAll("a[data-page]").forEach(link => {
             link.addEventListener("click", e => {
                 e.preventDefault();
                 e.stopPropagation();
                 
                 const pageId = link.getAttribute("data-page");
-                location.hash = pageId; // Hash'i değiştir, 'hashchange' olayı showPage'i tetikleyecek
+                location.hash = pageId; // Hash'i değiştir
                 
                 cta.classList.remove("open");
             });
@@ -574,7 +587,7 @@ document.addEventListener('DOMContentLoaded', async () => {
          console.error("CTA Grubu 'discover-cta' bulunamadı!");
     }
     
-    // === DEĞİŞİKLİK: Nav linkleri artık hash'i değiştiriyor ===
+    // === Nav linkleri artık hash'i değiştiriyor ===
     document.querySelectorAll('.nav-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -583,7 +596,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     
-    // === DEĞİŞİKLİK: 'Geri' tuşu artık hash'i değiştiriyor ===
+    // === 'Geri' tuşu artık hash'i değiştiriyor ===
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
@@ -593,9 +606,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     window.addEventListener('scroll', throttle(handleScrollEffects, 30));
 
-    // === DEĞİŞİKLİK: Sayfa yüklendiğinde ve Geri tuşuna basıldığında ===
+    // === Sayfa yüklendiğinde ve Geri tuşuna basıldığında (hashchange) ===
     
-    // Tarayıcı Geri/İleri tuşlarına basıldığında (veya hash değiştiğinde) tetiklenir
+    // Tarayıcı Geri/İleri tuşlarına basıldığında tetiklenir
     window.addEventListener('hashchange', () => {
         const pageId = location.hash.replace('#', '') || 'hero';
         showPage(pageId);
@@ -604,11 +617,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Sayfa ilk yüklendiğinde URL'deki hash'e göre doğru sayfayı yükle
     const initialPage = location.hash.replace('#', '') || 'hero';
     showPage(initialPage);
-    // === DEĞİŞİKLİK BİTTİ ===
 });
-
-
-// ... (Lightbox kodunuzun geri kalanı aşağıda, değişmedi) ...
 
 
 let currentImages = [];
@@ -620,6 +629,7 @@ document.addEventListener("click", function(e) {
   
   if (!lightbox || !lightboxImg) return; 
 
+  // SADECE .detail-gallery içindeki resimlere tıklandığında lightbox'ı aç
   const clickedDetailImg = e.target.closest(".detail-gallery img");
   if (clickedDetailImg) {
     const gallery = clickedDetailImg.closest(".detail-gallery");
@@ -632,23 +642,29 @@ document.addEventListener("click", function(e) {
     updateLightboxNav(); 
   }
 
+  // Lightbox'ın dışına (arka plana) tıklanırsa kapat
   if (e.target.id === "lightbox") {
     lightbox.style.display = "none";
   }
 });
 
+// YENİ FONKSİYON: Butonları gizle/göster
 function updateLightboxNav() {
   const prevBtn = document.getElementById('lightbox-prev');
   const nextBtn = document.getElementById('lightbox-next');
   if (!prevBtn || !nextBtn) return;
 
+  // Baştaysak 'Geri' butonunu gizle
   prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
+  
+  // Sondaysak 'İleri' butonunu gizle
   nextBtn.style.display = (currentIndex === currentImages.length - 1) ? 'none' : 'block';
 }
 
 function showNextImage() {
   if (!currentImages.length) return;
   
+  // Kapatma mantığı kaldırıldı, sadece ilerle
   if (currentIndex < currentImages.length - 1) { 
     currentIndex++;
   }
@@ -660,12 +676,13 @@ function showNextImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
-  updateLightboxNav(); 
+  updateLightboxNav(); // Butonların durumunu güncelle
 }
 
 function showPrevImage() {
   if (!currentImages.length) return;
 
+  // Kapatma mantığı kaldırıldı, sadece gerile
   if (currentIndex > 0) {
     currentIndex--;
   } 
@@ -677,8 +694,9 @@ function showPrevImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
-  updateLightboxNav(); 
+  updateLightboxNav(); // Butonların durumunu güncelle
 }
+
 
 document.addEventListener("keydown", function (e) {
   const lightbox = document.getElementById("lightbox");
