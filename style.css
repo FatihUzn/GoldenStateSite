@@ -1243,10 +1243,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #page-satilik_kiralik .house-card:hover,
 #page-otel .house-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02); /* <-- BÜYÜME EFEKTİ EKLENDİ */
     box-shadow: var(--gold-shadow-intense);
 }
-
 
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
