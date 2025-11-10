@@ -634,6 +634,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 window.addEventListener("load", () => {
 });
 
+
+// === AŞAĞIDAKİ KOD BLOKLARI DEĞİŞTİRİLDİ ===
+
 let currentImages = [];
 let currentIndex = 0;
 
@@ -643,11 +646,7 @@ document.addEventListener("click", function(e) {
   
   if (!lightbox || !lightboxImg) return; 
 
-  const clickedImg = e.target.closest(".detail-gallery img, .house-gallery img");
-  
-  if (clickedImg && !e.target.closest('.house-card')) { 
-  }
-  
+  // SADECE .detail-gallery içindeki resimlere tıklandığında lightbox'ı aç
   const clickedDetailImg = e.target.closest(".detail-gallery img");
   if (clickedDetailImg) {
     const gallery = clickedDetailImg.closest(".detail-gallery");
@@ -657,9 +656,10 @@ document.addEventListener("click", function(e) {
     lightboxImg.src = clickedDetailImg.src;
     lightbox.style.display = "flex";
 
-    updateLightboxNav(); // <-- BURAYA EKLENDİ
+    updateLightboxNav(); // <-- DÜZELTME BURADA
   }
 
+  // Lightbox'ın dışına (arka plana) tıklanırsa kapat
   if (e.target.id === "lightbox") {
     lightbox.style.display = "none";
   }
@@ -681,7 +681,7 @@ function updateLightboxNav() {
 function showNextImage() {
   if (!currentImages.length) return;
   
-  // Eğer zaten sonda değilsek ilerle
+  // Kapatma mantığı kaldırıldı, sadece ilerle
   if (currentIndex < currentImages.length - 1) { 
     currentIndex++;
   }
@@ -699,7 +699,7 @@ function showNextImage() {
 function showPrevImage() {
   if (!currentImages.length) return;
 
-  // Eğer zaten başta değilsek gerile
+  // Kapatma mantığı kaldırıldı, sadece gerile
   if (currentIndex > 0) {
     currentIndex--;
   } 
@@ -713,6 +713,9 @@ function showPrevImage() {
   }
   updateLightboxNav(); // Butonların durumunu güncelle
 }
+
+// === YUKARIDAKİ KOD BLOKLARI DEĞİŞTİRİLDİ ===
+
 
 document.addEventListener("keydown", function (e) {
   const lightbox = document.getElementById("lightbox");
