@@ -1,6 +1,3 @@
-console.log("--- YENI APP.JS DOSYASI BASARIYLA YUKLENDI v1.3 ---"); // v1.3 olarak güncellendiğini teyit etmek için
-
-// --- ÖNCELİK 3: SCROLL OPTİMİZASYONU ---
 function throttle(func, limit) {
   let inThrottle;
   return function() {
@@ -13,63 +10,47 @@ function throttle(func, limit) {
     }
   }
 }
-// --- Optimizasyon Kodu Sonu ---
 
-// --- 
-// 🌟 ADIM 1.A: ÇEVİRİ VERİLERİ ARTIK DIŞARIDAN GELİYOR 🌟
-const translations = {}; // Boş bir önbellek (cache) objesi
+const translations = {}; 
+let allGalleriesData = null; 
+const pageCache = {}; 
 
-// 🌟 ADIM 1.B: GALERİ VERİLERİ ARTIK DIŞARIDAN GELİYOR 🌟
-let allGalleriesData = null; // Galeri verileri için önbellek
-// ---
-
-// 🌟 ADIM 2.A: HTML SAYFA ÖNBELLEĞİ 🌟
-const pageCache = {}; // Yüklenen HTML'i hafzada tut
-// ---
-
-// --- 🏠 YENİ GALERİ FONKSİYONU (Async Fetch Eklendi) ---
 async function openHouseDetail(letter) {
   
-  // 1. Galeri verisi daha önce çekilmemişse (allGalleriesData null ise)
   if (!allGalleriesData) {
     try {
       
-      // Önbelleği kırmak için ?v=1.1 eklendi
       const response = await fetch('data/galleries.json?v=1.1'); 
       
       if (!response.ok) {
         throw new Error('Galeri verisi data/galleries.json yüklenemedi');
       }
-      allGalleriesData = await response.json(); // Veriyi çek ve global önbelleğe ata
+      allGalleriesData = await response.json(); 
     } catch (error) {
       console.error(error);
-      return; // Veri yüklenemezse fonksiyonu durdur
+      return; 
     }
   }
 
-  // 2. Veri artık 'allGalleriesData' içinde mevcut
   const detail = document.getElementById("house-detail");
   const content = document.getElementById("house-detail-content");
   
-  const h = allGalleriesData[letter]; // Veriyi önbellekten al
+  const h = allGalleriesData[letter]; 
 
-  // --- FİYAT LİNKİ KONTROLÜ ---
   let priceHTML = '';
   if (letter.startsWith('OTEL')) {
       priceHTML = `<p><strong>${"Fiyat"}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${h.price}</a></p>`;
   } else {
       priceHTML = `<p><strong>${"Fiyat"}:</strong> ${h.price}</p>`;
   }
-  // --- KONTROL SONU ---
 
   if (!h) {
       console.error(`'${letter}' için ev detayı bulunamadı.`);
       return;
   }
   
-  // Dil verisini 'translations' önbelleğinden al
   const currentLang = localStorage.getItem('lang') || 'tr';
-  const langData = translations[currentLang] || {}; // Eğer dil daha yüklenmediyse bile hata vermemesi için boş obje
+  const langData = translations[currentLang] || {}; 
 
   content.innerHTML = `
     <h2>${h.title}</h2>
@@ -87,47 +68,39 @@ async function openHouseDetail(letter) {
     </div>
   `;
   detail.style.display = "block";
-  document.body.style.overflow = "hidden"; // Arka plan kaydırmayı durdur
+  document.body.style.overflow = "hidden"; 
 }
 
-// --- 🏠 Detay Ekranını Kapatma ---
 function closeHouseDetail() {
   const detail = document.getElementById("house-detail");
   if (detail) {
     detail.style.display = "none";
   }
-  document.body.style.overflow = "auto"; // Arka plan kaydırmayı tekrar etkinleştir
+  document.body.style.overflow = "auto"; 
 }
 
-
-// --- 🌟 YENİ DİL FONKSİYONU (Async Fetch Eklendi) ---
 async function setLanguage(lang) {
     let langData;
 
-    // 1. Çeviri zaten önbellekte var mı?
     if (translations[lang]) {
         langData = translations[lang];
     } else {
-        // 2. Yoksa, .json dosyasını çek (fetch)
         try {
             const response = await fetch(`${lang}.json`);
             if (!response.ok) {
                 throw new Error(`Dil dosyası ${lang}.json yüklenemedi`);
             }
-            // Düzeltilmiş, geçerli JSON dosyalarını okuyoruz
             langData = await response.json(); 
-            translations[lang] = langData; // Gelecekte kullanmak için kaydet
+            translations[lang] = langData; 
         } catch (error) {
             console.warn(`Dil dosyası ${lang}.json yüklenemedi veya işlenemedi:`, error);
-            // Hata olursa varsayılan (İngilizce) dile dön
             if (lang !== 'en') {
-                return await setLanguage('en'); // Düzeltme: 'en' yüklemesini bekle
+                return await setLanguage('en'); 
             }
             return;
         }
     }
     
-    // 3. Çeviriyi uygula
     const elements = document.querySelectorAll('[data-key]');
     
     document.querySelector('title').textContent = langData['title'];
@@ -139,8 +112,6 @@ async function setLanguage(lang) {
         document.documentElement.dir = 'ltr';
     }
 
-    // Hem 'main' içindeki hem de 'header'/'footer' gibi dışarıdaki 
-    // tüm [data-key] elementlerine çeviriyi uygula
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langData[key]) {
@@ -158,27 +129,19 @@ async function setLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-
-// --- 🌟 YENİ Sayfa Gösterme (SPA) Fonksiyonu (HTML Fetch Eklendi) ---
 async function showPage(pageId) {
     
-    // 1. (Bu kısım aynı) - Tüm aktif sayfaları gizle
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
     });
 
-    // 2. Sayfa zaten yüklenmiş ve DOM'a eklenmiş mi?
     let newPage = document.getElementById(pageId);
     
     if (!newPage) {
-        // 3. Sayfa yüklenmemiş (DOM'da yok): Fetch ile çek
         if (pageCache[pageId]) {
-            // Hafızada (cache) varsa oradan al
             document.getElementById('page-container').insertAdjacentHTML('beforeend', pageCache[pageId]);
         } else {
-            // Hafızada yoksa, ana dizinden çek
             try {
-                // Sayfa adlarını JS ID'lerinden HTML dosyalarına çevir
                 let fileName = pageId;
                 if (pageId === 'page-about') fileName = 'about';
                 if (pageId === 'page-services') fileName = 'services';
@@ -189,38 +152,31 @@ async function showPage(pageId) {
                 if (pageId === 'page-restorasyon') fileName = "restorasyon";
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
 
-                if (fileName === pageId) { // 'hero' gibi özel durumlar
+                if (fileName === pageId) { 
                    /* 'hero' zaten index.html'de, fetch edilmesine gerek yok */
                 } else {
-                      // 'pages/' klasör yolu kaldırıldı (Bu zaten düzgündü).
                       const response = await fetch(`${fileName}.html`);
                     
                     if (!response.ok) throw new Error(`Sayfa yüklenemedi: ${fileName}.html`);
                     
                     const html = await response.text();
-                    pageCache[pageId] = html; // Gelecekte kullanmak için hafızaya al
+                    pageCache[pageId] = html; 
                     document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
                 }
             } catch (error) {
                 console.error(error);
-                showPage('hero'); // Hata olursa anasayfaya dön
+                showPage('hero'); 
                 return;
             }
         }
-        // HTML DOM'a eklendikten sonra elementi tekrar seç
         newPage = document.getElementById(pageId);
     }
 
-    // 4. (Bu kısım sizin eski kodunuz) - Sayfayı göster ve animasyonları çalıştır
     if (newPage) {
-        
-        // --- 🌟🌟🌟 DÜZELTME BURADA (KOPYALAMA HATASI GİDERİLDİ) 🌟🌟🌟 ---
         
         newPage.classList.add('active');
         window.scrollTo(0, 0); 
 
-        // 'hero' sayfasına dönerken, scroll efektinden kalan
-        // opaklığı sıfırla ki "Keşfet" butonu görünsün.
         if (pageId === 'hero') {
             const heroElement = document.getElementById('hero');
             if (heroElement) {
@@ -228,7 +184,6 @@ async function showPage(pageId) {
             }
         }
         
-        // Çevirilerin YENİ YÜKLENEN HTML'e uygulanması
         const currentLang = localStorage.getItem('lang') || 'tr';
         if (translations[currentLang]) {
             newPage.querySelectorAll('[data-key]').forEach(el => {
@@ -238,9 +193,7 @@ async function showPage(pageId) {
                 }
             });
         }
-        // --- 🌟🌟🌟 DÜZELTME SONA ERDİ 🌟🌟🌟 ---
 
-        // Kart animasyonlarını tetikle
         newPage.classList.remove('visible');
         setTimeout(() => {
             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card');
@@ -261,9 +214,6 @@ async function showPage(pageId) {
     }
 }
 
-// --- Diğer Fonksiyonlar (Değişiklik Gerekmiyor) ---
-
-// Mobil Menü Toggle
 function setupMobileMenu() {
     const menuToggle = document.getElementById('menu-toggle');
     if (menuToggle) {
@@ -291,17 +241,13 @@ function setupMobileMenu() {
     });
 }
 
-// Scroll Reveal (Intersection Observer)
 function setupScrollReveal() {
-    // Bu fonksiyon artık 'showPage' içinden yönetiliyor, 
-    // ancak hala 'hero' için 'visible' eklemesi gerekiyor.
     const heroSection = document.getElementById('hero');
     if (heroSection) {
         heroSection.classList.add('visible');
     }
 }
 
-// Kart animasyonları (load)
 function setupCardAnimations() {
     const cardSelector = '.project-card, .latest-card, .service-card, .restoration-card';
     const cards = document.querySelectorAll(cardSelector);
@@ -314,7 +260,6 @@ function setupCardAnimations() {
     });
 }
 
-// Kategori Yükleme (Dropdown için)
 const projects = {
   otel: [
     { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
@@ -351,7 +296,7 @@ function preloadProjectImages() {
         ...projects.satilik_kiralik.map(p => p.img)
     ]; 
     allImageUrls.forEach(url => {
-        if (url.startsWith('http')) return; // Placeholder'ları atla
+        if (url.startsWith('http')) return; 
         const img = new Image();
         img.src = url; 
     });
@@ -364,7 +309,6 @@ function loadCategory(category, checkin = null, checkout = null) {
       return; 
   }
     
-  // DİKKAT: 'page-projects' HTML'i fetch edildiğinde bu ID'lerin var olduğundan emin olun.
   const grid = document.getElementById("project-grid"); 
   if (!grid) {
       console.error("Proje grid'i bulunamadı (ID: project-grid)");
@@ -372,10 +316,9 @@ function loadCategory(category, checkin = null, checkout = null) {
   }
   grid.style.opacity = "0";
 
-  const titleEl = document.getElementById('projects-title'); // Bu ID'nin pages/projects.html'de olması gerekir.
+  const titleEl = document.getElementById('projects-title'); 
   const currentLang = localStorage.getItem('lang') || 'tr';
   
-  // Dil verisi 'translations' önbelleğinden alınır
   const langData = translations[currentLang] || {}; 
   
   const titles = {
@@ -425,7 +368,7 @@ function loadCategory(category, checkin = null, checkout = null) {
             </div>`;
         if (titleEl) titleEl.textContent = titles['default_projects'];
         grid.style.opacity = "1";
-        setupCardAnimations(); // Bu fonksiyonu yeniden düşünmek gerekebilir, showPage hallediyor
+        setupCardAnimations(); 
         return;
     }
 
@@ -442,13 +385,11 @@ function loadCategory(category, checkin = null, checkout = null) {
       grid.appendChild(card);
     });
     
-    // Animasyon artık showPage tarafından yönetiliyor
     grid.style.opacity = "1";
     
   }, 300);
 }
 
-// Scroll Efektleri
 function handleScrollEffects() {
     const scrollY = window.scrollY;
     const header = document.querySelector('header');
@@ -479,9 +420,7 @@ function handleScrollEffects() {
     }
 }
 
-// Proje Rezervasyon Formu
 function setupProjectReservation() {
-    // GÜNCELLEME: Event Delegation (Olay Aktarımı) kullanalım
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'project-search') {
             const checkin = document.getElementById('project-check-in').value;
@@ -504,7 +443,6 @@ function setupProjectReservation() {
 }
 
 
-// Otel Rezervasyon Aç/Kapat (Event Delegation)
 document.body.addEventListener('click', (e) => {
     const reservationContainer = document.getElementById("otel-reservation-container");
 
@@ -527,7 +465,6 @@ document.body.addEventListener('click', (e) => {
 });
 
 
-// Müsaitlik Popup + E-posta (Event Delegation)
 document.body.addEventListener('click', (e) => {
     if (e.target && e.target.id === 'otel-search') {
         const modal = document.getElementById("availability-modal");
@@ -579,11 +516,9 @@ document.body.addEventListener('click', (e) => {
 });
 
 
-// === SAYFA YÜKLENDİĞİNDE (DOMContentLoaded) ===
 document.addEventListener('DOMContentLoaded', async () => {
     window.scrollTo(0, 0); 
     
-    // Dil Seçicileri Ayarla
     const desktopLangSelector = document.querySelector('.language-selector.desktop-only');
     const mobileLangSelector = document.querySelector('.language-selector.mobile-only');
 
@@ -593,42 +528,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (mobileLangSelector) mobileLangSelector.style.display = 'none';
     }
     
-    // 🌟🌟🌟 DİL OPTİMİZASYONU BAŞLANGICI 🌟🌟🌟
-    let finalLang = 'tr'; // Varsayılan dil
+    let finalLang = 'tr'; 
     const supportedLangs = ['tr', 'en', 'zh', 'ar'];
     
-    // 1. Kullanıcının kayıtlı bir dili var mı?
     const savedLang = localStorage.getItem('lang');
     
     if (savedLang && supportedLangs.includes(savedLang)) {
         finalLang = savedLang;
     } else {
-        // 2. Kayıtlı dil yoksa, tarayıcı dilini algıla
-        const browserLang = navigator.language.split('-')[0]; // 'en-US' -> 'en'
+        const browserLang = navigator.language.split('-')[0]; 
         if (supportedLangs.includes(browserLang)) {
             finalLang = browserLang;
         }
-        // Tarayıcı dili desteklenmiyorsa (örn: 'de', 'fr'), varsayılan 'tr' olarak kalır.
     }
 
-    // 3. Tespit edilen son dili yükle
     try {
         await setLanguage(finalLang);
     } catch (e) {
         console.error("Dil yüklenemedi:", e);
-        await setLanguage('tr'); // Hata olursa Türkçe'ye dön
+        await setLanguage('tr'); 
     }
-    // 🌟🌟🌟 DİL OPTİMİZASYONU SONU 🌟🌟🌟
     
-    // Görselleri Arka Planda Yükle
     setTimeout(preloadProjectImages, 1000); 
     
-    // Fonksiyonları Başlat
     setupMobileMenu();
-    setupProjectReservation(); // Artık event delegation kullanıyor
-    setupScrollReveal(); // Sadece 'hero' için çalışacak
+    setupProjectReservation(); 
+    setupScrollReveal(); 
 
-    // "Keşfet" Menüsü (Dropdown)
     const cta = document.getElementById("discover-cta");
     if (cta) {
         const button = cta.querySelector(".btn");
@@ -649,7 +575,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 e.stopPropagation();
                 const cat = link.getAttribute("data-category");
                 
-                // 🌟 YENİ: Kategoriye göre doğru sayfayı yükle
                 if (cat === 'otel') {
                     showPage('page-otel');
                 } else if (cat === 'insaat') {
@@ -673,14 +598,12 @@ document.addEventListener('DOMContentLoaded', async () => {
          console.error("CTA Grubu 'discover-cta' bulunamadı!");
     }
     
-    // NavBar (SPA) Tıklamaları
     document.querySelectorAll('.nav-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
             showPage(pageId);
             
-            // 'page-projects' içindeki formu gizle (eğer varsa)
             const projectForm = document.getElementById('project-reservation-form');
             if (projectForm) projectForm.style.display = 'none';
             
@@ -690,26 +613,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     
-    // 'Geri' butonları (Event Delegation)
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
-            showPage('hero'); // Anasayfaya (hero) git
+            showPage('hero'); 
         }
     });
 
 
-    // Scroll Efektini Başlat (Throttle ile)
     window.addEventListener('scroll', throttle(handleScrollEffects, 100));
 });
 
-// Kart animasyonları 'load' event'i ile (Sadece ilk sayfa 'hero' için)
 window.addEventListener("load", () => {
-    // setupCardAnimations() fonksiyonu artık 'showPage' içinde
-    // her sayfa yüklendiğinde tetikleniyor.
 });
 
-// --- Lightbox Sistemi ---
 let currentImages = [];
 let currentIndex = 0;
 
@@ -717,16 +634,13 @@ document.addEventListener("click", function(e) {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   
-  if (!lightbox || !lightboxImg) return; // Lightbox yoksa devam etme
+  if (!lightbox || !lightboxImg) return; 
 
-  // GÜNCELLEME: Sadece '.detail-gallery img' değil, tüm galeriler
   const clickedImg = e.target.closest(".detail-gallery img, .house-gallery img");
   
-  if (clickedImg && !e.target.closest('.house-card')) { // Kart tıklaması değil, resim tıklaması
-     // ... (bu kısım şimdilik sadece 'detail-gallery' için çalışıyor)
+  if (clickedImg && !e.target.closest('.house-card')) { 
   }
   
-  // Sadece 'detail-gallery' (modal içi) için çalışsın
   const clickedDetailImg = e.target.closest(".detail-gallery img");
   if (clickedDetailImg) {
     const gallery = clickedDetailImg.closest(".detail-gallery");
@@ -776,7 +690,6 @@ function showPrevImage() {
   }
 }
 
-// Klavye (Ok ve ESC) Desteği
 document.addEventListener("keydown", function (e) {
   const lightbox = document.getElementById("lightbox");
   if (lightbox && lightbox.style.display === "flex") {
@@ -790,7 +703,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// Mobil Swipe (Kaydırma) Desteği
 let touchStartX = 0;
 let touchEndX = 0;
 const swipeThreshold = 50;
@@ -831,7 +743,6 @@ if (lightbox) {
     });
 }
 
-// Mobil Pinch-to-Zoom
 let scale = 1;
 let startDistance = 0;
 const lightboxImg = document.getElementById("lightbox-img");
@@ -868,21 +779,17 @@ if (lightboxImg) {
     });
 }
 
-// Restorasyon Resim Görüntüleyici Modal (Event Delegation)
 document.body.addEventListener('click', (e) => {
     const modalOverlay = document.getElementById('restorationImageModal');
     if (!modalOverlay) return;
 
-    // Kapatma butonu
     if (e.target.closest('.image-modal-close-btn')) {
         closeImageModal();
     }
-    // Dışarı tıklama
     if (e.target === modalOverlay) {
         closeImageModal();
     }
 
-    // Kart tıklaması
     const card = e.target.closest('.restoration-card');
     if (card && (e.target.closest('.img-wrapper') || e.target.closest('.img-comparison-container'))) {
         const modalBeforeImage = document.getElementById('modalBeforeImage');

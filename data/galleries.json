@@ -93,7 +93,7 @@
     "location": "Golden Palace Otel",
     "area": "120 m2",
     "rooms": "1 Yatak Odası + 1 Salon",
-    "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz.",
     "images": [
       "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
     ]
@@ -104,7 +104,7 @@
     "location": "Golden Palace Otel",
     "area": "75 m2",
     "rooms": "1+1",
-    "desc": "Geniş balkonlu, oturma alanlı ve deniz manzaralı suit oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Geniş balkonlu, oturma alanlı ve deniz manzaralı suit oda.",
     "images": [
       "assets/b1_plus1.webp", "assets/b1_plus2.webp", "assets/b1_plus3.webp", "assets/b1_plus4.webp", "assets/b1_plus5.webp", "assets/b1_plus6.webp", "assets/b1_plus7.webp", "assets/b1_plus8.webp", "assets/b1_plus9.webp", "assets/b1_plus10.webp"
     ]
@@ -115,7 +115,7 @@
     "location": "Golden Palace Otel",
     "area": "60 m2",
     "rooms": "2 Yatak Odası (Ara Kapılı)",
-    "desc": "Çocuklar için ayrı yatak odası bulunan konforlu aile odası. (Bu bir placeholder açıklamasıcır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Çocuklar için ayrı yatak odası bulunan konforlu aile odası.",
     "images": [
       "assets/b2_plus1.webp", "assets/b2_plus2.webp", "assets/b2_plus3.webp", "assets/b2_plus4.webp", "assets/b2_plus5.webp", "assets/b2_plus6.webp", "assets/b2_plus7.webp", "assets/b2_plus8.webp", "assets/b2_plus9.webp"
     ]
@@ -126,7 +126,7 @@
     "location": "Golden Palace Otel",
     "area": "35 m2",
     "rooms": "1 Yatak Odası",
-    "desc": "Balkonlu ve deniz manzaralı standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Balkonlu ve deniz manzaralı standart oda.",
     "images": [
       "assets/fs1.webp", "assets/fs2.webp", "assets/fs3.webp", "assets/fs4.webp", "assets/fs5.webp", "assets/fs6.webp", "assets/fs7.webp", "assets/fs8.webp", "assets/fs9.webp", "assets/fs10.webp"
     ]
@@ -137,7 +137,7 @@
     "location": "Golden Palace Otel",
     "area": "32 m2",
     "rooms": "1 Yatak Odası",
-    "desc": "Kara manzaralı, ekonomik ve konforlu standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Kara manzaralı, ekonomik ve konforlu standart oda.",
     "images": [
       "assets/em1.webp", "assets/em2.webp", "assets/em3.webp", "assets/em4.webp", "assets/em5.webp", "assets/em6.webp"
     ]
@@ -148,7 +148,7 @@
     "location": "Golden Palace Otel",
     "area": "30 m2",
     "rooms": "1 Yatak Odası",
-    "desc": "Modern tasarımlı standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Modern tasarımlı standart oda.",
     "images": [
       "assets/st1.webp", "assets/st2.webp", "assets/st3.webp", "assets/st4.webp", "assets/st5.webp", "assets/st6.webp", "assets/st7.webp"
     ]
@@ -159,7 +159,7 @@
     "location": "Golden Palace Otel",
     "area": "40 m2",
     "rooms": "1 Yatak Odası",
-    "desc": "Daha geniş oturma alanına sahip Deluxe oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Daha geniş oturma alanına sahip Deluxe oda.",
     "images": [
       "assets/sf1.webp", "assets/sf2.webp", "assets/sf3.webp", "assets/sf4.webp", "assets/sf5.webp", "assets/sf6.webp", "assets/sf7.webp"
     ]
@@ -170,7 +170,7 @@
     "location": "Golden Palace Otel",
     "area": "45 m2",
     "rooms": "1+1 (Açık Plan)",
-    "desc": "Oturma alanı ve yatak odasının birleştiği geniş Junior Süit. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "Oturma alanı ve yatak odasının birleştiği geniş Junior Süit.",
     "images": [
       "assets/shr1.webp", "assets/shr2.webp", "assets/shr3.webp", "assets/shr4.webp", "assets/shr5.webp", "assets/shr6.webp", "assets/shr7.webp", "assets/shr8.webp"
     ]
@@ -181,7 +181,7 @@
     "location": "Golden Palace Otel",
     "area": "38 m2",
     "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
-    "desc": "İki adet tek kişilik yatak bulunan Superior oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "İki adet tek kişilik yatak bulunan Superior oda.",
     "images": [
       "assets/stf1.webp", "assets/stf2.webp", "assets/stf3.webp", "assets/stf4.webp", "assets/stf5.webp", "assets/stf6.webp", "assets/stf7.webp", "assets/stf8.webp"
     ]
@@ -192,7 +192,7 @@
     "location": "Golden Palace Otel",
     "area": "30 m2",
     "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
-    "desc": "İki adet tek kişilik yatak bulunan standart oda. (Bu bir placeholder açıklamasıdır, gerçek verilerle değiştirilmelidir).",
+    "desc": "İki adet tek kişilik yatak bulunan standart oda.",
     "images": [
       "assets/stw1.webp", "assets/stw2.webp", "assets/stw3.webp", "assets/stw4.webp", "assets/stw5.webp", "assets/stw6.webp", "assets/stw7.webp"
     ]
@@ -203,7 +203,7 @@
     "location": "İstanbul, Finans Merkezi",
     "area": "150.000 m2",
     "rooms": "Ofis + Rezidans",
-    "desc": "Modern mimari, LEED sertifikalı, 50 katlı karma kullanım projesi. (Placeholder açıklama).",
+    "desc": "Modern mimari, LEED sertifikalı, 50 katlı karma kullanım projesi.",
     "images": [
       "assets/insaat-gallery1-1.webp", "assets/insaat-gallery2-1.webp", "assets/insaat-gallery3-1.webp", "assets/insaat-gallery4-1.webp", "assets/insaat-gallery5-1.webp", "assets/insaat-gallery6-1.webp", "assets/insaat-gallery7-1.webp", "assets/insaat-gallery8-1.webp", "assets/insaat-gallery9-1.webp", "assets/insaat-gallery10-1.webp", "assets/insaat-gallery11-1.webp", "assets/insaat-gallery12-1.webp", "assets/insaat-gallery13-1.webp", "assets/insaat-gallery14-1.webp", "assets/insaat-gallery15-1.webp", "assets/insaat-gallery16-1.webp", "assets/insaat-gallery17-1.webp", "assets/insaat-gallery18-1.webp", "assets/insaat-gallery19-1.webp", "assets/insaat-gallery20-1.webp", "assets/insaat-gallery21-1.webp", "assets/insaat-gallery22-1.webp", "assets/insaat-gallery23-1.webp", "assets/insaat-gallery24-1.webp", "assets/insaat-gallery25-1.webp", "assets/insaat-gallery26-1.webp", "assets/insaat-gallery27-1.webp", "assets/insaat-gallery28-1.webp", "assets/insaat-gallery29-1.webp", "assets/insaat-gallery30-1.webp"
     ]
@@ -214,7 +214,7 @@
     "location": "İstanbul, Çekmeköy",
     "area": "80.000 m2",
     "rooms": "2+1, 3+1, 4+1 Daireler",
-    "desc": "Geniş peyzaj alanları, sosyal tesisler ve aileye uygun konut projesi. (Placeholder açıklama).",
+    "desc": "Geniş peyzaj alanları, sosyal tesisler ve aileye uygun konut projesi.",
     "images": [
       "assets/insaat-gallery1-2.webp", "assets/insaat-gallery2-2.webp", "assets/insaat-gallery3-2.webp", "assets/insaat-gallery4-2.webp", "assets/insaat-gallery5-2.webp", "assets/insaat-gallery6-2.webp", "assets/insaat-gallery7-2.webp", "assets/insaat-gallery8-2.webp", "assets/insaat-gallery9-2.webp", "assets/insaat-gallery10-2.webp", "assets/insaat-gallery11-2.webp", "assets/insaat-gallery12-2.webp", "assets/insaat-gallery13-2.webp", "assets/insaat-gallery14-2.webp", "assets/insaat-gallery15-2.webp", "assets/insaat-gallery16-2.webp", "assets/insaat-gallery17-2.webp", "assets/insaat-gallery18-2.webp", "assets/insaat-gallery19-2.webp", "assets/insaat-gallery20-2.webp", "assets/insaat-gallery21-2.webp", "assets/insaat-gallery22-2.webp", "assets/insaat-gallery23-2.webp", "assets/insaat-gallery24-2.webp", "assets/insaat-gallery25-2.webp", "assets/insaat-gallery26-2.webp", "assets/insaat-gallery27-2.webp", "assets/insaat-gallery28-2.webp", "assets/insaat-gallery29-2.webp", "assets/insaat-gallery30-2.webp"
     ]
@@ -225,7 +225,7 @@
     "location": "Ankara, Çankaya",
     "area": "120.000 m2 Kiralanabilir Alan",
     "rooms": "200+ Mağaza",
-    "desc": "Bölgenin yeni buluşma noktası, sinema salonları ve gurme lezzet katı. (Placeholder açıklama).",
+    "desc": "Bölgenin yeni buluşma noktası, sinema salonları ve gurme lezzet katı.",
     "images": [
       "assets/insaat-gallery1-3.webp", "assets/insaat-gallery2-3.webp", "assets/insaat-gallery3-3.webp", "assets/insaat-gallery4-3.webp", "assets/insaat-gallery5-3.webp", "assets/insaat-gallery6-3.webp", "assets/insaat-gallery7-3.webp", "assets/insaat-gallery8-3.webp", "assets/insaat-gallery9-3.webp", "assets/insaat-gallery10-3.webp", "assets/insaat-gallery11-3.webp", "assets/insaat-gallery12-3.webp", "assets/insaat-gallery13-3.webp", "assets/insaat-gallery14-3.webp", "assets/insaat-gallery15-3.webp", "assets/insaat-gallery16-3.webp", "assets/insaat-gallery17-3.webp", "assets/insaat-gallery18-3.webp", "assets/insaat-gallery19-3.webp", "assets/insaat-gallery20-3.webp", "assets/insaat-gallery21-3.webp", "assets/insaat-gallery22-3.webp", "assets/insaat-gallery23-3.webp", "assets/insaat-gallery24-3.webp", "assets/insaat-gallery25-3.webp", "assets/insaat-gallery26-3.webp", "assets/insaat-gallery27-3.webp", "assets/insaat-gallery28-3.webp", "assets/insaat-gallery29-3.webp", "assets/insaat-gallery30-3.webp"
     ]
@@ -236,7 +236,7 @@
     "location": "İzmir, Bayraklı",
     "area": "60.000 m2",
     "rooms": "A Sınıfı Ofisler",
-    "desc": "Deniz manzaralı, modern teknolojiye sahip A sınıfı ofis alanları. (Placeholder açıklama).",
+    "desc": "Deniz manzaralı, modern teknolojiye sahip A sınıfı ofis alanları.",
     "images": [
       "assets/insaat-gallery1-4.webp", "assets/insaat-gallery2-4.webp", "assets/insaat-gallery3-4.webp", "assets/insaat-gallery4-4.webp", "assets/insaat-gallery5-4.webp", "assets/insaat-gallery6-4.webp", "assets/insaat-gallery7-4.webp", "assets/insaat-gallery8-4.webp", "assets/insaat-gallery9-4.webp", "assets/insaat-gallery10-4.webp", "assets/insaat-gallery11-4.webp", "assets/insaat-gallery12-4.webp", "assets/insaat-gallery13-4.webp", "assets/insaat-gallery14-4.webp", "assets/insaat-gallery15-4.webp", "assets/insaat-gallery16-4.webp", "assets/insaat-gallery17-4.webp", "assets/insaat-gallery18-4.webp", "assets/insaat-gallery19-4.webp", "assets/insaat-gallery20-4.webp", "assets/insaat-gallery21-4.webp", "assets/insaat-gallery22-4.webp", "assets/insaat-gallery23-4.webp", "assets/insaat-gallery24-4.webp", "assets/insaat-gallery25-4.webp", "assets/insaat-gallery26-4.webp", "assets/insaat-gallery27-4.webp", "assets/insaat-gallery28-4.webp", "assets/insaat-gallery29-4.webp", "assets/insaat-gallery30-4.webp"
     ]
@@ -247,20 +247,9 @@
     "location": "Kocaeli, Gebze OSB",
     "area": "45.000 m2",
     "rooms": "Üretim + Lojistik",
-    "desc": "Yüksek tavanlı lojistik ve üretim tesisi. (Placeholder açıklama).",
+    "desc": "Yüksek tavanlı lojistik ve üretim tesisi.",
     "images": [
-      "assets/insaat-gallery1-5.webp", "assets/insaat-gallery2-5.webp", "assets/insaat-gallery3-5.webp", "assets/insaat-gallery4-5.webp", "assets/insaat-gallery5-5.webp", "assets/insaat-gallery6-5.webp", "assets/insaat-gallery7-5.webp", "assets/insaat-gallery8-5.webp", "assets/insaat-gallery9-5.webp", "assets/insaat-gallery10-5.webp", "assets/insaat-gallery11-5.webp", "assets/insaat-gallery12-5.webp", "assets/insaat-gallery13-5.webp", "assets/insaat-gallery14-5.webp", "assets/insaat-gallery15-5.webp", "assets/insaat-gallery16-5.webp", "assets/insaat-gallery17-5.webp", "assets/insaat-gallery18-5.webp", "assets/insaat-gallery19-5.webp", "assets/insaat-gallery20-5.webp", "assets/insaat-gallery21-5.webp", "assets/insaat-gallery22-5.webp", "assets/insaat-gallery23-5.webp", "assets/insaat-gallery24-5.webp", "assets/insaat-gallery25-5.webp", "assets/insaat-gallery26-5.webp", "assets/insaat-gallery27-5.webp", "assets/insaat-gallery28-5.webp", "assets/insaat-gallery29-5.webp", "assets/insaat-gallery30-5.webp"
-    ]
-  },
-  "INSAAT6": {
-    "title": "Proje: Lüks Villa Sitesi F",
-    "price": "Fiyat Sorunuz",
-    "location": "Bodrum, Yalıkavak",
-    "area": "Her biri 450 m2",
-    "rooms": "5+2 Müstakil Villalar",
-    "desc": "Özel havuzlu, deniz manzaralı 20 adet lüks villa projesi. (Placeholder açıklama).",
-    "images": [
-      "assets/insaat-gallery1-6.webp", "assets/insaat-gallery2-6.webp", "assets/insaat-gallery3-6.webp", "assets/insaat-gallery4-6.webp", "assets/insaat-gallery5-6.webp", "assets/insaat-gallery6-6.webp", "assets/insaat-gallery7-6.webp", "assets/insaat-gallery8-6.webp", "assets/insaat-gallery9-6.webp", "assets/insaat-gallery10-6.webp", "assets/insaat-gallery11-6.webp", "assets/insaat-gallery12-6.webp", "assets/insaat-gallery13-6.webp", "assets/insaat-gallery14-6.webp", "assets/insaat-gallery15-6.webp", "assets/insaat-gallery16-6.webp", "assets/insaat-gallery17-6.webp", "assets/insaat-gallery18-6.webp", "assets/insaat-gallery19-6.webp", "assets/insaat-gallery20-6.webp", "assets/insaat-gallery21-6.webp", "assets/insaat-gallery22-6.webp", "assets/insaat-gallery23-6.webp", "assets/insaat-gallery24-6.webp", "assets/insaat-gallery25-6.webp", "assets/insaat-gallery26-6.webp", "assets/insaat-gallery27-6.webp", "assets/insaat-gallery28-6.webp", "assets/insaat-gallery29-6.webp", "assets/insaat-gallery30-6.webp"
-    ]
-  }
-}
+      "assets/insaat-gallery1-5.webp", "assets/insaat-gallery2-5.webp", "assets/insaat-gallery3-5.webp", "assets/insaat-gallery4-5.webp", "assets/insaat-gallery5-5.webp", "assets/insaat-gallery6-5.webp", "assets/insaat-gallery7-5.webp", "assets/insaat-gallery8-5.webp", "assets/insaat-gallery9-5.webp", "assets/insaat-gallery10-5.webp", "assets/insaat-gallery11-5.webp", "assets/insaat-gallery12-5.webp", "assets/insaat-gallery13-5.webp", "assets/insaat-gallery14-5.webp", "assets/insaat-gallery15-5.webp", "assets/insaat-gallery16-5.webp", "assets/insaat-gallery17-5.webp", "assets/insaat-gallery18-5.webp", "assets/insaat-gallery19-5.webp", "assets/insaat-gallery20-5.webp", "assetsGive me 2 examples of using `std::tie` in C++ and a short explanation for each example.
+What is the difference between `std::tie` and `std::make_tuple`?
+Why should I use `std::tie` instead of `std::ignore` when iterating over `std::map`?
+I'm a C++ beginner. Provide the code in a single code block.

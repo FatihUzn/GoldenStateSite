@@ -1,23 +1,15 @@
-/* * TEMA: Golden Palace - Premium Gold + Black
- * AÇIKLAMA: Lüks altın ve siyah tonları, özel parıltı ve animasyon efektleri.
- */
-
-/* === 1. TEMA DEĞİŞKENLERİ VE TEMEL AYARLAR === */
 :root {
   --bg: #0a0a0a;
   --text: #f5f5f5;
   --text-muted: #a1a1aa;
   
-  /* 🔹 Altın Paleti 🔹 */
-  --gold-light: #ffcc66; /* Parlak vurgu, gradient sonu */
-  --gold-dark: #f59e0b;  /* Ana altın, gradient başı */
+  --gold-light: #ffcc66; 
+  --gold-dark: #f59e0b;  
   
-  /* 🔹 Efekt Değişkenleri 🔹 */
   --gold-gradient: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
   --gold-shadow: 0 0 15px rgba(255, 204, 102, 0.4), 0 0 5px rgba(255, 204, 102, 0.2);
   --gold-shadow-intense: 0 0 25px rgba(255, 204, 102, 0.7), 0 0 10px rgba(255, 204, 102, 0.4);
   
-  /* 🔹 Diğer Değişkenler 🔹 */
   --border-dark: #2d2d2d;
   --section-bg: #111;
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
@@ -39,7 +31,6 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   
-  /* 🌟 GÜNCELLENDİ: GENEL ARKA PLAN GÖRSELİ AYARLARI 🌟 */
   background-image: url('assets/background.webp'); 
   background-size: cover; 
   background-repeat: no-repeat;
@@ -50,25 +41,22 @@ body {
   z-index: 1; 
 }
 
-/* Arka plan görselinin üzerindeki genel karartma */
 body::before {
     content: '';
-    position: absolute; /* 🌟 DÜZELTME: 'fixed' yerine 'absolute' performans sorununu çözer 🌟 */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     min-height: 100%; 
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* %40 siyah karartma */
-    z-index: -1; /* İçeriklerin arkasında kalmasını sağlar */
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: -1; 
 }
 
-/* === 2. LÜKS TİPOGRAFİ (Playfair Display + Inter) === */
 h1, h2, h3, h4,
 .brand-title, .footer-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  /* 🌟 Altın Gradient Metin Efekti 🌟 */
   background: var(--gold-gradient);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -82,7 +70,6 @@ h1, h2, h3, h4,
   to { background-position: 200% center; }
 }
 
-/* 🌟 DÜZELTME: EKSİK ANİMASYON EKLENDİ 🌟 */
 @keyframes zoomFadeIn {
   from { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
   to { opacity: 1; transform: scale3d(1, 1, 1); }
@@ -102,7 +89,6 @@ p {
   font-size: 17px;
 }
 
-/* === 3. HEADER VE MARKA === */
 header {
   display: flex;
   justify-content: space-between;
@@ -112,16 +98,15 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  /* 🌟 GÜNCELLEME: Başlangıçta gradient, scroll'da opak olacak */
   background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
-  backdrop-filter: blur(8px); /* Buzlu cam efekti geri eklendi */
+  backdrop-filter: blur(8px); 
   z-index: 1000;
   opacity: 0;
   transform: scale(0.95);
   animation: zoomFadeIn 1s var(--easing) forwards 0.2s;
   box-sizing: border-box; 
   border-bottom: 1px solid var(--border-dark);
-  transition: background 0.3s ease-out; /* 🌟 YENİ: yumuşak geçiş için */
+  transition: background 0.3s ease-out; 
 }
 
 .brand {
@@ -132,7 +117,7 @@ header {
 .brand img {
   height: 45px;
   width: auto;
-  border-radius: 4px; /* Logoya hafif bir kenar yumuşatma */
+  border-radius: 4px; 
 }
 .brand-text-container {
   display: flex;
@@ -143,7 +128,7 @@ header {
   font-size: 20px;
   font-weight: 900;
   line-height: 1;
-  background-size: 100% auto; /* Marka adı gradienti sabit */
+  background-size: 100% auto; 
   animation: none;
 }
 .brand-tagline {
@@ -156,7 +141,6 @@ header {
   letter-spacing: 0.5px;
 }
 
-/* === 4. NAVİGASYON (✨ IŞIK KAYMASI EFEKTİ ✨) === */
 .navbar {
   display: flex;
   align-items: center;
@@ -168,9 +152,9 @@ header {
   font-weight: 600;
   transition: color 0.3s ease;
   position: relative;
-  overflow: hidden; /* Işık kayması için */
+  overflow: hidden; 
   padding: 5px 0;
-  cursor: pointer; /* 🌟 YENİ: Tıklanabilir olduğunu belirtir */
+  cursor: pointer; 
 }
 .navbar a::after {
   content: '';
@@ -189,11 +173,9 @@ header {
 }
 .navbar a:hover::after {
   transform: translateX(0%);
-  /* Hover'da ışık kayması için gradienti hareket ettir */
   animation: textGradientShine 1s linear 1;
 }
 
-/* Dil Seçici (Aynı Stil) */
 .language-selector {
   display: flex;
   gap: 10px;
@@ -210,7 +192,7 @@ header {
   font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif; /* Dil butonları için Inter */
+  font-family: 'Inter', sans-serif; 
 }
 .lang-btn.active {
   background: var(--gold-light);
@@ -223,8 +205,6 @@ header {
   color: var(--gold-light);
 }
 
-/* === 5. MOBİL MENÜ === */
-
 .menu-toggle {
   display: none;
   font-size: 24px;
@@ -232,7 +212,6 @@ header {
   color: var(--gold-light);
   z-index: 1001;
   
-  /* YENİ EKLENECEK SATIRLAR */
   background: none;
   border: none;
   padding: 0;
@@ -264,15 +243,13 @@ header {
   .brand-tagline { font-size: 12px; }
 }
 
-/* === 6. YENİ LÜKS HERO BÖLÜMÜ (💡 IŞIK OVERLAY 💡) === */
 .hero {
   min-height: 100vh;
-  /* 🌟 GÜNCELLENDİ: HERO GÖRSELİ AYARLARI 🌟 */
   background: url('assets/for_hero.webp') no-repeat; 
-  background-size: cover; /* 🌟 GÜNCELLENDİ: 'cover' (kapla) olarak ayarlandı 🌟 */
-  background-repeat: no-repeat; /* Tekrarlamayı engelle */
-  background-position: center center; /* 🌟 GÜNCELLENDİ: Ortalandı 🌟 */
-  background-color: #000; /* Kenar boşlukları için */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+  background-color: #000; 
   
   display: flex;
   align-items: center;
@@ -281,11 +258,9 @@ header {
   padding: 0 20px;
   position: relative;
   overflow: hidden;
-  /* 🌟 YENİ: JS'nin opaklığı değiştirebilmesi için 🌟 */
   opacity: 1;
   transition: opacity 0.3s ease-out;
 }
-/* Siyah Karartma */
 .hero::after {
   content: "";
   position: absolute;
@@ -293,7 +268,6 @@ header {
   background: rgba(0,0,0,0.55);
   z-index: 1;
 }
-/* 💡 Altın Işık Overlay Efekti 💡 */
 .hero::before {
   content: '';
   position: absolute;
@@ -315,7 +289,7 @@ header {
 
 .hero > div {
   position: relative;
-  z-index: 3; /* İçeriği en üste alır */
+  z-index: 3; 
   opacity: 0;
   transform: scale(0.9);
   animation: zoomFadeIn 1.4s var(--easing) forwards 0.5s;
@@ -326,24 +300,21 @@ header {
   font-size: 48px;
 }
 
-/* 🌟🌟🌟 YENİ STİL EKLENDİ 🌟🌟🌟 */
 .hero-since {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: var(--gold-light); /* Ana altın rengi */
+  color: var(--gold-light); 
   letter-spacing: 1px;
   text-transform: uppercase;
   display: block;
   margin-bottom: 10px;
-  /* Altın gradient metin efektini iptal et */
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
 }
-/* 🌟🌟🌟 YENİ STİL SONU 🌟🌟🌟 */
 
 .hero p {
   font-family: 'Inter', sans-serif;
@@ -352,7 +323,6 @@ header {
   font-size: 20px;
 }
 
-/* === 7. PARLAYAN BUTONLAR (✨ 3D HİSSİ ✨) === */
 .btn {
   font-family: 'Inter', sans-serif;
   display: inline-block;
@@ -370,32 +340,28 @@ header {
   overflow: hidden;
   z-index: 1;
 }
-/* Hover Efekti */
 .btn:hover {
   background: var(--gold-light);
   color: #000;
   box-shadow: 0 8px 30px rgba(0,0,0,0.3), var(--gold-shadow-intense);
-  transform: translateY(-3px) scale(1.05); /* 3D His */
+  transform: translateY(-3px) scale(1.05); 
 }
-/* 💡 Hero Buton Parlama Animasyonu 💡 */
 .btn-hero {
   animation: pulseGold 2s var(--easing) infinite;
 }
 
-/* === 🌟 ANİMASYON İYİLEŞTİRMESİ 🌟 === */
 @keyframes pulseGold {
   0%, 100% { 
     transform: scale(1);
-    opacity: 0.95; /* box-shadow yerine */
+    opacity: 0.95; 
   }
   50% { 
-    transform: scale(1.05); /* Asıl animasyon bu */
-    opacity: 1; /* box-shadow yerine */
+    transform: scale(1.05); 
+    opacity: 1; 
   }
 }
 
 
-/* === 7b. PROJE SAYFASI REZERVASYON FORMU === */
 .project-reservation-form {
     margin-bottom: 60px; 
     background: rgba(0,0,0,0.3);
@@ -457,7 +423,6 @@ header {
 }
 
 
-/* === 8. DROPDOWN MENÜ === */
 .cta-group { position: relative; display: inline-block; margin-top: 20px; }
 .dropdown {
   position: absolute;
@@ -487,7 +452,6 @@ header {
 .cta-group.open .dropdown { display: flex; }
 
 
-/* === 9. BÖLÜMLER VE KARTLAR === */
 section {
   padding: 100px 40px;
   text-align: center;
@@ -503,7 +467,6 @@ section#projects {
     padding-top: 60px;
 }
 
-/* Sayfa Geçiş (SPA) Stilleri */
 .page-section {
     display: none;
     animation: pageFadeIn 0.6s var(--easing);
@@ -516,7 +479,6 @@ section#projects {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Otel rezervasyon formu animasyonu */
 #otel-reservation-container {
   display: none;
   background: rgba(0, 0, 0, 0.6);
@@ -535,7 +497,6 @@ section#projects {
   letter-spacing: 1px;
 }
 
-/* Popup (müsaitlik) tasarımı */
 .availability-modal {
   display: none;
   position: fixed;
@@ -571,7 +532,6 @@ section#projects {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Hero'nun sayfa geçişlerinde düzgün çalışması için */
 .page-section.hero {
     display: flex;
     opacity: 1;
@@ -587,7 +547,6 @@ section#contact {
   background-image: none;
 }
 
-/* Kartlar */
 .project-card, .latest-card, .service-card, .restoration-card {
   background: var(--section-bg);
   border-radius: 14px;
@@ -603,7 +562,6 @@ section.visible {
   transform: translateY(0);
 }
 
-/* Kart Hover Gold Glow Efekti */
 .project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--gold-shadow-intense);
@@ -645,7 +603,6 @@ section.visible {
   height: 240px;
 }
 
-/* Hizmetler Bölümü */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -676,7 +633,6 @@ section.visible {
   font-size: 15px;
 }
 
-/* Hakkımızda Bölümü */
 #about {
   padding: 100px 10%;
   text-align: left;
@@ -724,7 +680,6 @@ section.visible {
   }
 }
 
-/* İletişim Bölümü */
 #contact { padding: 100px 40px; }
 .contact-container {
   display: flex;
@@ -806,7 +761,6 @@ section.visible {
   font-family: 'Playfair Display', serif;
 }
 
-/* === 10. LÜKS FOOTER === */
 footer {
   text-align: center;
   padding: 60px 30px 40px 30px;
@@ -823,7 +777,6 @@ footer {
   z-index: 10;
 }
 
-/* Hareketli Altın Çizgi */
 footer::before {
   content: '';
   position: absolute;
@@ -933,7 +886,6 @@ footer::before {
   }
 }
 
-/* === 11. RTL (ARAPÇA) STİLLERİ === */
 html[dir="rtl"] {
   font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
 }
@@ -991,7 +943,6 @@ html[dir="rtl"] .info-item i {
     box-shadow: var(--gold-shadow);
 }
 
-/* === 12. REZERVASYON FORMU STILLERI === */
 .date-picker-group {
     display: flex;
     justify-content: space-between;
@@ -1039,7 +990,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--gold-light);
 }
 
-/* === 13. 🏠 SATILIK EV GALERİSİ (ANA STİLLER) === */
 .house-gallery {
   display: flex;
   justify-content: center;
@@ -1084,7 +1034,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   box-shadow: 0 0 25px rgba(255,204,102,0.25);
 }
 
-/* Detay Modalı (Overlay) */
 .house-detail {
   position: fixed;
   top: 0;
@@ -1145,10 +1094,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-weight: 600;
 }
 
-/* Detay Galerisi (Modal içindeki küçük resimler) */
 .detail-gallery {
   display: grid;
-  /* Önceki adımda küçültüldü */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 15px;
   margin-top: 30px;
@@ -1158,7 +1105,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .detail-gallery img {
   width: 100%;
-  /* Önceki adımda küçültüldü */
   height: 140px;
   border-radius: 10px;
   object-fit: cover;
@@ -1173,7 +1119,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* === 14. BÜYÜTÜLMÜŞ FOTOĞRAF (LIGHTBOX) ÇERÇEVESİ === */
 #lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
@@ -1188,9 +1133,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* === 15. SATILIK/KİRALIK & OTEL SAYFA DÜZENİ === */
-
-/* Sayfanın arka planını ve varsayılan boşluklarını ayarla */
 #page-satilik_kiralik {
     background-color: #111111 !important;
     padding-top: 100px !important;
@@ -1201,14 +1143,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-bottom: 100px !important;
 }
 
-/* İçeriği genişleten ve ortalayan konteyner */
 .new-layout-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
 }
 
-/* Sayfa İçi Başlık (H2) Stili */
 #page-satilik_kiralik h2 {
     font-family: 'Inter', sans-serif !important;
     font-size: 30px !important;
@@ -1227,7 +1167,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 0 !important;
 }
 
-/* Otel sayfası da aynı başlık stilini kullansın */
 #page-otel h2 {
     font-family: 'Inter', sans-serif !important;
     font-size: 30px !important;
@@ -1251,7 +1190,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* Sayfa içi Galeriler (Grid) Stili */
 #page-satilik_kiralik .house-gallery,
 #page-otel .house-gallery {
     display: grid !important;
@@ -1265,7 +1203,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-/* Sayfa İçi KART Stili */
 #page-satilik_kiralik .house-card,
 #page-otel .house-card {
     width: 100%;
@@ -1277,7 +1214,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: auto !important;
 }
 
-/* Sayfa İçi Kart Resim */
 #page-satilik_kiralik .house-card img,
 #page-otel .house-card img {
     height: 260px;
@@ -1287,7 +1223,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 260px !important;
 }
 
-/* Sayfa İçi Kart Başlık */
 #page-satilik_kiralik .house-card h3,
 #page-otel .house-card h3 {
     display: block !important;
@@ -1306,7 +1241,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-fill-color: initial !important;
 }
 
-/* Sayfa İçi Kart Hover */
 #page-satilik_kiralik .house-card:hover,
 #page-otel .house-card:hover {
     transform: translateY(-5px);
@@ -1314,13 +1248,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* Lightbox Arka Planı */
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
 }
 
-/* === 15b. GERİ BUTONU STİLİ === */
 .btn-page-back {
   position: absolute;
   top: 100px;
@@ -1345,7 +1277,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: scale(1.05);
 }
 
-/* === 16. RESTORASYON KARTI (BEFORE/AFTER) STİLLERİ === */
 .restoration-card {
     width: 100%;
     max-width: 500px;
@@ -1388,7 +1319,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 5;
 }
 
-/* === 17. RESİM GÖRÜNTÜLEYİCİ MODAL STİLLERİ === */
 .image-modal-overlay {
     position: fixed;
     top: 0;
@@ -1474,10 +1404,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: var(--gold-dark);
 }
 
-/* === 18. MOBİL OPTİMİZASYONLAR === */
 @media (max-width: 768px) {
   
-  /* Mobil arka plan resimleri */
   .hero {
     background-image: url('assets/for_hero-mobil.webp');
   }
@@ -1485,10 +1413,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('assets/otel_hero-mobil.webp') !important;
   }
   #page-insaat .hero {
-    background-image: url('assets/insaat_hero-mobil.webp') !important;
+    background-image: url('assets/insaat_hero-mobil.webp') !impor
+tant;
   }
   
-  /* Mobilde blur efektini kapat (Performans) */
   header {
     backdrop-filter: none;
     background: rgba(10, 10, 10, 0.9);
@@ -1507,23 +1435,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: rgba(0, 0, 0, 0.95);
   }
   
-  /* Mobil için galeri ve başlık düzenlemesi */
   #page-satilik_kiralik .house-gallery,
   #page-otel .house-gallery {
-      padding: 0 20px; /* Mobilde kenar boşlukları */
+      padding: 0 20px; 
   }
   #page-satilik_kiralik h2,
   #page-otel h2 {
       padding-left: 20px;
       padding-right: 20px;
-      font-size: 24px !important; /* Mobilde başlıklar daha küçük */
+      font-size: 24px !important; 
   }
   .btn-page-back {
       left: 20px;
-      top: 90px; /* Header'dan biraz daha aşağıda */
+      top: 90px; 
   }
   .new-layout-container {
-      padding: 0; /* Mobilde bu konteynerin ekstra boşluğu olmasın */
+      padding: 0; 
   }
   
 }
