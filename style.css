@@ -1537,3 +1537,71 @@ tant;
 #lightbox-next {
   right: 20px;
 }
+/* === RESTORASYON SAYFASI YENİ STİLLERİ === */
+
+/* Yeni "Önce" / "Sonra" ara başlıkları için stil */
+.restoration-subtitle {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    color: var(--gold-light) !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 10px;
+    margin-top: 60px; /* Galeriler arasına boşluk koyar */
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+}
+
+/* Restorasyon sayfasındaki .detail-gallery için varsayılanı eziyoruz
+  (Daha büyük resimler ve ızgara için)
+*/
+#page-restorasyon .detail-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    padding: 0 40px;
+}
+
+/* Restorasyon sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
+#page-restorasyon .detail-gallery img {
+    height: 260px; /* Mülk galerisiyle aynı boyuta getirdik */
+    border: 2px solid var(--gold-dark);
+}
+
+#page-restorasyon .detail-gallery img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--gold-shadow-intense);
+}
+/* === OTEL İLETİŞİM BÖLÜMÜ STİLLERİ === */
+.otel-contact-info-container {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.otel-contact-info-container h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffcc66;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+}
+.otel-contact-info-container .contact-info {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+}

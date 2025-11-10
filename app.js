@@ -19,9 +19,7 @@ async function openHouseDetail(letter) {
   
   if (!allGalleriesData) {
     try {
-      
       const response = await fetch('data/galleries.json?v=1.1'); 
-      
       if (!response.ok) {
         throw new Error('Galeri verisi data/galleries.json yüklenemedi');
       }
@@ -36,14 +34,6 @@ async function openHouseDetail(letter) {
   const content = document.getElementById("house-detail-content");
   
   const h = allGalleriesData[letter]; 
-
-  let priceHTML = '';
-  if (letter.startsWith('OTEL')) {
-      priceHTML = `<p><strong>${"Fiyat"}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${h.price}</a></p>`;
-  } else {
-      priceHTML = `<p><strong>${"Fiyat"}:</strong> ${h.price}</p>`;
-  }
-
   if (!h) {
       console.error(`'${letter}' için ev detayı bulunamadı.`);
       return;
@@ -52,33 +42,40 @@ async function openHouseDetail(letter) {
   const currentLang = localStorage.getItem('lang') || 'tr';
   const langData = translations[currentLang] || {}; 
 
+  const titleKey = `prop_${letter}_title`;
+  const locationKey = `prop_${letter}_location`;
+  const areaKey = `prop_${letter}_area`;
+  const roomsKey = `prop_${letter}_rooms`;
+  const descKey = `prop_${letter}_desc`;
+  const priceKey = `prop_${letter}_price`;
+  const priceText = langData[priceKey] || h.price;
+  let priceHTML = '';
+
+  if (letter.startsWith('OTEL')) {
+      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
+  } else {
+      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
+  }
+  
   content.innerHTML = `
-    <h2>${h.title}</h2>
+    <h2>${langData[titleKey] || h.title}</h2>
     
     <div class="house-info">
-      <p><strong>${langData.js_konum || 'Konum'}:</strong> ${h.location}</p>
-      <p><strong>${langData.js_alan || 'Alan'}:</strong> ${h.area}</p>
-      <p><strong>${langData.js_oda_sayisi || 'Oda Sayısı'}:</strong> ${h.rooms}</p>
-      ${priceHTML.replace('Fiyat:', `<strong>${langData.js_fiyat || 'Fiyat'}:</strong>`)}
-      <p>${h.desc}</p>
+      <p><strong>${langData.js_konum || 'Konum'}:</strong> ${langData[locationKey] || h.location}</p>
+      <p><strong>${langData.js_alan || 'Alan'}:</strong> ${langData[areaKey] || h.area}</p>
+      <p><strong>${langData.js_oda_sayisi || 'Oda Sayısı'}:</strong> ${langData[roomsKey] || h.rooms}</p>
+      ${priceHTML}
+      <p>${langData[descKey] || h.desc}</p>
     </div>
 
     <div class="detail-gallery">
-      ${h.images.map(img => `<img loading="lazy" src="${img}" alt="${h.title}" onerror="this.remove()">`).join("")}
+      ${h.images.map(img => `<img loading="lazy" src="${img}" alt="${langData[titleKey] || h.title}" onerror="this.remove()">`).join("")}
     </div>
   `;
+  
   detail.style.display = "block";
   document.body.style.overflow = "hidden"; 
 }
-
-function closeHouseDetail() {
-  const detail = document.getElementById("house-detail");
-  if (detail) {
-    detail.style.display = "none";
-  }
-  document.body.style.overflow = "auto"; 
-}
-
 async function setLanguage(lang) {
     let langData;
 
@@ -100,8 +97,6 @@ async function setLanguage(lang) {
             return;
         }
     }
-    
-    const elements = document.querySelectorAll('[data-key]');
     
     document.querySelector('title').textContent = langData['title'];
     document.documentElement.lang = lang; 
@@ -129,8 +124,12 @@ async function setLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
+// === DEĞİŞİKLİK: showPage fonksiyonu güncellendi ===
 async function showPage(pageId) {
     
+    // URL hash'i boşsa veya # ise 'hero' sayfasını varsay
+    if (!pageId || pageId === '#') pageId = 'hero';
+
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
     });
@@ -153,19 +152,17 @@ async function showPage(pageId) {
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
 
                 if (fileName === pageId) { 
-                   /* 'hero' zaten index.html'de, fetch edilmesine gerek yok */
+                   /* 'hero' zaten index.html'de */
                 } else {
                       const response = await fetch(`${fileName}.html`);
-                    
                     if (!response.ok) throw new Error(`Sayfa yüklenemedi: ${fileName}.html`);
-                    
                     const html = await response.text();
                     pageCache[pageId] = html; 
                     document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
                 }
             } catch (error) {
                 console.error(error);
-                showPage('hero'); 
+                location.hash = 'hero'; // Hata olursa anasayfaya dön
                 return;
             }
         }
@@ -174,6 +171,12 @@ async function showPage(pageId) {
 
     if (newPage) {
         
+        // === DEĞİŞİKLİK: URL hash'ini güncelle ===
+        // Sadece URL zaten bu değilse güncelle (sonsuz döngüye girmemek için)
+        if (location.hash.replace('#', '') !== pageId) {
+            location.hash = pageId;
+        }
+
         newPage.classList.add('active');
         window.scrollTo(0, 0); 
 
@@ -196,30 +199,25 @@ async function showPage(pageId) {
 
         newPage.classList.remove('visible');
         
-        /* === DEĞİŞİKLİK BURADA (BAŞLANGIÇ) === */
-        // Kart animasyonu artık CSS ile yapılıyor. JS sadece sınıfı ekliyor.
         setTimeout(() => {
             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card');
-            
-            // Önceki animasyonlardan kalan stilleri temizle
             cards.forEach(card => {
                 card.classList.remove('card-fade-in');
                 card.style.animationDelay = '';
             });
-            
-            // Yeni animasyonu tetikle
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 100}ms`;
                 card.classList.add('card-fade-in');
             });
             newPage.classList.add('visible');
         }, 50);
-        /* === DEĞİŞİKLİK BURADA (BİTİŞ) === */
         
     } else {
         console.error(`Sayfa bulunamadı: ${pageId}`);
+        location.hash = 'hero'; // Sayfa bulunamazsa anasayfaya dön
     }
 }
+// === DEĞİŞİKLİK BİTTİ ===
 
 function setupMobileMenu() {
     const menuToggle = document.getElementById('menu-toggle');
@@ -256,15 +254,7 @@ function setupScrollReveal() {
 }
 
 function setupCardAnimations() {
-    const cardSelector = '.project-card, .latest-card, .service-card, .restoration-card';
-    const cards = document.querySelectorAll(cardSelector);
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        card.style.transition = 'all 1s cubic-bezier(0.25, 1, 0.5, 1)';
-        card.style.opacity = '1';
-        card.style.transform = 'scale(1)';
-      }, index * 100 + 400);
-    });
+    // Bu fonksiyon artık showPage içinde çağrılıyor
 }
 
 const projects = {
@@ -312,10 +302,8 @@ function preloadProjectImages() {
 
 function loadCategory(category, checkin = null, checkout = null) {
   if (category === 'satilik_kiralik') {
-      console.log("'satilik_kiralik' kendi sayfasına yönlendirildi, loadCategory atlanıyor.");
       return; 
   }
-    
   const grid = document.getElementById("project-grid"); 
   if (!grid) {
       console.error("Proje grid'i bulunamadı (ID: project-grid)");
@@ -325,7 +313,6 @@ function loadCategory(category, checkin = null, checkout = null) {
 
   const titleEl = document.getElementById('projects-title'); 
   const currentLang = localStorage.getItem('lang') || 'tr';
-  
   const langData = translations[currentLang] || {}; 
   
   const titles = {
@@ -347,7 +334,6 @@ function loadCategory(category, checkin = null, checkout = null) {
 
   setTimeout(() => {
     grid.innerHTML = "";
-   
     let itemsToDisplay = projects[category];
     
     if(category === 'otel' && checkin) {
@@ -375,7 +361,7 @@ function loadCategory(category, checkin = null, checkout = null) {
             </div>`;
         if (titleEl) titleEl.textContent = titles['default_projects'];
         grid.style.opacity = "1";
-        setupCardAnimations(); 
+        // setupCardAnimations(); // Bu artık showPage içinde yapılıyor
         return;
     }
 
@@ -393,7 +379,6 @@ function loadCategory(category, checkin = null, checkout = null) {
     });
     
     grid.style.opacity = "1";
-    
   }, 300);
 }
 
@@ -405,10 +390,8 @@ function handleScrollEffects() {
     if (hero && hero.classList.contains('active')) {
         const heroHeight = hero.offsetHeight; 
         const fadeEnd = heroHeight * 0.7; 
-        
         let opacity = 1 - (scrollY / fadeEnd);
         opacity = Math.max(0, Math.min(1, opacity)); 
-        
         hero.style.opacity = opacity;
     } else if (hero) {
         hero.style.opacity = 1; 
@@ -443,7 +426,6 @@ function setupProjectReservation() {
                 alert(langData.alert_invalid_date || 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
                 return;
             }
-            
             loadCategory('otel', checkin, checkout);
         }
     });
@@ -560,7 +542,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     setupMobileMenu();
     setupProjectReservation(); 
-    setupScrollReveal(); 
+    // setupScrollReveal(); // Artık showPage içinde
 
     const cta = document.getElementById("discover-cta");
     if (cta) {
@@ -576,27 +558,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (cta && !cta.contains(e.target)) cta.classList.remove("open");
         });
 
+        // === DEĞİŞİKLİK: Dropdown linkleri artık hash'i değiştiriyor ===
         dropdown.querySelectorAll("a[data-page]").forEach(link => {
             link.addEventListener("click", e => {
                 e.preventDefault();
                 e.stopPropagation();
-                const cat = link.getAttribute("data-category");
                 
-                if (cat === 'otel') {
-                    showPage('page-otel');
-                } else if (cat === 'insaat') {
-                    showPage('page-insaat');
-                } else if (cat === 'restorasyon') {
-                    showPage('page-restorasyon');
-                } else if (cat === 'satilik_kiralik') {
-                    showPage('page-satilik_kiralik');
-                } else {
-                    const page = link.getAttribute("data-page");
-                    showPage(page || 'projects');
-                    if(page === 'projects') {
-                        loadCategory(cat || 'default');
-                    }
-                }
+                const pageId = link.getAttribute("data-page");
+                location.hash = pageId; // Hash'i değiştir, 'hashchange' olayı showPage'i tetikleyecek
                 
                 cta.classList.remove("open");
             });
@@ -605,37 +574,42 @@ document.addEventListener('DOMContentLoaded', async () => {
          console.error("CTA Grubu 'discover-cta' bulunamadı!");
     }
     
+    // === DEĞİŞİKLİK: Nav linkleri artık hash'i değiştiriyor ===
     document.querySelectorAll('.nav-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
-            showPage(pageId);
-            
-            const projectForm = document.getElementById('project-reservation-form');
-            if (projectForm) projectForm.style.display = 'none';
-            
-            if (pageId === 'projects') {
-                loadCategory('default');
-            }
+            location.hash = pageId; // Hash'i değiştir
         });
     });
     
+    // === DEĞİŞİKLİK: 'Geri' tuşu artık hash'i değiştiriyor ===
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
-            showPage('hero'); 
+            location.hash = 'hero'; // Anasayfaya dönmek için hash'i değiştir
         }
     });
 
-    /* === DEĞİŞİKLİK BURADA (Throttle süresi 30ms'ye düşürüldü) === */
     window.addEventListener('scroll', throttle(handleScrollEffects, 30));
+
+    // === DEĞİŞİKLİK: Sayfa yüklendiğinde ve Geri tuşuna basıldığında ===
+    
+    // Tarayıcı Geri/İleri tuşlarına basıldığında (veya hash değiştiğinde) tetiklenir
+    window.addEventListener('hashchange', () => {
+        const pageId = location.hash.replace('#', '') || 'hero';
+        showPage(pageId);
+    });
+
+    // Sayfa ilk yüklendiğinde URL'deki hash'e göre doğru sayfayı yükle
+    const initialPage = location.hash.replace('#', '') || 'hero';
+    showPage(initialPage);
+    // === DEĞİŞİKLİK BİTTİ ===
 });
 
-window.addEventListener("load", () => {
-});
 
+// ... (Lightbox kodunuzun geri kalanı aşağıda, değişmedi) ...
 
-// === AŞAĞIDAKİ KOD BLOKLARI DEĞİŞTİRİLDİ ===
 
 let currentImages = [];
 let currentIndex = 0;
@@ -646,7 +620,6 @@ document.addEventListener("click", function(e) {
   
   if (!lightbox || !lightboxImg) return; 
 
-  // SADECE .detail-gallery içindeki resimlere tıklandığında lightbox'ı aç
   const clickedDetailImg = e.target.closest(".detail-gallery img");
   if (clickedDetailImg) {
     const gallery = clickedDetailImg.closest(".detail-gallery");
@@ -656,32 +629,26 @@ document.addEventListener("click", function(e) {
     lightboxImg.src = clickedDetailImg.src;
     lightbox.style.display = "flex";
 
-    updateLightboxNav(); // <-- DÜZELTME BURADA
+    updateLightboxNav(); 
   }
 
-  // Lightbox'ın dışına (arka plana) tıklanırsa kapat
   if (e.target.id === "lightbox") {
     lightbox.style.display = "none";
   }
 });
 
-// YENİ FONKSİYON: Butonları gizle/göster
 function updateLightboxNav() {
   const prevBtn = document.getElementById('lightbox-prev');
   const nextBtn = document.getElementById('lightbox-next');
   if (!prevBtn || !nextBtn) return;
 
-  // Baştaysak 'Geri' butonunu gizle
   prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
-  
-  // Sondaysak 'İleri' butonunu gizle
   nextBtn.style.display = (currentIndex === currentImages.length - 1) ? 'none' : 'block';
 }
 
 function showNextImage() {
   if (!currentImages.length) return;
   
-  // Kapatma mantığı kaldırıldı, sadece ilerle
   if (currentIndex < currentImages.length - 1) { 
     currentIndex++;
   }
@@ -693,13 +660,12 @@ function showNextImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
-  updateLightboxNav(); // Butonların durumunu güncelle
+  updateLightboxNav(); 
 }
 
 function showPrevImage() {
   if (!currentImages.length) return;
 
-  // Kapatma mantığı kaldırıldı, sadece gerile
   if (currentIndex > 0) {
     currentIndex--;
   } 
@@ -711,11 +677,8 @@ function showPrevImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
-  updateLightboxNav(); // Butonların durumunu güncelle
+  updateLightboxNav(); 
 }
-
-// === YUKARIDAKİ KOD BLOKLARI DEĞİŞTİRİLDİ ===
-
 
 document.addEventListener("keydown", function (e) {
   const lightbox = document.getElementById("lightbox");
