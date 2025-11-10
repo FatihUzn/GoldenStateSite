@@ -589,7 +589,7 @@ section#contact {
 }
 
 /* Kartların okunabilirlik için kendi koyu arkaplanı olmalı */
-.project-card, .latest-card, .service-card {
+.project-card, .latest-card, .service-card, .restoration-card {
   background: var(--section-bg); /* Kartların arkaplanı KORUNDU */
   /* ... (kart stilleri değişmedi) ... */
   border-radius: 14px;
@@ -607,7 +607,7 @@ section.visible {
 
 
 /* 💡 Kart Hover Gold Glow Efekti 💡 */
-.project-card:hover, .latest-card:hover, .service-card:hover { /* team-card kaldırıldı */
+.project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover { /* team-card kaldırıldı */
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--gold-shadow-intense);
   border-color: var(--gold-dark);
@@ -1286,3 +1286,422 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   text-align: center;
   font-size: 36px;
   margin-top
+}
+
+
+/* === 14. 🌟 YENİ: BÜYÜTÜLMÜŞ FOTOĞRAF (LIGHTBOX) ÇERÇEVESİ === */
+/* Bu bölüm eksikti ve şimdi eklendi */
+#lightbox-img {
+  /* Orantı ve boyut stilleri (HTML'den taşındı) */
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain; /* Bu, orantıyı koruyan en önemli kuraldır */
+  
+  /* Görünüm stilleri */
+  border: 4px solid var(--gold-light);
+  box-shadow: var(--gold-shadow-intense);
+  border-radius: 10px;
+  box-sizing: border-box; 
+  
+  /* Kullanıcı etkileşim stilleri (HTML'den taşındı) */
+  cursor: default;
+  touch-action: none;
+  user-select: none;
+}
+
+
+/* === 15. YENİ SATILIK/KİRALIK SAYFA DÜZENİ (MOCKUP) === */
+/* Bu bölüm Bölüm 13'ten sonra geliyordu, daha iyi organizasyon için 15 olarak yeniden numaralandırıldı */
+
+/* Sayfanın arka planını ve varsayılan boşluklarını ayarla */
+#page-satilik_kiralik {
+    background-color: #111111 !important; /* Mockup'taki gibi koyu arka plan */
+    padding-top: 100px !important; /* Menü çubuğu için boşluk */
+    padding-bottom: 100px !important;
+}
+/* 🌟 YENİ: Otel sayfası da aynı arka planı kullansın */
+#page-otel {
+    background-color: #111111 !important;
+    padding-bottom: 100px !important;
+}
+
+
+/* İçeriği genişleten ve ortalayan konteyner */
+.new-layout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Mockup'taki Başlık (H2) Stili */
+#page-satilik_kiralik h2 {
+    font-family: 'Inter', sans-serif !important; /* Playfair yerine Inter */
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    text-align: left !important; /* Sola hizalı */
+    color: var(--gold-light) !important; /* Altın rengi */
+    
+    /* Eski gradient metin efektlerini sıfırla */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+    
+    /* Mockup'taki altın çizgi */
+    border-bottom: 2px solid var(--gold-dark);
+    padding-bottom: 10px;
+    margin-bottom: 40px; /* Galeri ile aradaki boşluk */
+    
+    /* 🌟 YENİ: Sayfa içi başlıklar için üst boşluğu sıfırla */
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 🌟 YENİ: Otel sayfası da aynı başlık stilini kullansın */
+#page-otel h2 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    color: var(--gold-light) !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+    border-bottom: 2px solid var(--gold-dark);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    
+    /* 🌟 YENİ: Otel sayfasında başlığı ortala (daha iyi görünüyor) */
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center !important;
+}
+
+
+/* Mockup'taki Galeri (Grid) Stili */
+#page-satilik_kiralik .house-gallery,
+#page-otel .house-gallery {
+    display: grid !important;
+    /* Resimdeki gibi 4 sütunlu (veya sığarsa 5) bir grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    
+    /* 🌟 YENİ: Galeriye kenar boşlukları ver */
+    max-width: 1400px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 40px;
+}
+
+/* Mockup'taki KART (house-card) Stili */
+#page-satilik_kiralik .house-card,
+#page-otel .house-card {
+    width: 100%; /* Genişlik grid'den gelecek */
+    height: auto; /* Yükseklik içeriğe göre ayarlanacak */
+    background: #1c1c1c; /* Kartın arka planı */
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Varsayılan .house-card'dan gelen yüksekliği sıfırla */
+    height: auto !important;
+}
+
+/* Kartın içindeki resim */
+#page-satilik_kiralik .house-card img,
+#page-otel .house-card img {
+    height: 260px; /* Resimlerin yüksekliği sabit */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0; /* Sadece üst köşeler */
+    
+    /* Varsayılan .house-card img'den gelen %100 yüksekliği sıfırla */
+    height: 260px !important;
+}
+
+/* Kartın içindeki başlık (H3) */
+#page-satilik_kiralik .house-card h3,
+#page-otel .house-card h3 {
+    display: block !important; /* Artık gizli değil, GÖSTER */
+    height: auto !important; /* Yüksekliği sıfırla */
+    background: transparent !important; /* Arka planı kaldır */
+    color: #f5f5f5 !important; /* Metin rengi beyaz */
+    font-family: 'Inter', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    text-align: left !important; /* Sola hizalı */
+    padding: 15px !important;
+    margin: 0 !important;
+    
+    /* Eski gradient metin efektlerini sıfırla */
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+}
+
+/* Kartın hover efekti */
+#page-satilik_kiralik .house-card:hover,
+#page-otel .house-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--gold-shadow-intense);
+}
+
+
+/* 💡 FOTOĞRAF NETLİK DÜZELTMESİ (Lightbox Arka Planı) 💡 */
+#lightbox {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: none !important;
+}
+
+/* === YENİ EKLENEN GERİ BUTONU STİLİ === */
+.btn-page-back {
+  /* Pozisyon */
+  position: absolute;
+  top: 100px; /* Header'ın (navbar) hemen altına */
+  left: 40px;
+  z-index: 100; /* Diğer içeriğin üzerinde */
+
+  /* Görünüm (house-detail button'dan kopyalandı) */
+  font-family: 'Inter', sans-serif;
+  padding: 10px 20px;
+  background: var(--gold-dark);
+  color: #111;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s var(--easing);
+  border: 1px solid var(--gold-light);
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-page-back:hover {
+  background: var(--gold-light);
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* === 16. YENİ: RESTORASYON KARTI (BEFORE/AFTER) STİLLERİ === */
+.restoration-card {
+    width: 100%;
+    max-width: 500px; /* Kartın max genişliği, 2 resim sığsın */
+    justify-self: center;
+    padding: 15px;
+    /* Opaklık, transform ve geçişler ana .restoration-card sınıfından gelecek */
+}
+
+.restoration-card h3 {
+    margin-bottom: 20px; /* Başlık ile resimler arası boşluk */
+    font-size: 20px;
+    /* H3'ün altın gradienti ana kuraldan geliyor */
+}
+
+.img-comparison-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* İki resim arası boşluk */
+}
+
+.img-wrapper {
+    position: relative;
+    width: 50%; /* Her resim kabı, konteynerin %50'si */
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    overflow: hidden; /* Etiket taşmasın */
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 220px; /* Yükseklik sabit olsun */
+    object-fit: cover;
+    display: block; /* Alt boşluğu engelle */
+}
+
+.img-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--gold-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    z-index: 5; /* Resmin üstünde */
+}
+
+/* === 17. YENİ: RESİM GÖRÜNTÜLEYİCİ MODAL STİLLERİ === */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Koyu arka plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Diğer her şeyin üstünde */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.image-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex; /* İçindeki resimlerin yan yana durması için */
+    gap: 10px; /* Resimler arası boşluk */
+    transform: scale(0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-modal-overlay.show .image-modal-content {
+    transform: scale(1);
+}
+
+.image-modal-image-wrapper {
+    position: relative;
+    background-color: var(--section-bg);
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Resmin içine tam sığması için */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal-image-wrapper img {
+    max-width: 100%;
+    max-height: 80vh; /* Ekran yüksekliğinin %80'i kadar büyüsün */
+    height: auto;
+    object-fit: contain; /* Resmin oranlarını koruyarak sığdır */
+    display: block;
+}
+
+.image-modal-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--gold-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    z-index: 5;
+}
+
+.image-modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gold-light);
+    color: #111; /* Koyu arka plan rengi */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    z-index: 1001; /* Modalı ve resimlerin üzerinde */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close-btn:hover {
+    background-color: var(--gold-dark);
+}
+
+/* === ÖNCELİK 1: MOBİL GÖRSEL OPTİMİZASYONU === */
+/* Bu kod, mobil cihazların daha küçük arka plan resimleri yüklemesini sağlar. */
+@media (max-width: 768px) {
+  
+  /* Ana Sayfa Hero (style.css'den gelir) */
+  .hero {
+    /* 'assets/for_hero-mobil.webp' adında daha küçük bir dosya 
+       oluşturduğunuzu varsayıyoruz. */
+    background-image: url('assets/for_hero-mobil.webp');
+  }
+
+  /* Otel Sayfası Hero (HTML'den inline stili ezmek için !important gerekir) */
+  #page-otel .hero {
+    /* 'assets/otel_hero-mobil.webp' oluşturduğunuzu varsayıyoruz. */
+    background-image: url('assets/otel_hero-mobil.webp') !important;
+  }
+
+  /* İnşaat Sayfası Hero (HTML'den inline stili ezmek için !important gerekir) */
+  #page-insaat .hero {
+    /* 'assets/insaat_hero-mobil.webp' oluşturduğunuzu varsayıyoruz. */
+    background-image: url('assets/insaat_hero-mobil.webp') !important;
+  }
+  
+  /* === ÖNCELİK 2: MOBİLDE BLUR (BULANIKLIK) EFEKTİNİ KAPATMA === */
+  /* Bu, mobildeki kasmayı ciddi oranda azaltır. */
+  
+  /* Header (Ana Menü Çubuğu) */
+  header {
+    backdrop-filter: none;
+    background: rgba(10, 10, 10, 0.9); /* Düz, opak bir arka plan */
+  }
+  
+  /* Rezervasyon Formları (Otel ve Projeler) */
+  .project-reservation-form,
+  #otel-reservation-container {
+    backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.7); /* Biraz daha opak */
+  }
+  
+  /* Müsaitlik Popup Modalı */
+  .availability-modal {
+    backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Ev Detay Modalı */
+  .house-detail {
+    backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.95); /* Neredeyse tam opak */
+  }
+  
+  /* 🌟 YENİ: Mobil için galeri ve başlık düzenlemesi */
+  #page-satilik_kiralik .house-gallery,
+  #page-otel .house-gallery {
+      padding: 0 20px; /* Mobilde kenar boşlukları */
+  }
+  #page-satilik_kiralik h2,
+  #page-otel h2 {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 24px !important; /* Mobilde başlıklar daha küçük */
+  }
+  .btn-page-back {
+      left: 20px;
+      top: 90px; /* Header'dan biraz daha aşağıda */
+  }
+  .new-layout-container {
+      padding: 0; /* Mobilde bu konteynerin ekstra boşluğu olmasın */
+  }
+  
+}
