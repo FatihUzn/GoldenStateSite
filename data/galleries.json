@@ -249,7 +249,7 @@
     "rooms": "Üretim + Lojistik",
     "desc": "Yüksek tavanlı lojistik ve üretim tesisi.",
     "images": [
-      "assets/insaat-gallery1-5.webp", "assets/insaat-gallery2-5.webp", "assets/insaat-gallery3-5.webp", "assets/insaat-gallery4-5.webp", "assets/insaat-gallery5-5.webp", "assets/insaat-gallery6-5.webp", "assets/insaat-gallery7-5.webp", "assets/insaat-gallery8-5.webp", "assets/insaat-gallery9-5.webp", "assets/insaat-gallery10-5.webp", "assets/insaat-gallery11-5.webp", "assets/insaat-gallery12-5.webp", "assets/insaat-gallery13-5.webp", "assets/insaat-gallery14-5.webp", "assets/insaat-gallery15-5.webp", "assets/insaat-gallery16-5.webp", "assets/insaat-gallery17-5.webp", "assets/insaat-gallery18-5.webp", "assets/insaat-gallery19-5.webp", "assets/insaat-gallery20-5.webp", "assetsGive me 2 examples of using `std::tie` in C++ and a short explanation for each example.
-What is the difference between `std::tie` and `std::make_tuple`?
-Why should I use `std::tie` instead of `std::ignore` when iterating over `std::map`?
-I'm a C++ beginner. Provide the code in a single code block.
+      "assets/insaat-gallery1-5.webp", "assets/insaat-gallery2-5.webp", "assets/insaat-gallery3-5.webp", "assets/insaat-gallery4-5.webp", "assets/insaat-gallery5-5.webp", "assets/insaat-gallery6-5.webp", "assets/insaat-gallery7-5.webp", "assets/insaat-gallery8-5.webp", "assets/insaat-gallery9-5.webp", "assets/insaat-gallery10-5.webp", "assets/insaat-gallery11-5.webp", "assets/insaat-gallery12-5.webp", "assets/insaat-gallery13-5.webp", "assets/insaat-gallery14-5.webp", "assets/insaat-gallery15-5.webp", "assets/insaat-gallery16-5.webp", "assets/insaat-gallery17-5.webp", "assets/insaat-gallery18-5.webp", "assets/insaat-gallery19-5.webp", "assets/insaat-gallery20-5.webp"
+    ]
+  }
+}
