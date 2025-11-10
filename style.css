@@ -1455,3 +1455,85 @@ tant;
   }
   
 }
+
+/* === YENİ EKLENEN PERFORMANS KODLARI === */
+
+/* JS'den taşınan yeni CSS animasyonu */
+.card-fade-in {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: cardFadeInAnimation 0.8s var(--easing) forwards;
+}
+
+@keyframes cardFadeInAnimation {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobil cihazlarda (768px ve altı) ağır animasyonları durdur */
+@media (max-width: 768px) {
+  h1, h2, h3, h4,
+  .brand-title, .footer-title {
+    /* En ağır animasyonu (yazı gradyanı) durdur */
+    animation: none;
+    background-size: 100% auto; 
+  }
+  
+  .btn:hover {
+     /* Mobil cihazlarda hover efektleri takılma yapar */
+     transform: none; 
+     box-shadow: 0 4px 15px rgba(0,0,0,0.4), var(--gold-shadow);
+  }
+
+  .project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
+      /* Kartların büyüme animasyonunu mobilde kapat */
+      transform: none;
+      box-shadow: none;
+      border-color: var(--gold-dark);
+  }
+  
+  #page-satilik_kiralik .house-card:hover,
+  #page-otel .house-card:hover {
+      /* Büyüme efektini mobilde kapat */
+      transform: none;
+      box-shadow: none;
+  }
+}
+
+/* === ÖNCEKİ KONUŞMADAN EKLEDİĞİM YENİ BUTON STİLLERİ === */
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-dark);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2001; /* Lightbox'ın üzerinde olmalı */
+  line-height: 40px; /* Dikey hizalama için */
+  padding: 0;
+  display: block; /* Başlangıçta görünür yap */
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(255, 204, 102, 0.2);
+  border-color: var(--gold-light);
+}
+
+/* 'Geri' butonu solda */
+#lightbox-prev {
+  left: 20px;
+}
+
+/* 'İleri' butonu sağda */
+#lightbox-next {
+  right: 20px;
+}

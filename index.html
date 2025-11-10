@@ -103,7 +103,11 @@
 
 <div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
   
+  <button id="lightbox-prev" class="lightbox-nav-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
+
   <img id="lightbox-img" src="" alt="Genişletilmiş Görüntü">
+
+  <button id="lightbox-next" class="lightbox-nav-btn" onclick="event.stopPropagation(); showNextImage();">›</button>
 
 </div>
 

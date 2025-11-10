@@ -195,19 +195,26 @@ async function showPage(pageId) {
         }
 
         newPage.classList.remove('visible');
+        
+        /* === DEĞİŞİKLİK BURADA (BAŞLANGIÇ) === */
+        // Kart animasyonu artık CSS ile yapılıyor. JS sadece sınıfı ekliyor.
         setTimeout(() => {
             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card');
+            
+            // Önceki animasyonlardan kalan stilleri temizle
+            cards.forEach(card => {
+                card.classList.remove('card-fade-in');
+                card.style.animationDelay = '';
+            });
+            
+            // Yeni animasyonu tetikle
             cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                  card.style.transition = 'all 1s cubic-bezier(0.25, 1, 0.5, 1)';
-                  card.style.opacity = '1';
-                  card.style.transform = 'scale(1)';
-                }, index * 100);
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add('card-fade-in');
             });
             newPage.classList.add('visible');
         }, 50);
+        /* === DEĞİŞİKLİK BURADA (BİTİŞ) === */
         
     } else {
         console.error(`Sayfa bulunamadı: ${pageId}`);
@@ -620,8 +627,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-
-    window.addEventListener('scroll', throttle(handleScrollEffects, 100));
+    /* === DEĞİŞİKLİK BURADA (Throttle süresi 30ms'ye düşürüldü) === */
+    window.addEventListener('scroll', throttle(handleScrollEffects, 30));
 });
 
 window.addEventListener("load", () => {
@@ -649,6 +656,8 @@ document.addEventListener("click", function(e) {
     
     lightboxImg.src = clickedDetailImg.src;
     lightbox.style.display = "flex";
+
+    updateLightboxNav(); // <-- BURAYA EKLENDİ
   }
 
   if (e.target.id === "lightbox") {
@@ -656,14 +665,27 @@ document.addEventListener("click", function(e) {
   }
 });
 
+// YENİ FONKSİYON: Butonları gizle/göster
+function updateLightboxNav() {
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  if (!prevBtn || !nextBtn) return;
+
+  // Baştaysak 'Geri' butonunu gizle
+  prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
+  
+  // Sondaysak 'İleri' butonunu gizle
+  nextBtn.style.display = (currentIndex === currentImages.length - 1) ? 'none' : 'block';
+}
+
 function showNextImage() {
   if (!currentImages.length) return;
-  if (currentIndex === currentImages.length - 1) {
-    document.getElementById("lightbox").style.display = "none";
-    return;
-  } 
   
-  currentIndex++;
+  // Eğer zaten sonda değilsek ilerle
+  if (currentIndex < currentImages.length - 1) { 
+    currentIndex++;
+  }
+  
   const lightboxImg = document.getElementById("lightbox-img");
   if (lightboxImg) {
     lightboxImg.src = currentImages[currentIndex].src;
@@ -671,16 +693,17 @@ function showNextImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
+  updateLightboxNav(); // Butonların durumunu güncelle
 }
 
 function showPrevImage() {
   if (!currentImages.length) return;
-  if (currentIndex === 0) {
-    document.getElementById("lightbox").style.display = "none";
-    return;
+
+  // Eğer zaten başta değilsek gerile
+  if (currentIndex > 0) {
+    currentIndex--;
   } 
   
-  currentIndex--;
   const lightboxImg = document.getElementById("lightbox-img");
   if (lightboxImg) {
     lightboxImg.src = currentImages[currentIndex].src;
@@ -688,6 +711,7 @@ function showPrevImage() {
     lightboxImg.style.transform = "scale(1)";
     scale = 1;
   }
+  updateLightboxNav(); // Butonların durumunu güncelle
 }
 
 document.addEventListener("keydown", function (e) {
