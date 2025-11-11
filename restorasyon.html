@@ -1,20 +1,17 @@
 <section id="page-restorasyon" class="page-section">
+  <a href="#hero" class="btn-page-back" data-key="btn_back">← Geri</a>
   
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');" data-key="btn_back">← Geri</a>
-  
-  <div style="padding-top: 60px;">
-    
-    <h2 data-key="restoration_title">Pruva Otel Restorasyonu</h2>
-    
-    <h3 class="restoration-subtitle" data-key="restoration_before">Önceki Hali</h3>
-    <div class="restoration-gallery detail-gallery" id="restoration-gallery-before">
-    </div>
-    <div id="restoration-loader-before" style="text-align: center; margin-top: 20px;"></div>
+  <div class="new-layout-container">
 
-    <h3 class="restoration-subtitle" data-key="restoration_after">Sonraki Hali</h3>
-    <div class="restoration-gallery detail-gallery" id="restoration-gallery-after">
-    </div>
-    <div id="restoration-loader-after" style="text-align: center; margin-top: 20px;"></div>
-    
-    </div>
+    <h2 data-key="restoration_hub_title">Restorasyon Projelerimiz</h2>
+
+    <div class="house-gallery">
+        
+        <div class="house-card" onclick="event.preventDefault(); showPage('page-pruva-otel');" style="cursor: pointer;">
+            <img loading="lazy" src="assets/restorasyon-1-after.webp" alt="Pruva Otel Restorasyonu" onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Pruva+Otel'">
+            <h3 data-key="restoration_hub_card_1">Pruva Otel</h3>
+        </div>
+        
+        </div>
+  </div>
 </section>

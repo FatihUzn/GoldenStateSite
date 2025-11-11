@@ -362,6 +362,10 @@ async function showPage(pageId) {
                 if (pageId === 'page-insaat') fileName = 'insaat';
                 if (pageId === 'page-restorasyon') fileName = "restorasyon";
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
+                
+                // === YENİ EKLEME (3. İSTEK): Yeni galeri sayfası rotası ===
+                if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
+                // === YENİ EKLEME SONU ===
 
                 if (fileName === pageId) { 
                    /* 'hero' zaten index.html'de */
@@ -408,11 +412,11 @@ async function showPage(pageId) {
             });
         }
 
-        // === YENİ EKLEME: Restorasyon sayfası için galerileri ayarla ===
-        if (pageId === 'page-restorasyon') {
+        // === GÜNCELLEME (3. İSTEK): Restorasyon galerisi artık 'page-pruva-otel' sayfasında yükleniyor ===
+        if (pageId === 'page-pruva-otel') {
           setupRestorationGalleries();
         }
-        // === YENİ EKLEME SONU ===
+        // === GÜNCELLEME SONU ===
 
         newPage.classList.remove('visible');
         
@@ -801,7 +805,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
-            location.hash = 'hero'; // Anasayfaya dönmek için hash'i değiştir
+            // Geri butonunun hangi sayfaya döneceğini hash'ten al
+            const targetHash = e.target.getAttribute('href') || '#hero';
+            location.hash = targetHash; // Hash'i değiştir
         }
     });
 
