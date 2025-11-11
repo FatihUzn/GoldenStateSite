@@ -71,6 +71,28 @@
     height: 80px;
   }
 
+  /* === YENİ EKLEDİĞİMİZ "YOL TARİFİ AL" BUTON STİLLERİ === */
+  .header-top-row .top-bar-right a {
+    background-color: #ffcc66; /* Sitenin altın rengi */
+    color: #111; /* Koyu renk yazı */
+    padding: 6px 14px; /* Buton boyutu */
+    border-radius: 4px;
+    font-weight: 700; /* Daha kalın yazı */
+    font-size: 0.8rem; /* Yazı boyutu */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .header-top-row .top-bar-right a:hover {
+    background-color: #ffffff; /* Beyaz arkaplan */
+    color: #111;
+  }
+  .header-top-row .top-bar-right a i {
+    color: #111; /* İkonu da koyu yap */
+    transition: color 0.3s;
+    margin-right: 6px;
+  }
+  /* === YENİ STİLLERİN SONU === */
+
+
   /* === STATİK HERO STİLLERİ (Geri Eklendi) === */
   .hero {
     height: 100vh;
@@ -252,6 +274,11 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
+    }
+    /* YENİ: Mobil'de Yol Tarifi Butonu */
+    .header-top-row .top-bar-right a {
+        display: inline-block; 
+        margin-top: 5px; 
     }
     .header-bottom-row {
       padding: 10px 15px;
