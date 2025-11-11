@@ -1605,3 +1605,18 @@ tant;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
 }
+/* === YENİ EKLEME: "Daha Fazla Yükle" Butonu Stili === */
+/* id'si "load-more-btn" ile başlayan tüm butonlara uygula */
+[id^="load-more-btn"] {
+  background: transparent;
+  color: var(--gold-light);
+  border: 1px solid var(--gold-dark);
+  box-shadow: none;
+}
+[id^="load-more-btn"]:hover {
+  background: var(--gold-dark);
+  color: #111;
+  box-shadow: var(--gold-shadow);
+  transform: translateY(-2px) scale(1.02);
+}
+/* === YENİ EKLEME SONU === */

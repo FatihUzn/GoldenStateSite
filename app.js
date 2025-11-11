@@ -14,6 +14,52 @@ function throttle(func, limit) {
 const translations = {}; 
 let allGalleriesData = null; 
 const pageCache = {}; 
+// ... (mevcut kodunuz)
+let allGalleriesData = null; 
+const pageCache = {}; 
+// === YENİ EKLEMELER: Galeri sayfalandırma için ===
+let globalPropertyImages = [];
+let globalImageIndex = 0;
+const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
+// === YENİ EKLEMELER SONU ===
+
+// === YENİ EKLEMELER: Restorasyon galerisi için ===
+const RESTORATION_IMAGES_PER_LOAD = 4; // Restorasyonda 4'er 4'er yükle
+const restorationBeforePaths = [
+  "assets/restorasyon-1-befor.webp",
+  "assets/restorasyon-2-before.webp",
+  "assets/restorasyon-3-before.webp",
+  "assets/restorasyon-4-before.webp",
+  "assets/restorasyon-5-before.webp",
+  "assets/restorasyon-6-before.webp",
+  "assets/restorasyon-7-before.webp",
+  "assets/restorasyon-8-before.webp",
+  "assets/restorasyon-9-before.webp",
+  "assets/restorasyon-10-before.webp",
+  "assets/restorasyon-11-before.webp",
+  "assets/restorasyon-12-before.webp",
+  "assets/restorasyon-13-before.webp"
+];
+const restorationAfterPaths = [
+  "assets/restorasyon-1-after.webp",
+  "assets/restorasyon-2-after.webp",
+  "assets/restorasyon-3-after.webp",
+  "assets/restorasyon-4-after.webp",
+  "assets/restorasyon-5-after.webp",
+  "assets/restorasyon-6-after.webp",
+  "assets/restorasyon-7-after.webp",
+  "assets/restorasyon-8-after.webp",
+  "assets/restorasyon-9-after.webp",
+  "assets/restorasyon-10-after.webp",
+  "assets/restorasyon-11-after.webp",
+  "assets/restorasyon-12-after.webp",
+  "assets/restorasyon-13-after.webp"
+];
+let globalRestorationBeforeIndex = 0;
+let globalRestorationAfterIndex = 0;
+// === YENİ EKLEMELER SONU ===
+async function openHouseDetail(letter) {
+// ... (kod devam ediyor)
 
 async function openHouseDetail(letter) {
   
@@ -64,7 +110,15 @@ async function openHouseDetail(letter) {
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
   }
   
-  // HTML'i oluştururken DİL VERİSİNİ KULLAN
+// === DEĞİŞİKLİK BAŞLANGICI: Global değişkenleri ayarla ===
+  globalPropertyImages = h.images || [];
+  globalImageIndex = 0;
+  // === DEĞİŞİKLİK SONU ===
+
+  // ... (Mevcut priceHTML kodunuz burada kalmalı)
+  
+  // === DEĞİŞİKLİK BAŞLANGICI: HTML içeriğini güncelle ===
+  // Galeri kısmı (detail-gallery) artık boş geliyor ve JS ile doldurulacak.
   content.innerHTML = `
     <h2>${langData[titleKey] || h.title}</h2>
     
@@ -76,12 +130,20 @@ async function openHouseDetail(letter) {
       <p>${langData[descKey] || h.desc}</p>
     </div>
 
-    <div class="detail-gallery">
-      ${h.images.map(img => `<img loading="lazy" src="${img}" alt="${langData[titleKey] || h.title}" onerror="this.remove()">`).join("")}
-    </div>
+    <div class="detail-gallery" id="detail-gallery-container">
+      </div>
+    
+    <div id="gallery-loader-container" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+      </div>
   `;
   
+  // İlk resim grubunu yükle
+  loadMorePropertyImages();
+  // === DEĞİŞİKLİK SONU ===
+  
   detail.style.display = "block";
+  document.body.style.overflow = "hidden"; 
+} // openHouseDetail fonksiyonunun kapanış parantezi
   document.body.style.overflow = "hidden"; 
 }
 
@@ -93,6 +155,146 @@ function closeHouseDetail() {
   document.body.style.overflow = "auto"; 
 }
 
+// ... (closeHouseDetail fonksiyonunun bittiği yer)
+
+// === YENİ FONKSİYON: Galeri için "Daha Fazla Göster" ===
+function loadMorePropertyImages() {
+  const galleryContainer = document.getElementById('detail-gallery-container');
+  const loaderContainer = document.getElementById('gallery-loader-container');
+
+  if (!galleryContainer || !loaderContainer) {
+    console.error("Galeri konteynerleri bulunamadı.");
+    return;
+  }
+
+// === YENİ FONKSİYONLAR: Restorasyon Galerisi ===
+
+function setupRestorationGalleries() {
+  // İndeksleri sıfırla
+  globalRestorationBeforeIndex = 0;
+  globalRestorationAfterIndex = 0;
+  
+  // Galerileri temizle (sayfa önbellekten yüklenmişse dolu olabilir)
+  const beforeGallery = document.getElementById('restoration-gallery-before');
+  const afterGallery = document.getElementById('restoration-gallery-after');
+  const beforeLoader = document.getElementById('restoration-loader-before');
+  const afterLoader = document.getElementById('restoration-loader-after');
+
+  if (beforeGallery) beforeGallery.innerHTML = '';
+  if (afterGallery) afterGallery.innerHTML = '';
+  if (beforeLoader) beforeLoader.innerHTML = '';
+  if (afterLoader) afterLoader.innerHTML = '';
+
+  // İlk resim gruplarını yükle
+  loadMoreRestorationImages('before');
+  loadMoreRestorationImages('after');
+}
+
+function loadMoreRestorationImages(galleryType) {
+  let galleryContainer, loaderContainer, imagesArray, currentIndex;
+  let altText = "Restorasyon - ";
+  let placeholderText = "";
+
+  // Hangi galeri (Önce/Sonra) için işlem yapacağımızı belirle
+  if (galleryType === 'before') {
+    galleryContainer = document.getElementById('restoration-gallery-before');
+    loaderContainer = document.getElementById('restoration-loader-before');
+    imagesArray = restorationBeforePaths;
+    currentIndex = globalRestorationBeforeIndex;
+    altText += "Önce";
+    placeholderText = "Önce";
+  } else {
+    galleryContainer = document.getElementById('restoration-gallery-after');
+    loaderContainer = document.getElementById('restoration-loader-after');
+    imagesArray = restorationAfterPaths;
+    currentIndex = globalRestorationAfterIndex;
+    altText += "Sonra";
+    placeholderText = "Sonra";
+  }
+
+  if (!galleryContainer || !loaderContainer) {
+    return;
+  }
+
+  // Yüklenecek resim dilimini al
+  const imagesToLoad = imagesArray.slice(currentIndex, currentIndex + RESTORATION_IMAGES_PER_LOAD);
+
+  if (imagesToLoad.length === 0 && currentIndex === 0) {
+    galleryContainer.innerHTML = "<p>Bu galeri için resim bulunamadı.</p>";
+    loaderContainer.innerHTML = "";
+    return;
+  }
+
+  // Resimler için HTML oluştur
+  const imagesHTML = imagesToLoad.map((img, index) => 
+    `<img loading="lazy" src="${img}" alt="${altText} ${currentIndex + index + 1}" onerror="this.src='https://placehold.co/350x260/111/f59e0b?text=${placeholderText}+${currentIndex + index + 1}'">`
+  ).join("");
+
+  // Resimleri galeriye ekle
+  galleryContainer.insertAdjacentHTML('beforeend', imagesHTML);
+
+  // İndeksi güncelle
+  if (galleryType === 'before') {
+    globalRestorationBeforeIndex += RESTORATION_IMAGES_PER_LOAD;
+  } else {
+    globalRestorationAfterIndex += RESTORATION_IMAGES_PER_LOAD;
+  }
+  
+  // Güncellenmiş indeksi tekrar al (bir sonraki kontrol için)
+  currentIndex = (galleryType === 'before') ? globalRestorationBeforeIndex : globalRestorationAfterIndex;
+
+  // Butonu temizle
+  loaderContainer.innerHTML = '';
+
+  // Hâlâ yüklenecek resim varsa, butonu tekrar ekle
+  if (currentIndex < imagesArray.length) {
+    // Çeviri verisini al
+    const currentLang = localStorage.getItem('lang') || 'tr';
+    const langData = translations[currentLang] || {};
+    const buttonText = langData.btn_load_more || 'Daha Fazla Göster';
+    
+    // onclick fonksiyonuna hangi galeriyi yükleyeceğini ('before'/'after') parametre olarak ver
+    loaderContainer.innerHTML = `<button class="btn" id="load-more-btn-${galleryType}" onclick="loadMoreRestorationImages('${galleryType}')">${buttonText}</button>`;
+  }
+}
+// === YENİ FONKSİYONLAR SONU ===
+  // Yüklenecek resim dilimini al
+  const imagesToLoad = globalPropertyImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
+
+  if (imagesToLoad.length === 0 && globalImageIndex === 0) {
+     galleryContainer.innerHTML = "<p>Bu galeri için resim bulunamadı.</p>";
+     loaderContainer.innerHTML = "";
+     return;
+  }
+
+  // Resimler için HTML oluştur
+  const imagesHTML = imagesToLoad.map(img => 
+    `<img loading="lazy" src="${img}" alt="Galeri Resmi" onerror="this.remove()">`
+  ).join("");
+
+  // Resimleri galeriye ekle
+  galleryContainer.insertAdjacentHTML('beforeend', imagesHTML);
+
+  // İndeksi güncelle
+  globalImageIndex += IMAGES_PER_LOAD;
+
+  // Butonu temizle
+  loaderContainer.innerHTML = '';
+
+  // Hâlâ yüklenecek resim varsa, butonu tekrar ekle
+  if (globalImageIndex < globalPropertyImages.length) {
+    // Çeviri verisini al
+    const currentLang = localStorage.getItem('lang') || 'tr';
+    const langData = translations[currentLang] || {};
+    const buttonText = langData.btn_load_more || 'Daha Fazla Göster'; // Yeni çeviri anahtarı
+    
+    loaderContainer.innerHTML = `<button class="btn" id="load-more-btn" onclick="loadMorePropertyImages()">${buttonText}</button>`;
+  }
+}
+// === YENİ FONKSİYON SONU ===
+
+async function setLanguage(lang) {
+// ... (kod devam ediyor)
 async function setLanguage(lang) {
     let langData;
 
@@ -213,6 +415,17 @@ async function showPage(pageId) {
             });
         }
 
+// ... (dil döngüsü bitti)
+        }
+
+        // === YENİ EKLEME: Restorasyon sayfası için galerileri ayarla ===
+        if (pageId === 'page-restorasyon') {
+          setupRestorationGalleries();
+        }
+        // === YENİ EKLEME SONU ===
+
+        newPage.classList.remove('visible');
+// ...
         newPage.classList.remove('visible');
         
         setTimeout(() => {
