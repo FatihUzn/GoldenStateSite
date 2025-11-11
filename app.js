@@ -394,13 +394,6 @@ async function showPage(pageId) {
 
         newPage.classList.add('active');
         window.scrollTo(0, 0); 
-
-        if (pageId === 'hero') {
-            const heroElement = document.getElementById('hero');
-            if (heroElement) {
-                heroElement.style.opacity = 1;
-            }
-        }
         
         const currentLang = localStorage.getItem('lang') || 'tr';
         if (translations[currentLang]) {
@@ -601,33 +594,9 @@ function loadCategory(category, checkin = null, checkout = null) {
   }, 300);
 }
 
-function handleScrollEffects() {
-    const scrollY = window.scrollY;
-    const header = document.querySelector('header');
-    const hero = document.getElementById('hero');
-    
-    if (hero && hero.classList.contains('active')) {
-        const heroHeight = hero.offsetHeight; 
-        const fadeEnd = heroHeight * 0.7; 
-        let opacity = 1 - (scrollY / fadeEnd);
-        opacity = Math.max(0, Math.min(1, opacity)); 
-        hero.style.opacity = opacity;
-    } else if (hero) {
-        hero.style.opacity = 1; 
-    }
-
-    if (header) {
-        const scrollThreshold = 50;
-        const solidBackground = "rgba(10, 10, 10, 0.9)";
-        const gradientBackground = "linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%)";
-        
-        if (scrollY > scrollThreshold) {
-            header.style.background = solidBackground;
-        } else {
-            header.style.background = gradientBackground;
-        }
-    }
-}
+// === BU FONKSİYON KALDIRILDI ===
+// function handleScrollEffects() { ... }
+// === KALDIRMA SONU ===
 
 function setupProjectReservation() {
     document.body.addEventListener('click', (e) => {
@@ -811,7 +780,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    window.addEventListener('scroll', throttle(handleScrollEffects, 30));
+    // === SCROLL EVENT LISTENER KALDIRILDI ===
+    // window.addEventListener('scroll', throttle(handleScrollEffects, 30));
+    // === KALDIRMA SONU ===
 
     // === Sayfa yüklendiğinde ve Geri tuşuna basıldığında (hashchange) ===
     

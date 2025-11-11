@@ -21,61 +21,63 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-  /* YENİ EKLENEN TOP BAR STİLLERİ */
-  #top-bar {
-    background-color: #1a1a1a; /* Koyu bir arkaplan */
+  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
+  header {
+    display: block; 
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
+    transition: background-color 0.3s;
+  }
+  header.scrolled {
+      background-color: rgba(10, 10, 10, 0.9);
+  }
+  .header-top-row {
+    background-color: #1a1a1a;
     color: #ccc;
     padding: 8px 30px;
     font-size: 0.85rem;
     font-weight: 500;
-    /* Z-index eklendi (header'ın üzerinde kalması için) */
-    position: relative;
-    z-index: 1001;
-  }
-  #top-bar .top-bar-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
   }
-  #top-bar a {
+  .header-top-row a {
     color: #ccc;
     text-decoration: none;
     transition: color 0.3s;
   }
-  #top-bar a:hover {
-    color: #ffcc66; /* Altın rengi */
+  .header-top-row a:hover {
+    color: #ffcc66;
   }
-  #top-bar .top-bar-left a {
+  .header-top-row .top-bar-left a {
     margin-right: 20px;
   }
-  #top-bar i {
+  .header-top-row i {
     margin-right: 8px;
-    color: #ffcc66; /* İkon rengi */
+    color: #ffcc66;
+  }
+  .header-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    height: 80px;
   }
 
-  /* Mobil uyumluluk */
-  @media (max-width: 768px) {
-    #top-bar {
-      padding: 10px 15px;
-      font-size: 0.75rem;
-    }
-    #top-bar .top-bar-content {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    #top-bar .top-bar-left a {
-      margin-right: 15px;
-    }
-  }
-
-  /* Hero slider'ı tam ekran yap */
+  /* === SLIDER'LI YENİ HERO STİLLERİ === */
   .hero-slider {
     height: 100vh;
     width: 100%;
-    position: relative; /* İçerik katmanı için eklendi */
+    position: relative; 
   }
   .hero-slider .swiper-slide {
     position: relative;
@@ -92,31 +94,30 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Görüntüyü biraz karart */
-    filter: brightness(0.6);
+    filter: brightness(0.6); /* Resimleri karart */
   }
   
-  /* Swiper oklarının rengini beyaz yap */
+  /* Slider Okları */
   .swiper-button-next,
   .swiper-button-prev {
     color: #ffffff;
     opacity: 0.7;
     transition: opacity 0.3s;
-    z-index: 11; /* İçeriğin üstünde kalsın */
+    z-index: 11; 
   }
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
     opacity: 1;
   }
-  /* Swiper noktalarının rengi */
+  /* Slider Noktaları */
   .swiper-pagination-bullet {
     background: rgba(255, 255, 255, 0.7);
   }
   .swiper-pagination-bullet-active {
-    background: #ffcc66; /* Sitenizdeki altın rengi */
+    background: #ffcc66; 
   }
 
-  /* Slider'ın üstündeki içerik katmanı */
+  /* Slider'ın ÜSTÜNDEKİ İçerik Katmanı */
   .hero-content-overlay {
     position: absolute;
     top: 50%;
@@ -129,9 +130,15 @@
     width: 90%;
     max-width: 800px;
   }
+  .hero-content-overlay .hero-since {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+  }
   .hero-content-overlay h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 900;
     margin: 0;
   }
@@ -140,7 +147,7 @@
     margin: 10px 0 30px 0;
   }
   
-  /* Orijinal Keşfet Butonu stilleri */
+  /* Keşfet Butonu stilleri */
   .cta-group {
     position: relative;
     display: inline-block;
@@ -154,7 +161,7 @@
     z-index: 1;
     border-radius: 5px;
     overflow: hidden;
-    top: 100%; /* Butonun altında */
+    top: 100%; 
     left: 50%;
     transform: translateX(-50%);
     margin-top: 10px;
@@ -170,66 +177,56 @@
     transition: background-color 0.3s;
   }
   .cta-group .dropdown a:hover {
-    background-color: #ffcc66; /* Altın rengi */
+    background-color: #ffcc66; 
     color: #111;
   }
 
   /* ========================================= */
-  /* === YENİ EKLENEN GENİŞ FOOTER STİLLERİ === */
+  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
   /* ========================================= */
   .site-footer {
-    background-color: #0c0c0c; /* Sitenizden daha koyu bir renk */
+    background-color: #0c0c0c; 
     color: #a0a0a0;
     padding: 60px 30px 20px 30px;
     border-top: 1px solid #333;
   }
-
   .footer-grid {
     display: grid;
-    /* İsteğiniz üzerine 5 sütun: Link | Link | LOGO (merkez) | Link | Link */
     grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
     gap: 30px;
     max-width: 1400px;
     margin: 0 auto 40px auto;
   }
-
   .footer-column h3 {
     font-family: 'Playfair Display', serif;
     color: #ffffff;
     font-size: 1.25rem;
     margin-bottom: 20px;
-    border-bottom: 1px solid #ffcc66; /* Altın rengi çizgi */
+    border-bottom: 1px solid #ffcc66;
     padding-bottom: 10px;
     font-weight: 700;
   }
-
   .footer-column.logo-column h3 {
-    border-bottom: none; /* Logo sütununda çizgi olmasın */
+    border-bottom: none;
   }
-
   .footer-links {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-
   .footer-links li {
     margin-bottom: 12px;
   }
-
   .footer-links a {
     color: #a0a0a0;
     text-decoration: none;
     transition: color 0.3s, padding-left 0.3s;
     display: inline-block;
   }
-
   .footer-links a:hover {
-    color: #ffcc66; /* Altın rengi */
-    padding-left: 5px; /* Hafifçe sağa kayma efekti */
+    color: #ffcc66;
+    padding-left: 5px;
   }
-
-  /* Logo Sütunu: Ortalanmış */
   .footer-column.logo-column {
     text-align: center;
     display: flex;
@@ -237,14 +234,9 @@
     align-items: center;
     justify-content: flex-start;
   }
-  .footer-column.logo-column .footer-logo-container {
-    /* Eski footer'dan stilleri miras alıyor, harika */
-  }
   .footer-column.logo-column .social-icons {
-    margin-top: 20px; /* Logodan sonra sosyal ikonlar */
+    margin-top: 20px;
   }
-
-  /* İletişim Sütunu İkonları */
   .footer-links.contact-info li {
     display: flex;
     align-items: flex-start;
@@ -258,38 +250,51 @@
   .footer-links.contact-info span,
   .footer-links.contact-info a {
     flex: 1;
-    /* Hover efektini sıfırla */
     padding-left: 0; 
   }
   .footer-links.contact-info a:hover {
     color: #ffcc66;
     padding-left: 0;
   }
-
-  /* Telif Hakkı (Bu zaten vardı, sadece arkaplanı ayarladık) */
   .footer-bottom {
     border-top: 1px solid #333;
     padding-top: 20px;
-    background-color: transparent; /* Zaten .site-footer'da renk var */
+    background-color: transparent;
   }
 
-  /* Footer Mobil Uyumluluğu */
+  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ === */
   @media (max-width: 992px) {
     .footer-grid {
-      /* 5 sütun yerine 3'e düşür */
       grid-template-columns: 1fr 1fr 1fr;
     }
-    /* Logo ortada kalsın, diğerleri alta kaysın */
     .footer-column.logo-column {
-      grid-column: 1 / -1; /* Tam genişlik kapla */
-      order: -1; /* En üste al */
+      grid-column: 1 / -1;
+      order: -1;
       margin-bottom: 30px;
     }
   }
 
   @media (max-width: 768px) {
+    /* Header mobil ayarı */
+    .header-top-row {
+      padding: 10px 15px;
+      font-size: 0.75rem;
+    }
+    .header-top-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .header-bottom-row {
+      padding: 10px 15px;
+      height: 70px;
+    }
+    .hero-content-overlay h1 {
+      font-size: 3rem; /* Mobil'de başlık */
+    }
+
+    /* Footer Mobil */
     .footer-grid {
-      /* Mobilde tek sütun */
       grid-template-columns: 1fr;
     }
     .footer-column {
@@ -307,8 +312,8 @@
 </head>
 <body>
 
-<div id="top-bar">
-  <div class="top-bar-content">
+<header id="main-header">
+  <div class="header-top-row">
     <div class="top-bar-left">
       <a href="tel:+902125551923"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
       <a href="mailto:info@goldenpalace.com"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
@@ -317,41 +322,41 @@
       <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
     </div>
   </div>
-</div>
-<header>
-  <div class="brand">
-    <img src="./assets/golden_palace_logo.webp" alt="Golden Palace Logo"> <div class="brand-text-container">
-        <span class="brand-title" data-key="brand_golden_palace">Golden Palace</span>
-        <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
+
+  <div class="header-bottom-row">
+    <div class="brand">
+      <img src="./assets/golden_palace_logo.webp" alt="Golden Palace Logo"> <div class="brand-text-container">
+          <span class="brand-title" data-key="brand_golden_palace">Golden Palace</span>
+          <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
+      </div>
     </div>
-  </div>
- 
-  <div style="display: flex; align-items: center;">
-    <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
-        <i class="fas fa-bars"></i>
-    </button>
-   
-    <nav class="navbar" id="navbar">
-      <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-      <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
-      <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
-      <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
-      <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
-      <div class="language-selector mobile-only" style="display: none;">
+  
+    <div style="display: flex; align-items: center;">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
+          <i class="fas fa-bars"></i>
+      </button>
+    
+      <nav class="navbar" id="navbar">
+        <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
+        <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
+        <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
+        <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
+        <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
+        <div class="language-selector mobile-only" style="display: none;">
+            <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
+      </nav>
+    
+      <div class="language-selector desktop-only" style="margin-left: 20px;">
           <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
           <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
           <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-    </nav>
-   
-    <div class="language-selector desktop-only" style="margin-left: 20px;">
-        <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
+    </div>
   </div>
 </header>
-
 <main id="page-container">
 
     <section class="hero page-section active hero-slider swiper" id="hero">
@@ -359,23 +364,15 @@
       <div class="swiper-wrapper">
         
         <div class="swiper-slide">
-          <img src="https://kaganarslanhukuk.com/wp-content/uploads/revslider/anaslider-rev/bg-slider-4-min-scaled.jpg" alt="KAĞANARSLAN Hukuk Ve Danışmanlık Bürosu" loading="lazy">
+          <img src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
         </div>
         
         <div class="swiper-slide">
-          <img src="https://kaganarslanhukuk.com/wp-content/uploads/revslider/anaslider-rev/bg-slider-min-scaled.jpg" alt="Kişisel Verilerin Korunması Hukuku" loading="lazy">
+          <img src="assets/for_proje2.jpg" alt="Şehir Projesi" loading="lazy">
         </div>
         
         <div class="swiper-slide">
-          <img src="https://kaganarslanhukuk.com/wp-content/uploads/revslider/anaslider-rev/bg-slider-2-min-scaled.jpg" alt="Bilişim Hukuku" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="https://kaganarslanhukuk.com/wp-content/uploads/revslider/anaslider-rev/bg-slider-5-min-scaled.jpg" alt="E-Ticaret Hukuku" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="https://kaganarslanhukuk.com/wp-content/uploads/revslider/anaslider-rev/bg-slider-3-min-scaled.jpg" alt="İdare Ve Vergi Hukuku" loading="lazy">
+          <img src="assets/pruva-otel.webp" alt="Pruva Otel Projesi" loading="lazy">
         </div>
     
       </div>
@@ -386,6 +383,7 @@
       <div class="swiper-pagination"></div>
 
       <div class="hero-content-overlay">
+        <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
         <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
         
@@ -398,9 +396,8 @@
           </div>
         </div>
       </div>
-
     </section>
-</main>
+    </main>
 
 
 <footer class="site-footer">
@@ -496,24 +493,40 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    
+    // Header scroll efekti
+    const header = document.getElementById('main-header');
+    if (header) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // Hero Slider başlatma
     var swiper = new Swiper(".hero-slider", {
-      loop: true, // Başa dön
-      effect: "fade", // Solma efekti (daha şık)
-      autoplay: {
-        delay: 5000, // 5 saniyede bir değiş
+      loop: true,
+      effect: "fade", // Solma efekti
+      autoplay: { // Otomatik dönme
+        delay: 5000,
         disableOnInteraction: false,
       },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
+      navigation: { // Ok işaretleri
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      pagination: { // Noktalar
+        el: ".swiper-pagination",
+        clickable: true,
+      },
     });
+
   });
 </script>
+
 
 <script src="app.js?v=1.6" defer></script>
 
