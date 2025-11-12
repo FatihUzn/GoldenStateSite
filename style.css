@@ -1630,6 +1630,18 @@ tant;
   text-align: center;
   color: #fff;
 }
+.hero-video .hero-content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 🔹 tam ortalar */
+  text-align: center;
+  z-index: 4;
+  width: 100%;
+  max-width: 900px; /* metin genişliği dengesi */
+  padding: 0 20px;  /* kenarlardan taşmayı önler */
+}
+
 
 .hero-video-bg {
   position: absolute;
@@ -1654,6 +1666,13 @@ tant;
     object-position: center center;
   }
 }
+
+@media (max-width: 768px) {
+  .hero-video .hero-content-overlay {
+    transform: translate(-50%, -45%);
+  }
+}
+
 /* === FİNAL DÜZELTME (V4): KEŞFET MENÜSÜ === */
 
 /* Ana menü kutusu (yatay, aşağıda) */
