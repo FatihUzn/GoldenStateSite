@@ -16,7 +16,7 @@
 
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
-<link rel="stylesheet" href="style.css?v=1.6">
+
 
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
@@ -112,28 +112,9 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+
   }
-  .hero > div {
-    position: relative; /* Overlay'in üstünde kalmak için */
-    z-index: 2;
-  }
-  .hero .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4.5rem;
-      font-weight: 900;
-      margin: 0;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  }
-  .hero p {
-      font-size: 1.25rem;
-      margin: 10px 0 30px 0;
-  }
+  /* .hero > div kuralı style.css'ten geliyor, burada ezmeye gerek yok */
   
   /* Keşfet Butonu stilleri */
   .cta-group {
@@ -445,6 +426,7 @@
     </div>
 </footer>
 
+
 <!-- === GÜNCELLENMİŞ LIGHTBOX (SLIDER) === -->
 <div id="lightbox" class="lightbox-container">
   <button id="lightbox-prev" class="lightbox-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
@@ -495,5 +477,7 @@
   </div>
 </div>
 
+</main> 
+
 </body>
-</html> 
+</html>
