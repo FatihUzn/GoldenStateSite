@@ -16,7 +16,7 @@
 
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
-<link rel="stylesheet" href="style.css?v=1.6">
+<link rel="stylesheet" href="style.css?v=1.9">
 
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
@@ -136,31 +136,27 @@
     100% { opacity: 0; }/* Kalan sürede gizli kalır */
   }
   
-  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA === */
-  /* Bu, mobil görünümde içeriğin sağa kaymasını engeller */
-  .css-slider-hero .hero-content-overlay {
-    left: 50%; /* Orta noktayı garantile */
-    transform: translate(-50%, -50%); /* Kendi genişliğinin yarısı kadar sola kaydırarak tam ortala */
-    text-align: center; /* Metni ortala */
-  }
-  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA BİTTİ === */
-
-
-  /* İçerik Katmanı (Keşfet Butonu vb.) - GÜNCELLENDİ */
-  .hero-content-overlay {
+  /* === KAYMA DÜZELTMESİ (DAHA GÜÇLÜ SEÇİCİ) === */
+  /* Bu kural, style.css'teki `.hero > div` kuralını ezer */
+  section.hero > div.hero-content-overlay {
     position: absolute;
     top: 50%;
-    /* BURADAKİ LEFT VE TRANSFORM ÖZELLİKLERİNİ KALDIRDIK VEYA GÜNCELLEDİK */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Dikey ve yatay ortala */
+    text-align: center;
     z-index: 10;
     color: #fff;
-    /* text-align: center; (Zaten yukarıdaki yeni kuralda var) */
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     width: 90%;
     max-width: 800px;
-    padding: 0 15px; /* Kenarlardan biraz boşluk ekle, mobil'de taşmayı önler */
-    box-sizing: border-box; /* Padding'i genişliğe dahil et */
+    padding: 0 15px;
+    box-sizing: border-box;
+    
+    /* style.css'ten gelen animasyonu iptal et */
+    opacity: 1; 
+    animation: none; 
   }
-  /* === CSS SLIDER SONU === */
+  /* === DÜZELTME SONU === */
   
   /* Keşfet Butonu stilleri */
   .cta-group {
