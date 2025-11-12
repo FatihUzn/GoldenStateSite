@@ -1008,33 +1008,3 @@ document.addEventListener('keydown', (event) => {
         closeImageModal();
     }
 });
-
-// === HERO SLIDER KONTROL ===
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.hero-slide');
-  const nextBtn = document.querySelector('.hero-next');
-  const prevBtn = document.querySelector('.hero-prev');
-  let current = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
-
-  function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }
-
-  function prevSlide() {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  }
-
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
-
-  // Otomatik geçiş
-  setInterval(nextSlide, 5000);
-});

@@ -1,7 +1,5 @@
 :root {
   --bg: #0a0a0a;
-:root {
-  --bg: #0a0a0a;
   --text: #f5f5f5;
   --text-muted: #a1a1aa;
   
@@ -1458,56 +1456,6 @@ tant;
   
 }
 
-/* === LIGHTBOX (Slider) === */
-.lightbox-container {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 20px;
-  animation: fadeIn 0.3s ease;
-}
-.lightbox-container.show {
-  display: flex;
-}
-.lightbox-container img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border: 3px solid var(--gold-light);
-  border-radius: 10px;
-  box-shadow: var(--gold-shadow-intense);
-  transition: opacity 0.3s ease;
-}
-.lightbox-btn {
-  background: var(--gold-dark);
-  color: #111;
-  border: 1px solid var(--gold-light);
-  padding: 10px 20px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-}
-.lightbox-btn:hover {
-  background: var(--gold-light);
-  transform: scale(1.1);
-}
-.lightbox-btn:active {
-  transform: scale(0.95);
-}
-@media (max-width: 768px) {
-  .lightbox-btn {
-    padding: 8px 14px;
-    font-size: 18px;
-  }
-}
-
 /* === YENİ EKLENEN PERFORMANS KODLARI === */
 
 /* JS'den taşınan yeni CSS animasyonu */
@@ -1672,61 +1620,3 @@ tant;
   transform: translateY(-2px) scale(1.02);
 }
 /* === YENİ EKLEME SONU === */
-/* === HERO SLIDER === */
-.hero-slider {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.hero-slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-.hero-content {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 3;
-}
-
-.hero-prev, .hero-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--gold-light);
-  border: none;
-  font-size: 40px;
-  cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 6px;
-  transition: background 0.3s;
-  z-index: 4;
-}
-
-.hero-prev:hover, .hero-next:hover {
-  background: rgba(255, 204, 102, 0.3);
-}
-
-.hero-prev { left: 30px; }
-.hero-next { right: 30px; }
-
-@media (max-width: 768px) {
-  .hero-content h1 { font-size: 28px; }
-  .hero-prev, .hero-next { font-size: 28px; padding: 5px 10px; }
-}
-
