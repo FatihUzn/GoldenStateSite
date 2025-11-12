@@ -759,16 +759,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("CTA Grubu 'discover-cta' bulunamadı!");
     }
 
-    // === Nav linkleri artık hash'i değiştiriyor ===
-    document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+   // === Nav linkleri ve YENİ HERO LİNKLERİ artık hash'i değiştiriyor ===
+    document.querySelectorAll('.nav-link[data-page], .btn-hero-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
             location.hash = pageId; 
         });
-    });
-
-    // === 'Geri' tuşu artık hash'i değiştiriyor ===
+    });  
+  // === 'Geri' tuşu artık hash'i değiştiriyor ===
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
