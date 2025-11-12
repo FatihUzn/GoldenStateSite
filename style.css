@@ -1418,6 +1418,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 tant;
   }
 
+/* === HERO METİN ORTALAMA DÜZENİ === */
+.hero-content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  color: #fff;
+  width: 90%;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content-overlay h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero-content-overlay p {
+  font-size: 20px;
+  color: #ddd;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero-content-overlay h1 {
+    font-size: 36px;
+  }
+  .hero-content-overlay p {
+    font-size: 18px;
+  }
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
  /* === HERO SLIDER STİLLERİ (TEMİZ) === */
 .hero {
   position: relative;
