@@ -1737,5 +1737,30 @@ tant;
     background-size: contain;
     background-position: center;
   }
+
 }
+/* === HERO METİN ORTALAMA FİNAL DÜZENİ === */
+.hero-content-overlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  z-index: 10 !important;
+  width: 90% !important;
+  max-width: 800px !important;
+  color: #fff !important;
+}
+
+.hero-content-overlay h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  margin-bottom: 20px;
+}
+
+.hero-content-overlay p {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #ddd;
+  margin-bottom: 40px;
+}
+
 
