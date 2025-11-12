@@ -513,6 +513,8 @@
   <div id="house-detail-content"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     
@@ -528,7 +530,24 @@
       });
     }
 
-    // SLIDER BAŞLATMA KODU HENÜZ EKLENMEDİ
+    // Hero Slider başlatma
+    var swiper = new Swiper(".hero-slider", {
+      loop: true,
+      effect: "fade", // Solma efekti
+      autoplay: { // Otomatik dönme
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: { // Ok işaretleri
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: { // Noktalar
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
   });
 </script>
 
