@@ -1695,7 +1695,7 @@ tant;
   color: #111;
 }
 /* === DÜZELTME SONU === */
-/* === GOLD OVERLAY EFFECT FOR HERO VIDEO === */
+
 .hero-video::after {
   content: "";
   position: absolute;
@@ -1703,7 +1703,12 @@ tant;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.55); /* 🔹 karartma katmanı */
+    background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,   /* üst kısmı daha açık */
+    rgba(0, 0, 0, 0.4) 100%   /* alt kısmı hafif koyu */
+  );
+
   z-index: 2;
 }
 
