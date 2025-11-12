@@ -210,7 +210,7 @@ function setupRestorationGalleries() {
   if (beforeLoader) beforeLoader.innerHTML = '';
   if (afterLoader) afterLoader.innerHTML = '';
 
-  // İlk resim gruplarını yükle
+  // İlk resim gruarını yükle
   loadMoreRestorationImages('before');
   loadMoreRestorationImages('after');
 }
@@ -786,25 +786,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const initialPage = location.hash.replace('#', '') || 'hero';
     showPage(initialPage);
 }); // ✅ sadece bu bir tane kapanış olacak
-
-
-// === HERO SLIDER OTOMATİK GEÇİŞ ===
-document.addEventListener('DOMContentLoaded', () => {
-  setInterval(() => {
-    const slides = document.querySelectorAll('.hero-slider .slide');
-    const active = document.querySelector('.hero-slider .slide.active');
-    if (!slides.length || !active) return;
-    
-    let next = active.nextElementSibling;
-    if (!next || !next.classList.contains('slide')) {
-      next = slides[0];
-    }
-  
-    active.classList.remove('active');
-    next.classList.add('active');
-  }, 5000);
-});
-
 
 
 let currentImages = [];

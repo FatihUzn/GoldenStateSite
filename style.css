@@ -1237,7 +1237,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0 !important;
     -webkit-background-clip: initial !important;
     background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
+    -webkit-text-fill-color: initial !imporant;
     text-fill-color: initial !important;
 }
 
@@ -1552,32 +1552,8 @@ tant;
   transform: translateY(-2px) scale(1.02);
 }
 
-/* === YENİ EKLEME: 1. FOTOĞRAFTAKİ BUTON İSTEĞİ (DÜZELTİLMİŞ) === */
-.header-top-row a.btn-top-info {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    margin-right: 10px;
-    background-color: var(--gold-dark); /* Arka planı sarı yap */
-    color: #111; /* Metni koyu renk yap */
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: var(--gold-shadow);
-}
-.header-top-row a.btn-top-info:hover {
-    background-color: var(--gold-light);
-    color: #111;
-    transform: translateY(-2px);
-}
-.header-top-row a.btn-top-info i {
-    margin-right: 8px;
-    color: #111; /* İkon rengini de koyu yap */
-}
-/* === DÜZELTME SONU === */.hero-content-overlay h1 {
+
+.hero-content-overlay h1 {
   font-size: clamp(32px, 5vw, 56px);
   margin-bottom: 20px;
 }
@@ -1587,20 +1563,21 @@ tant;
   color: #ddd;
   margin-bottom: 40px;
 }
-/* === FİNAL DÜZELTME: SARI BUTON VE GERİ BUTONU === */
 
-/* 1. Düzeltme: Sarı Buton (Daha güçlü/spesifik kural)
+/* === FİNAL DÜZELTME (V3): TÜM BUTONLAR + KÜÇÜK YAZI + YAVAŞ ZOOM === */
+
+/* 1. Düzeltme: 3 Sarı Buton (Telefon, Eposta, Yol Tarifi)
 */
 .header-top-row a.btn-top-info {
     display: inline-flex;
     align-items: center;
-    padding: 6px 12px;
+    padding: 5px 10px; /* Buton içi boşluğu azalttık */
     margin-right: 10px;
-    background-color: var(--gold-dark); /* Arka planı sarı yap */
-    color: #111; /* Metni koyu renk yap */
+    background-color: var(--gold-dark);
+    color: #111;
     border: none;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 13px; /* Yazı tipini 14px'ten 13px'e küçülttük */
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -1612,15 +1589,33 @@ tant;
     transform: translateY(-2px);
 }
 .header-top-row a.btn-top-info i {
-    margin-right: 8px;
-    color: #111; /* İkon rengini de koyu yap */
+    margin-right: 6px; /* İkon boşluğunu azalttık */
+    color: #111;
+    font-size: 12px; /* İkonu da küçülttük */
 }
 
 /* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme)
 */
 .btn-page-back {
-  top: 140px; /* 100px idi, header ile çakışıyordu, 140px'e çektik */
+  top: 140px;
   left: 40px;
-  z-index: 100; /* Header z-index: 1000, bu yüzden hep arkada kalacak */
+  z-index: 100;
+}
+
+/* 3. Düzeltme: Yavaş Zoom Efekti (Slider iptali)
+*/
+.hero-slider .slide {
+  animation: slowZoom 25s infinite alternate ease-in-out;
+  transform: scale(1.05); 
+  opacity: 1 !important; /* Her zaman görünür ol */
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05); /* Başlangıç (hafif zoomlu) */
+  }
+  to {
+    transform: scale(1); /* Bitiş (normal boyut) */
+  }
 }
 /* === FİNAL DÜZELTME SONU === */
