@@ -142,10 +142,9 @@
     top: 50%;
     left: 50%;
     
-    /* ÖNEMLİ DÜZELTME: style.css'teki çakışan kuralı eziyoruz */
     transform: translate(-50%, -50%) !important;
-    opacity: 1 !important; 
-    animation: none !important; 
+    opacity: 1 !important; /* ÖNEMLİ DÜZELTME: Görünür yap */
+    animation: none !important; /* ÖNEMLİ DÜZELTME: Animasyonu iptal et */
     
     z-index: 10;
     color: #fff;
@@ -350,7 +349,7 @@
       <a href="mailto:info@goldenpalace.com"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
     </div>
     <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
+      <a href="http://googleusercontent.com/maps/google.com/2" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
     </div>
   </div>
 
@@ -435,7 +434,7 @@
             <h3 data-key="footer_col_1_title">Menü Link</h3>
             <ul class="footer-links">
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
-                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
+                <li><a href="#page-about" data-page="page-about" data-key="nav_about">Kurumsal</a></li>
                 <li><a href="#page-services" data-page="page-services" data-key="nav_services">Hizmetler</a></li>
                 <li><a href="#page-projects" data-page="page-projects" data-key="nav_projects">Projeler</a></li>
                 <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
@@ -514,7 +513,7 @@
 
 
 <div id="house-detail" class="house-detail">
-  <button onclick="closeHouseDetail()">← Geri</button>
+  <button onclick="closeHouseDetail()"><- Geri</button>
   <div id="house-detail-content"></div>
 </div>
 
