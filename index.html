@@ -18,6 +18,8 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 <link rel="stylesheet" href="style.css?v=1.6">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
   header {
@@ -70,29 +72,28 @@
     padding: 10px 30px;
     height: 80px;
   }
-
   /* "Yol Tarifi Al" Buton Stili */
   .header-top-row .top-bar-right a {
-    background-color: #ffcc66; /* Sitenin altın rengi */
-    color: #111; /* Koyu renk yazı */
-    padding: 6px 14px; /* Buton boyutu */
+    background-color: #ffcc66;
+    color: #111;
+    padding: 6px 14px;
     border-radius: 4px;
-    font-weight: 700; /* Daha kalın yazı */
-    font-size: 0.8rem; /* Yazı boyutu */
+    font-weight: 700;
+    font-size: 0.8rem;
     transition: background-color 0.3s, color 0.3s;
   }
   .header-top-row .top-bar-right a:hover {
-    background-color: #ffffff; /* Beyaz arkaplan */
+    background-color: #ffffff;
     color: #111;
   }
   .header-top-row .top-bar-right a i {
-    color: #111; /* İkonu da koyu yap */
+    color: #111;
     transition: color 0.3s;
     margin-right: 6px;
   }
 
 
-  /* === STATİK HERO STİLLERİ (Slider stilleri kaldırıldı) === */
+  /* === STATİK HERO STİLLERİ (Hala Aktif) === */
   .hero {
     height: 100vh;
     display: flex;
@@ -103,7 +104,6 @@
     background-size: cover;
     background-position: center;
     position: relative; 
-    /* 2-satırlı header için padding ayarı (mobil @media içinde) */
   }
   .hero::before {
     content: '';
@@ -135,6 +135,61 @@
       font-size: 1.25rem;
       margin: 10px 0 30px 0;
   }
+  
+  /* === ADIM 1 (CSS): SLIDER İÇİN YENİ STİLLER EKLENDİ === */
+  .hero-slider {
+    height: 100vh;
+    width: 100%;
+    position: relative; 
+  }
+  .hero-slider .swiper-slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+  }
+  .hero-slider .swiper-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6); /* Resimleri karart */
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #ffffff;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    z-index: 11; 
+  }
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    opacity: 1;
+  }
+  .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .swiper-pagination-bullet-active {
+    background: #ffcc66; 
+  }
+  .hero-content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 800px;
+  }
+  /* === SLIDER STİLLERİ SONU === */
+
   
   /* Keşfet Butonu stilleri */
   .cta-group {
