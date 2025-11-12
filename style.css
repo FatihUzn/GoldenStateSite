@@ -1700,22 +1700,20 @@ tant;
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 2.5s ease-in-out;
   filter: brightness(0.7);
 }
 
-.hero-slider .slide.active {
-  opacity: 1;
+/* Görsellerin ekran oranına uyum sağlaması için */
+@media (min-aspect-ratio: 16/9) {
+  .hero-slider .slide {
+    background-size: cover;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .hero-slider .slide {
+    background-size: contain;
+    background-position: center;
+  }
 }
 
-.hero-content-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 10;
-  width: 90%;
-  max-width: 800px;
-}
