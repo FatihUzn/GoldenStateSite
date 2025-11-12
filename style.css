@@ -1552,6 +1552,32 @@ tant;
   transform: translateY(-2px) scale(1.02);
 }
 
+/* === YENİ EKLEME: 1. FOTOĞRAFTAKİ BUTON İSTEĞİ === */
+.btn-top-info {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    margin-right: 10px;
+    background-color: var(--gold-dark);
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--gold-shadow);
+}
+.btn-top-info:hover {
+    background-color: var(--gold-light);
+    color: #111;
+    transform: translateY(-2px);
+}
+.btn-top-info i {
+    margin-right: 8px;
+    color: #111;
+}
+/* === YENİ EKLEME SONU === */
 
 .hero-content-overlay h1 {
   font-size: clamp(32px, 5vw, 56px);
