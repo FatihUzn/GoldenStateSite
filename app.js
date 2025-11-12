@@ -797,6 +797,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     showPage(initialPage);
 });
 
+// === HERO SLIDER OTOMATİK GEÇİŞ ===
+setInterval(() => {
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  const active = document.querySelector('.hero-slider .slide.active');
+  if (!slides.length || !active) return;
+  
+  let next = active.nextElementSibling;
+  if (!next || !next.classList.contains('slide')) {
+    next = slides[0]; // sona gelince başa dön
+  }
+
+  active.classList.remove('active');
+  next.classList.add('active');
+}, 5000); // 5 saniyede bir değişim
+
 
 let currentImages = [];
 let currentIndex = 0;
