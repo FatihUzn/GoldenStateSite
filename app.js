@@ -731,31 +731,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupMobileMenu();
     setupProjectReservation(); 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cta = document.getElementById("discover-cta");
-  if (cta) {
-      const button = cta.querySelector(".btn");
-      const dropdown = cta.querySelector(".dropdown");
-
-      button.addEventListener("click", e => {
-          e.preventDefault();
-          e.stopPropagation();
-          cta.classList.toggle("open");
-      });
-
-      document.addEventListener("click", e => {
-          if (cta && !cta.contains(e.target)) cta.classList.remove("open");
-      });
-
-      dropdown.querySelectorAll("a[data-page]").forEach(link => {
-          link.addEventListener("click", e => {
-              e.preventDefault();
-              e.stopPropagation();
-              const pageId = link.getAttribute("data-page");
-              location.hash = pageId;
-              cta.classList.remove("open");
-          });
-      });
   } else {
       console.error("CTA Grubu 'discover-cta' bulunamadı!");
   }

@@ -1417,16 +1417,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('assets/insaat_hero-mobil.webp') !impor
 tant;
   }
-  
-/* === HERO SLIDER STİLLERİ === */
+
+ /* === HERO SLIDER STİLLERİ (TEMİZ) === */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .hero-slider {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 1;
+  pointer-events: none; /* tıklama engellemesin */
 }
 
 .hero-slider .slide {
@@ -1436,53 +1442,29 @@ tant;
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 2.5s ease-in-out;
-  filter: brightness(0.6);
+  filter: brightness(0.7);
 }
 
 .hero-slider .slide.active {
   opacity: 1;
 }
 
-  header {
-    backdrop-filter: none;
-    background: rgba(10, 10, 10, 0.9);
-  }
-  .project-reservation-form,
-  #otel-reservation-container {
-    backdrop-filter: none;
-    background: rgba(0, 0, 0, 0.7);
-  }
-  .availability-modal {
-    backdrop-filter: none;
-    background: rgba(0, 0, 0, 0.8);
-  }
-  .house-detail {
-    backdrop-filter: none;
-    background: rgba(0, 0, 0, 0.95);
-  }
-  
-  #page-satilik_kiralik .house-gallery,
-  #page-otel .house-gallery {
-      padding: 0 20px; 
-  }
-  #page-satilik_kiralik h2,
-  #page-otel h2 {
-      padding-left: 20px;
-      padding-right: 20px;
-      font-size: 24px !important; 
-  }
-  .btn-page-back {
-      left: 20px;
-      top: 90px; 
-  }
-  .new-layout-container {
-      padding: 0; 
-  }
-  
+.hero-content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  color: #fff;
+  width: 90%;
+  max-width: 800px;
 }
+ 
 .hero {
   position: relative;
   height: 100vh;
