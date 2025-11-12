@@ -91,97 +91,54 @@
   }
 
 
-  /* === YENİ SAF CSS SLIDER STİLLERİ === */
-  .css-slider-hero {
+  /* === STATİK HERO STİLLERİ (Geri Eklendi) === */
+  .hero {
     height: 100vh;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
     position: relative; 
-    overflow: hidden; /* Taşmaları gizle */
+    /* 2-satırlı header için padding ayarı (mobil @media içinde) */
   }
-  
-  .css-slider-hero .slide-image {
+  .hero::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6); /* Resimleri karart */
-    
-    /* Animasyon ayarları */
-    opacity: 0; /* Başlangıçta görünmez */
-    animation-name: fade-slider;
-    animation-duration: 18s; /* Toplam süre (3 resim * 6 saniye) */
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
   }
-
-  /* Animasyon Gecikmeleri (Her resim 6 saniye arayla başlar) */
-  .css-slider-hero .slide-image:nth-child(1) {
-    animation-delay: 0s;
+  .hero > div {
+    position: relative; /* Overlay'in üstünde kalmak için */
+    z-index: 2;
   }
-  .css-slider-hero .slide-image:nth-child(2) {
-    animation-delay: 6s;
-  }
-  .css-slider-hero .slide-image:nth-child(3) {
-    animation-delay: 12s;
-  }
-
-  /* Animasyon Keyframes (Görün, Dur, Kaybol) */
-  @keyframes fade-slider {
-    0% { opacity: 0; }
-    8% { opacity: 1; }  /* 1.5s'de görünür olur */
-    33% { opacity: 1; } /* ~4.5s görünür kalır */
-    41% { opacity: 0; } /* 1.5s'de kaybolur */
-    100% { opacity: 0; }/* Kalan sürede gizli kalır */
-  }
-  
-  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA === */
-  /* Bu, mobil görünümde içeriğin sağa kaymasını engeller */
-  .css-slider-hero .hero-content-overlay {
-    left: 50%; /* Orta noktayı garantile */
-    transform: translate(-50%, -50%); /* Kendi genişliğinin yarısı kadar sola kaydırarak tam ortala */
-    text-align: center; /* Metni ortala */
-  }
-  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA BİTTİ === */
-
-
-  /* İçerik Katmanı (Keşfet Butonu vb.) - GÜNCELLENDİ */
-  .hero-content-overlay {
-    position: absolute;
-    top: 50%;
-    /* BURADAKİ LEFT VE TRANSFORM ÖZELLİKLERİNİ KALDIRDIK VEYA GÜNCELLEDİK */
-    z-index: 10;
-    color: #fff;
-    /* text-align: center; (Zaten yukarıdaki yeni kuralda var) */
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    width: 90%;
-    max-width: 800px;
-    padding: 0 15px; /* Kenarlardan biraz boşluk ekle, mobil'de taşmayı önler */
-    box-sizing: border-box; /* Padding'i genişliğe dahil et */
-  }
-  /* === CSS SLIDER SONU === */
-  
-  /* Keşfet Butonu stilleri */
-  .cta-group {
-    position: relative;
-    display: inline-block;
-  }
-  .hero-content-overlay .hero-since {
+  .hero .hero-since {
       font-size: 1.1rem;
       font-weight: 500;
       letter-spacing: 2px;
       margin-bottom: 10px;
   }
-  .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin: 0;
+  .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      margin: 0;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
+  .hero p {
+      font-size: 1.25rem;
+      margin: 10px 0 30px 0;
+  }
+  
+  /* Keşfet Butonu stilleri */
+  .cta-group {
+    position: relative;
+    display: inline-block;
   }
   .cta-group .dropdown {
     display: none;
@@ -324,7 +281,11 @@
       padding: 10px 15px;
       height: 70px;
     }
-    .hero-content-overlay h1 {
+    .hero {
+      /* Statik hero'ya 2 satırlı header için padding ekle */
+      padding-top: 140px; 
+    }
+    .hero h1 {
       font-size: 3rem; /* Mobil'de başlık */
     }
 
@@ -394,13 +355,8 @@
 </header>
 <main id="page-container">
 
-    <section class="hero page-section active css-slider-hero" id="hero">
-      
-      <img class="slide-image" src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
-      <img class="slide-image" src="assets/for_proje2.webp" alt="Şehir Projesi" loading="lazy">
-      <img class="slide-image" src="assets/pruva-otel.webp" alt="Pruva Otel Projesi" loading="lazy">
-
-      <div class="hero-content-overlay">
+    <section id="hero" class="hero page-section active" style="background-image: url('assets/for_hero.webp');">
+      <div>
         <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
         <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
