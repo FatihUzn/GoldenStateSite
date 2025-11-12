@@ -1418,122 +1418,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 tant;
   }
 
-/* === HERO METİN ORTALAMA DÜZENİ === */
-.hero-content-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  color: #fff;
-  width: 90%;
-  max-width: 800px;
-  padding: 0 20px;
 }
-
-.hero-content-overlay h1 {
-  font-size: 56px;
-  margin-bottom: 20px;
-}
-
-.hero-content-overlay p {
-  font-size: 20px;
-  color: #ddd;
-  margin-bottom: 40px;
-}
-
-@media (max-width: 768px) {
-  .hero-content-overlay h1 {
-    font-size: 36px;
-  }
-  .hero-content-overlay p {
-    font-size: 18px;
-  }
-}
-
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
- /* === HERO SLIDER STİLLERİ (TEMİZ) === */
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.hero-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none; /* tıklama engellemesin */
-}
-
-.hero-slider .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 2.5s ease-in-out;
-  filter: brightness(0.7);
-}
-
-.hero-slider .slide.active {
-  opacity: 1;
-}
-
-.hero-content-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
-  color: #fff;
-  width: 90%;
-  max-width: 800px;
-}
- 
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.hero-slider .slide {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-content-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  width: 90%;
-  color: #fff;
-}
-
-
-/* === YENİ EKLENEN PERFORMANS KODLARI === */
-
 /* JS'den taşınan yeni CSS animasyonu */
 .card-fade-in {
     opacity: 0;
@@ -1548,35 +1433,6 @@ tant;
   }
 }
 
-/* Mobil cihazlarda (768px ve altı) ağır animasyonları durdur */
-@media (max-width: 768px) {
-  h1, h2, h3, h4,
-  .brand-title, .footer-title {
-    /* En ağır animasyonu (yazı gradyanı) durdur */
-    animation: none;
-    background-size: 100% auto; 
-  }
-  
-  .btn:hover {
-     /* Mobil cihazlarda hover efektleri takılma yapar */
-     transform: none; 
-     box-shadow: 0 4px 15px rgba(0,0,0,0.4), var(--gold-shadow);
-  }
-
-  .project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
-      /* Kartların büyüme animasyonunu mobilde kapat */
-      transform: none;
-      box-shadow: none;
-      border-color: var(--gold-dark);
-  }
-  
-  #page-satilik_kiralik .house-card:hover,
-  #page-otel .house-card:hover {
-      /* Büyüme efektini mobilde kapat */
-      transform: none;
-      box-shadow: none;
-  }
-}
 
 /* === YENİ EKLENEN BUTON STİLLERİ === */
 .lightbox-nav-btn {
@@ -1695,62 +1551,7 @@ tant;
   box-shadow: var(--gold-shadow);
   transform: translateY(-2px) scale(1.02);
 }
-/* === YENİ EKLEME SONU === */
-/* === HERO SLIDER STİLLERİ === */
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
 
-.hero-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero-slider .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 2.5s ease-in-out;
-  filter: brightness(0.7);
-}
-
-/* Görsellerin ekran oranına uyum sağlaması için */
-@media (min-aspect-ratio: 16/9) {
-  .hero-slider .slide {
-    background-size: cover;
-  }
-}
-@media (max-aspect-ratio: 16/9) {
-  .hero-slider .slide {
-    background-size: contain;
-    background-position: center;
-  }
-
-}
-/* === HERO METİN ORTALAMA FİNAL DÜZENİ === */
-.hero-content-overlay {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  text-align: center !important;
-  z-index: 10 !important;
-  width: 90% !important;
-  max-width: 800px !important;
-  color: #fff !important;
-}
 
 .hero-content-overlay h1 {
   font-size: clamp(32px, 5vw, 56px);
@@ -1762,5 +1563,3 @@ tant;
   color: #ddd;
   margin-bottom: 40px;
 }
-
-
