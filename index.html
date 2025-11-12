@@ -93,48 +93,13 @@
   }
 
 
-  /* === STATİK HERO STİLLERİ (Hala Aktif) === */
-  .hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    background-size: cover;
-    background-position: center;
-    position: relative; 
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-  }
-  .hero > div {
-    position: relative; /* Overlay'in üstünde kalmak için */
-    z-index: 2;
-  }
-  .hero .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4.5rem;
-      font-weight: 900;
-      margin: 0;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  }
-  .hero p {
-      font-size: 1.25rem;
-      margin: 10px 0 30px 0;
-  }
+  /* === STATİK HERO STİLLERİ (Artık Kullanılmıyor) === */
+  /* .hero { ... } */
+  /* .hero::before { ... } */
+  /* .hero > div { ... } */
+  /* .hero .hero-since { ... } */
+  /* .hero h1 { ... } */
+  /* .hero p { ... } */
   
   /* === ADIM 1 (CSS): SLIDER İÇİN YENİ STİLLER EKLENDİ === */
   .hero-slider {
@@ -195,6 +160,22 @@
   .cta-group {
     position: relative;
     display: inline-block;
+  }
+  .hero-content-overlay .hero-since {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+  }
+  .hero-content-overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin: 0;
+  }
+  .hero-content-overlay p {
+    font-size: 1.25rem;
+    margin: 10px 0 30px 0;
   }
   .cta-group .dropdown {
     display: none;
@@ -337,11 +318,10 @@
       padding: 10px 15px;
       height: 70px;
     }
-    .hero {
-      /* Statik hero'ya 2 satırlı header için padding ekle */
-      padding-top: 140px; 
-    }
-    .hero h1 {
+    /* SLIDER'sız hero padding'i kaldırıldı */
+    /* .hero { padding-top: 140px; } */
+    
+    .hero-content-overlay h1 {
       font-size: 3rem; /* Mobil'de başlık */
     }
 
@@ -411,8 +391,30 @@
 </header>
 <main id="page-container">
 
-    <section id="hero" class="hero page-section active" style="background-image: url('assets/for_hero.webp');">
-      <div>
+    <section class="hero page-section active hero-slider swiper" id="hero">
+      
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <img src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
+        </div>
+        
+        <div class="swiper-slide">
+          <img src="assets/for_proje2.webp" alt="Şehir Projesi" loading="lazy">
+        </div>
+        
+        <div class="swiper-slide">
+          <img src="assets/pruva-otel.webp" alt="Pruva Otel Projesi" loading="lazy">
+        </div>
+    
+      </div>
+      
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      
+      <div class="swiper-pagination"></div>
+
+      <div class="hero-content-overlay">
         <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
         <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
@@ -449,7 +451,7 @@
             <ul class="footer-links">
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Mimari Tasarım</a></li>
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_2">İç Mekan Tasarımı</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Restorasyon ve Koruma</a></li>
+                <li><a href="#page-services" data-page-page-services" data-key="service_h3_3">Restorasyon ve Koruma</a></li>
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_4">Proje Yönetimi</a></li>
             </ul>
         </div>
