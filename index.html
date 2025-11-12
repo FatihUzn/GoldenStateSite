@@ -96,11 +96,13 @@
     position: relative;
     display: inline-block;
   }
-  .cta-group .dropdown {
+.cta-group .dropdown {
     display: none;
     position: absolute;
     background-color: rgba(20, 20, 20, 0.95);
-    min-width: 200px;
+    /* min-width: 200px; */ /* <--- BU SATIRI SİLİN VEYA YORUM YAPIN */
+    width: max-content; /* <--- YENİ EKLENDİ (Genişliği içeriğe göre ayarlar) */
+    max-width: 90vw; /* <--- YENİ EKLENDİ (Ekrandan taşmasın) */
     box-shadow: 0 8px 16px rgba(0,0,0,0.5);
     z-index: 1;
     border-radius: 5px;
@@ -108,17 +110,26 @@
     top: 100%; 
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 10px;
+    margin-top: 15px; /* <--- DEĞİŞTİ (10px idi, butondan uzaklaştırdık) */
   }
   .cta-group.open .dropdown {
-    display: block;
+    .cta-group.open .dropdown {
+    display: flex; /* <--- DEĞİŞTİ (block idi, flex yaptık) */
+    flex-direction: row; /* <--- YENİ EKLENDİ (Yan yana dizmek için) */
+    gap: 5px; /* <--- YENİ EKLENDİ (Butonlar arasına boşluk) */
+    padding: 5px; /* <--- YENİ EKLENDİ (Dış çerçeveye boşluk) */
+  }
   }
   .cta-group .dropdown a {
+   .cta-group .dropdown a {
     color: #fff;
-    padding: 12px 16px;
+    padding: 8px 12px; /* <--- DEĞİŞTİ (Daha küçük, "hap" gibi görünmesi için) */
     text-decoration: none;
     display: block;
     transition: background-color 0.3s;
+    border-radius: 5px; /* <--- YENİ EKLENDİ (Köşeleri yuvarlatmak için) */
+    white-space: nowrap; /* <--- YENİ EKLENDİ ("Ticari Ve Konut" gibi uzun yazıların kırılmasını engeller) */
+  }
   }
   .cta-group .dropdown a:hover {
     background-color: #ffcc66; 
