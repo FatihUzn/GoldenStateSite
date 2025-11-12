@@ -727,50 +727,66 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     setTimeout(preloadProjectImages, 1000); 
-    
     setupMobileMenu();
     setupProjectReservation(); 
 
-  } else {
-      console.error("CTA Grubu 'discover-cta' bulunamadı!");
-  }
-});
+    // === KEŞFET BUTONU (CTA) İÇİN ===
+    const cta = document.getElementById("discover-cta");
+    if (cta) {
+        const button = cta.querySelector(".btn");
+        const dropdown = cta.querySelector(".dropdown");
+
+        button.addEventListener("click", e => {
+            e.preventDefault();
+            e.stopPropagation();
+            cta.classList.toggle("open");
+        });
+
+        document.addEventListener("click", e => {
+            if (cta && !cta.contains(e.target)) cta.classList.remove("open");
+        });
+
+        dropdown.querySelectorAll("a[data-page]").forEach(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+                e.stopPropagation();
+                const pageId = link.getAttribute("data-page");
+                location.hash = pageId;
+                cta.classList.remove("open");
+            });
+        });
+    } else {
+        console.error("CTA Grubu 'discover-cta' bulunamadı!");
+    }
 
     // === Nav linkleri artık hash'i değiştiriyor ===
     document.querySelectorAll('.nav-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
-            location.hash = pageId; // Hash'i değiştir
+            location.hash = pageId; 
         });
     });
-    
+
     // === 'Geri' tuşu artık hash'i değiştiriyor ===
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
-            // Geri butonunun hangi sayfaya döneceğini hash'ten al
             const targetHash = e.target.getAttribute('href') || '#hero';
-            location.hash = targetHash; // Hash'i değiştir
+            location.hash = targetHash; 
         }
     });
 
-    // === SCROLL EVENT LISTENER KALDIRILDI ===
-    // window.addEventListener('scroll', throttle(handleScrollEffects, 30));
-    // === KALDIRMA SONU ===
-
-    // === Sayfa yüklendiğinde ve Geri tuşuna basıldığında (hashchange) ===
-    
-    // Tarayıcı Geri/İleri tuşlarına basıldığında tetiklenir
+    // === Hash değişimi ===
     window.addEventListener('hashchange', () => {
         const pageId = location.hash.replace('#', '') || 'hero';
         showPage(pageId);
     });
 
-    // Sayfa ilk yüklendiğinde URL'deki hash'e göre doğru sayfayı yükle
     const initialPage = location.hash.replace('#', '') || 'hero';
     showPage(initialPage);
-});
+}); // ✅ sadece bu bir tane kapanış olacak
+
 
 // === HERO SLIDER OTOMATİK GEÇİŞ ===
 document.addEventListener('DOMContentLoaded', () => {
