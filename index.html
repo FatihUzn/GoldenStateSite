@@ -336,22 +336,45 @@
 </header>
 <main id="page-container">
 
-    <section id="hero" class="hero page-section active" style="background-image: url('assets/for_hero.webp');">
-      <div>
+<section id="hero" class="hero page-section active">
+  <div class="hero-slider">
+    
+    <div class="hero-slide active" style="background-image: url('assets/for_hero.webp');">
+      <div class="hero-content">
         <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
         <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
-        
         <div class="cta-group" id="discover-cta">
           <a href="#" class="btn btn-hero" data-key="btn_discover">Keşfet</a>
           <div class="dropdown">
-            <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel">Turizm De Biz</a>
-            <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
-            <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental">Ticari Ve Konut</a>
+            <a href="#" data-page="page-otel" data-key="drop_hotel">Turizm De Biz</a>
+            <a href="#" data-page="page-restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
+            <a href="#" data-page="page-satilik_kiralik" data-key="drop_rental">Ticari Ve Konut</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="hero-slide" style="background-image: url('assets/otel1.webp');">
+      <div class="hero-content">
+        <h1>Golden Palace Otel</h1>
+        <p>Konfor ve zarafetin buluştuğu yer.</p>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="background-image: url('assets/restorasyon1.webp');">
+      <div class="hero-content">
+        <h1>Restorasyon Projeleri</h1>
+        <p>Tarihi yapılara yeniden hayat veriyoruz.</p>
+      </div>
+    </div>
+
+    <button class="hero-prev">‹</button>
+    <button class="hero-next">›</button>
+  </div>
+</section>
+
+
     <footer class="site-footer">
     <div class="footer-grid">
 
