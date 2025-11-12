@@ -160,6 +160,27 @@
     padding: 0 15px; /* Kenarlardan biraz boşluk ekle, mobil'de taşmayı önler */
     box-sizing: border-box; /* Padding'i genişliğe dahil et */
   }
+  /* Hero başlık ve içerik merkezleme düzeltmesi */
+.hero-content-overlay {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* İçerik hiyerarşisi */
+.hero-content-overlay h1,
+.hero-content-overlay p {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Ek olarak, görselin çok büyük ekranlarda bile tam ortada kalmasını sağlar */
+.css-slider-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   /* === CSS SLIDER SONU === */
   
   /* Keşfet Butonu stilleri */
