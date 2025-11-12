@@ -479,6 +479,12 @@ section#projects {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* === YENİ GENEL KURAL: TÜM ALT SAYFALARI HEADER'DAN AŞAĞI İT === */
+.page-section:not(#hero) {
+    padding-top: 160px; /* Header yüksekliği (~120px) + boşluk (40px) */
+}
+
+
 #otel-reservation-container {
   display: none;
   background: rgba(0, 0, 0, 0.6);
@@ -1133,11 +1139,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-#page-satilik_kiralik {
-    background-color: #111111 !important;
-    padding-top: 100px !important;
-    padding-bottom: 100px !important;
-}
+/* === ESKİ/HATALI PADDING KURALI SİLİNDİ === */
+
 #page-otel {
     background-color: #111111 !important;
     padding-bottom: 100px !important;
@@ -1250,30 +1253,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
-}
-
-.btn-page-back {
-  position: absolute;
-  top: 100px;
-  left: 40px;
-  z-index: 100;
-  font-family: 'Inter', sans-serif;
-  padding: 10px 20px;
-  background: var(--gold-dark);
-  color: #111;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.4s var(--easing);
-  border: 1px solid var(--gold-light);
-  font-size: 16px;
-  text-decoration: none;
-  display: inline-block;
-}
-.btn-page-back:hover {
-  background: var(--gold-light);
-  color: #000;
-  transform: scale(1.05);
 }
 
 .restoration-card {
@@ -1597,10 +1576,29 @@ tant;
 /* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme)
 */
 .btn-page-back {
-  top: 140px;
+  position: absolute;
+  top: 160px; /* YENİ DEĞER: 140px idi */
   left: 40px;
-  z-index: 100;
+  z-index: 1001; /* YENİ DEĞER: 100 idi (Header'ın (1000) önüne çıktı) */
+  font-family: 'Inter', sans-serif;
+  padding: 10px 20px;
+  background: var(--gold-dark);
+  color: #111;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s var(--easing);
+  border: 1px solid var(--gold-light);
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
 }
+.btn-page-back:hover {
+  background: var(--gold-light);
+  color: #000;
+  transform: scale(1.05);
+}
+
 
 /* 3. Düzeltme: Yavaş Zoom Efekti (Slider iptali)
 */
@@ -1753,18 +1751,6 @@ tant;
   opacity: 0.8;
 }
 
-/* Parıltının yavaş hareket animasyonu */
-@keyframes goldPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 1;
-  }
-}
-
 /* Hero içeriği overlay’in üstünde kalsın */
 .hero-video .hero-content-overlay {
   position: relative;
@@ -1810,4 +1796,3 @@ tant;
   transform: translateY(-3px) scale(1.05);
 }
 /* === DÜZELTME SONU === */
-
