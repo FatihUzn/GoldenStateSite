@@ -142,9 +142,10 @@
     top: 50%;
     left: 50%;
     
+    /* ÖNEMLİ DÜZELTME: style.css'teki çakışan kuralı eziyoruz */
     transform: translate(-50%, -50%) !important;
-    opacity: 1 !important; /* ÖNEMLİ DÜZELTME: Görünür yap */
-    animation: none !important; /* ÖNEMLİ DÜZELTME: Animasyonu iptal et */
+    opacity: 1 !important; /* GÖRÜNÜRLÜK KESİNLEŞTİRİLDİ */
+    animation: none !important; /* ESKİ ANIMASYON IPTAL EDILDI */
     
     z-index: 10;
     color: #fff;
@@ -349,7 +350,7 @@
       <a href="mailto:info@goldenpalace.com"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
     </div>
     <div class="top-bar-right">
-      <a href="http://googleusercontent.com/maps/google.com/2" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
     </div>
   </div>
 
@@ -427,7 +428,10 @@
         </div>
       </div>
     </section>
-    <footer class="site-footer">
+    </main>
+
+
+<footer class="site-footer">
     <div class="footer-grid">
 
         <div class="footer-column">
@@ -513,7 +517,7 @@
 
 
 <div id="house-detail" class="house-detail">
-  <button onclick="closeHouseDetail()"><- Geri</button>
+  <button onclick="closeHouseDetail()">← Geri</button>
   <div id="house-detail-content"></div>
 </div>
 
