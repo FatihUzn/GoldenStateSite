@@ -71,24 +71,8 @@
     height: 80px;
   }
 
-  /* === STATİK HERO STİLLERİ (Slider kaldırıldı) === */
-  .hero { /* .hero-slider sınıfı .hero olarak değiştirildi */
-    height: 100vh;
-    width: 100%;
-    position: relative; 
-  }
-  .hero-static-img { /* Swiper stilleri yerine statik resim sınıfı */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6); /* Resimleri karart */
-  }
+  /* === BURADAKİ ÇAKIŞAN STATİK HERO CSS'İ KALDIRILDI === */
   
-  /* KALDIRILDI: Slider Okları ve Noktaları ile ilgili tüm CSS kuralları */
-
   /* Hero İçerik Katmanı (Değişmedi) */
   .hero-content-overlay {
     position: absolute;
@@ -333,15 +317,12 @@
 
     <section class="hero page-section active" id="hero">
   
-  <!-- === HERO SLIDER BAŞLANGIÇ === -->
-<div class="hero-slider">
+  <div class="hero-slider">
   <div class="slide active" style="background-image: url('assets/for_hero.webp');"></div>
   <div class="slide" style="background-image: url('assets/pruva_otel_yeni.webp');"></div>
   <div class="slide" style="background-image: url('assets/otel_hero.webp');"></div>
   <div class="slide" style="background-image: url('assets/restorasyon2.webp');"></div>
 </div>
-
-  <!-- === HERO SLIDER SON === -->
 
   <div class="hero-content-overlay">
     <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
@@ -358,26 +339,6 @@
     </div>
   </div>
 </section>
-
-      
-
-
-      
-      <div class="hero-content-overlay">
-        <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
-        <h1 data-key="hero_title">Golden Palace</h1>
-        <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
-        
-        <div class="cta-group" id="discover-cta">
-          <a href="#" class="btn btn-hero" data-key="btn_discover">Keşfet</a>
-          <div class="dropdown">
-            <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel">Turizm De Biz</a>
-            <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
-            <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental">Ticari Ve Konut</a>
-          </div>
-        </div>
-      </div>
-    </section>
     </main>
 
 
