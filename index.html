@@ -136,18 +136,29 @@
     100% { opacity: 0; }/* Kalan sürede gizli kalır */
   }
   
-  /* İçerik Katmanı (Keşfet Butonu vb.) */
+  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA === */
+  /* Bu, mobil görünümde içeriğin sağa kaymasını engeller */
+  .css-slider-hero .hero-content-overlay {
+    left: 50%; /* Orta noktayı garantile */
+    transform: translate(-50%, -50%); /* Kendi genişliğinin yarısı kadar sola kaydırarak tam ortala */
+    text-align: center; /* Metni ortala */
+  }
+  /* === YENİ EKLEDİĞİMİZ CSS KURALI BURADA BİTTİ === */
+
+
+  /* İçerik Katmanı (Keşfet Butonu vb.) - GÜNCELLENDİ */
   .hero-content-overlay {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* BURADAKİ LEFT VE TRANSFORM ÖZELLİKLERİNİ KALDIRDIK VEYA GÜNCELLEDİK */
     z-index: 10;
     color: #fff;
-    text-align: center;
+    /* text-align: center; (Zaten yukarıdaki yeni kuralda var) */
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     width: 90%;
     max-width: 800px;
+    padding: 0 15px; /* Kenarlardan biraz boşluk ekle, mobil'de taşmayı önler */
+    box-sizing: border-box; /* Padding'i genişliğe dahil et */
   }
   /* === CSS SLIDER SONU === */
   
