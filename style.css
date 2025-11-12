@@ -1619,8 +1619,8 @@ tant;
   }
 }
 /* === FİNAL DÜZELTME SONU === */
-/* === FADE HERO BACKGROUND === */
-.hero-fade {
+/* === PARALLAX HERO === */
+.hero-parallax {
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -1631,40 +1631,22 @@ tant;
   color: #fff;
 }
 
-.hero-fade-bg {
+.hero-parallax .hero-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%; /* biraz büyük, scroll’da kayma için */
+  background-image: url('assets/otel_hero.webp');
   background-size: cover;
   background-position: center;
+  transform: translateY(0);
   filter: brightness(0.6);
-  animation: fadeSlideshow 15s infinite;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: transform 0.1s linear;
+  z-index: 1;
 }
 
-.hero-fade-bg:nth-child(1) {
-  background-image: url('assets/otel_hero.webp');
-  animation-delay: 0s;
-}
-.hero-fade-bg.second {
-  background-image: url('assets/for_hero.webp');
-  animation-delay: 5s;
-}
-.hero-fade-bg.third {
-  background-image: url('assets/background.webp');
-  animation-delay: 10s;
-}
-
-@keyframes fadeSlideshow {
-  0%, 33% { opacity: 1; }
-  34%, 100% { opacity: 0; }
-}
-
-/* Hero içerik katmanı */
-.hero-fade .hero-content-overlay {
+.hero-parallax .hero-content-overlay {
   position: relative;
   z-index: 10;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
