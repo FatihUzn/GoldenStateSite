@@ -18,8 +18,6 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 <link rel="stylesheet" href="style.css?v=1.6">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
   header {
@@ -73,21 +71,13 @@
     height: 80px;
   }
 
-  /* === SLIDER'LI YENİ HERO STİLLERİ === */
-  .hero-slider {
+  /* === STATİK HERO STİLLERİ (Slider kaldırıldı) === */
+  .hero { /* .hero-slider sınıfı .hero olarak değiştirildi */
     height: 100vh;
     width: 100%;
     position: relative; 
   }
-  .hero-slider .swiper-slide {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-  }
-  .hero-slider .swiper-slide img {
+  .hero-static-img { /* Swiper stilleri yerine statik resim sınıfı */
     position: absolute;
     top: 0;
     left: 0;
@@ -97,27 +87,9 @@
     filter: brightness(0.6); /* Resimleri karart */
   }
   
-  /* Slider Okları */
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: #ffffff;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    z-index: 11; 
-  }
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    opacity: 1;
-  }
-  /* Slider Noktaları */
-  .swiper-pagination-bullet {
-    background: rgba(255, 255, 255, 0.7);
-  }
-  .swiper-pagination-bullet-active {
-    background: #ffcc66; 
-  }
+  /* KALDIRILDI: Slider Okları ve Noktaları ile ilgili tüm CSS kuralları */
 
-  /* Slider'ın ÜSTÜNDEKİ İçerik Katmanı */
+  /* Hero İçerik Katmanı (Değişmedi) */
   .hero-content-overlay {
     position: absolute;
     top: 50%;
@@ -359,29 +331,10 @@
 </header>
 <main id="page-container">
 
-    <section class="hero page-section active hero-slider swiper" id="hero">
+    <section class="hero page-section active" id="hero">
       
-      <div class="swiper-wrapper">
-        
-        <div class="swiper-slide">
-          <img src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="assets/for_proje2.jpg" alt="Şehir Projesi" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="assets/pruva-otel.webp" alt="Pruva Otel Projesi" loading="lazy">
-        </div>
-    
-      </div>
+      <img class="hero-static-img" src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
       
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      
-      <div class="swiper-pagination"></div>
-
       <div class="hero-content-overlay">
         <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
@@ -435,7 +388,8 @@
             <div class="social-icons">
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="#" aria-label="Behance"><i class="fab fa-behandu
+ce"></i></a>
                 <a href="mailto:info@goldenpalace.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
@@ -489,8 +443,6 @@
   <div id="house-detail-content"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     
@@ -506,23 +458,7 @@
       });
     }
 
-    // Hero Slider başlatma
-    var swiper = new Swiper(".hero-slider", {
-      loop: true,
-      effect: "fade", // Solma efekti
-      autoplay: { // Otomatik dönme
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      navigation: { // Ok işaretleri
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: { // Noktalar
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
+    // KALDIRILDI: Hero Slider başlatma Javascript kodu
 
   });
 </script>
