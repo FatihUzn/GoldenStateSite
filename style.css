@@ -1746,4 +1746,44 @@ tant;
   position: relative;
   z-index: 4; /* yazılar üstte */
 }
+/* === FİNAL DÜZELTME (V5): YENİ HERO LİNKLERİ === */
+
+/* "Keşfet" butonundan gelen linklerin yeni kapsayıcısı */
+.hero-links-container {
+  display: flex;
+  flex-wrap: wrap; /* Mobil'de alt alta inebilsin */
+  justify-content: center;
+  gap: 15px; /* Butonlar arası boşluk */
+  margin-top: 30px; /* Üstteki yazıya olan mesafe */
+}
+
+/* Yeni hero link butonlarının stili */
+.btn-hero-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: transparent; /* Şeffaf arka plan */
+  color: var(--gold-light); /* Altın rengi yazı */
+  border: 2px solid var(--gold-dark); /* Altın rengi çerçeve */
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  transition: all 0.4s var(--easing);
+  
+  /* Ana "btn" sınıfından gelen gölgeyi ve animasyonu sıfırlayalım */
+  box-shadow: none;
+  animation: none;
+}
+
+/* Üzerine gelince (hover) efekti */
+.btn-hero-link:hover {
+  background: var(--gold-dark); /* Arka plan altın rengi ol */
+  color: #111; /* Yazı koyu ol */
+  border-color: var(--gold-dark);
+  box-shadow: var(--gold-shadow); /* Gölge ekle */
+  transform: translateY(-3px) scale(1.05);
+}
+/* === DÜZELTME SONU === */
 
