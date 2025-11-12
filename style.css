@@ -1571,13 +1571,13 @@ tant;
 .header-top-row a.btn-top-info {
     display: inline-flex;
     align-items: center;
-    padding: 2px 4px; /* Buton içi boşluğu azalttık */
+    padding: 3px 6px; /* Buton içi boşluğu azalttık */
     margin-right: 10px;
     background-color: var(--gold-dark);
     color: #111;
     border: none;
     border-radius: 6px;
-    font-size: 5px; /* Yazı tipini 14px'ten 13px'e küçülttük */
+    font-size: 8px; /* Yazı tipini 14px'ten 13px'e küçülttük */
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
