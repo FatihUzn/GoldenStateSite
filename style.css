@@ -1483,6 +1483,32 @@ tant;
   }
   
 }
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-slider .slide {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 90%;
+  color: #fff;
+}
+
 
 /* === YENİ EKLENEN PERFORMANS KODLARI === */
 
@@ -1648,3 +1674,48 @@ tant;
   transform: translateY(-2px) scale(1.02);
 }
 /* === YENİ EKLEME SONU === */
+/* === HERO SLIDER STİLLERİ === */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  filter: brightness(0.7);
+}
+
+.hero-slider .slide.active {
+  opacity: 1;
+}
+
+.hero-content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+  width: 90%;
+  max-width: 800px;
+}
