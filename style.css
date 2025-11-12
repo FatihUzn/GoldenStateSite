@@ -1654,4 +1654,44 @@ tant;
     object-position: center center;
   }
 }
+/* === FİNAL DÜZELTME (V4): KEŞFET MENÜSÜ === */
 
+/* Ana menü kutusu (yatay, aşağıda) */
+.cta-group .dropdown {
+  display: none;
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.95);
+  width: max-content; /* Genişlik içeriğe göre */
+  max-width: 90vw;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+  top: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 15px; /* Butondan aşağıya çekme */
+  padding: 5px; /* İç boşluk */
+}
+/* Menü açıldığında (yatay diz) */
+.cta-group.open .dropdown {
+  display: flex;
+  flex-direction: row;
+  gap: 5px; /* Butonlar arası boşluk */
+}
+/* İçerideki linkler (buton görünümü) */
+.cta-group .dropdown a {
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  white-space: nowrap; /* Yazılar kırılmasın */
+}
+/* Linklerin hover (üzerine gelme) stili */
+.cta-group .dropdown a:hover {
+  background-color: #ffcc66; 
+  color: #111;
+}
+/* === DÜZELTME SONU === */

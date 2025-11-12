@@ -91,49 +91,10 @@
     margin: 10px 0 30px 0;
   }
   
-  /* Keşfet Butonu stilleri */
+  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
   .cta-group {
     position: relative;
     display: inline-block;
-  }
-.cta-group .dropdown {
-    display: none;
-    position: absolute;
-    background-color: rgba(20, 20, 20, 0.95);
-    /* min-width: 200px; */ /* <--- BU SATIRI SİLİN VEYA YORUM YAPIN */
-    width: max-content; /* <--- YENİ EKLENDİ (Genişliği içeriğe göre ayarlar) */
-    max-width: 90vw; /* <--- YENİ EKLENDİ (Ekrandan taşmasın) */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-    z-index: 1;
-    border-radius: 5px;
-    overflow: hidden;
-    top: 100%; 
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 15px; /* <--- DEĞİŞTİ (10px idi, butondan uzaklaştırdık) */
-  }
-  .cta-group.open .dropdown {
-    .cta-group.open .dropdown {
-    display: flex; /* <--- DEĞİŞTİ (block idi, flex yaptık) */
-    flex-direction: row; /* <--- YENİ EKLENDİ (Yan yana dizmek için) */
-    gap: 5px; /* <--- YENİ EKLENDİ (Butonlar arasına boşluk) */
-    padding: 5px; /* <--- YENİ EKLENDİ (Dış çerçeveye boşluk) */
-  }
-  }
-  .cta-group .dropdown a {
-   .cta-group .dropdown a {
-    color: #fff;
-    padding: 8px 12px; /* <--- DEĞİŞTİ (Daha küçük, "hap" gibi görünmesi için) */
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s;
-    border-radius: 5px; /* <--- YENİ EKLENDİ (Köşeleri yuvarlatmak için) */
-    white-space: nowrap; /* <--- YENİ EKLENDİ ("Ticari Ve Konut" gibi uzun yazıların kırılmasını engeller) */
-  }
-  }
-  .cta-group .dropdown a:hover {
-    background-color: #ffcc66; 
-    color: #111;
   }
 
   /* ========================================= */
@@ -313,32 +274,7 @@
   </div>
 </header>
 <main id="page-container">
-
-<section class="hero-video page-section active" id="hero">
-  <video autoplay muted loop playsinline class="hero-video-bg">
-    <source src="assets/hero_background.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
-
-  <div class="hero-content-overlay">
-    <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
-    <h1 data-key="hero_title">Golden Palace</h1>
-    <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
-    
-    <div class="cta-group" id="discover-cta">
-      <a href="#" class="btn btn-hero" data-key="btn_discover">Keşfet</a>
-      <div class="dropdown">
-        <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel">Turizm De Biz</a>
-        <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a>
-        <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental">Ticari Ve Konut</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-    </main>
+</main>
 
 
 <footer class="site-footer">
@@ -430,7 +366,6 @@ ce"></i></a>
   <button onclick="closeHouseDetail()">← Geri</button>
   <div id="house-detail-content"></div>
 </div>
-
 
 <script src="app.js?v=1.6" defer></script>
 
