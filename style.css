@@ -1456,6 +1456,56 @@ tant;
   
 }
 
+/* === LIGHTBOX (Slider) === */
+.lightbox-container {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  animation: fadeIn 0.3s ease;
+}
+.lightbox-container.show {
+  display: flex;
+}
+.lightbox-container img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 3px solid var(--gold-light);
+  border-radius: 10px;
+  box-shadow: var(--gold-shadow-intense);
+  transition: opacity 0.3s ease;
+}
+.lightbox-btn {
+  background: var(--gold-dark);
+  color: #111;
+  border: 1px solid var(--gold-light);
+  padding: 10px 20px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.lightbox-btn:hover {
+  background: var(--gold-light);
+  transform: scale(1.1);
+}
+.lightbox-btn:active {
+  transform: scale(0.95);
+}
+@media (max-width: 768px) {
+  .lightbox-btn {
+    padding: 8px 14px;
+    font-size: 18px;
+  }
+}
+
 /* === YENİ EKLENEN PERFORMANS KODLARI === */
 
 /* JS'den taşınan yeni CSS animasyonu */

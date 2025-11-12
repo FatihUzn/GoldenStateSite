@@ -18,8 +18,6 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 <link rel="stylesheet" href="style.css?v=1.6">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
   header {
@@ -60,8 +58,8 @@
     margin-right: 20px;
   }
   .header-top-row i {
-    margin-right: 8px;
     color: #ffcc66;
+    margin-right: 8px;
   }
   .header-bottom-row {
     display: flex;
@@ -72,79 +70,69 @@
     padding: 10px 30px;
     height: 80px;
   }
-
-  /* === SLIDER'LI YENİ HERO STİLLERİ === */
-  .hero-slider {
-    height: 100vh;
-    width: 100%;
-    position: relative; 
+  /* "Yol Tarifi Al" Buton Stili */
+  .header-top-row .top-bar-right a {
+    background-color: #ffcc66; /* Sitenin altın rengi */
+    color: #111; /* Koyu renk yazı */
+    padding: 6px 14px; /* Buton boyutu */
+    border-radius: 4px;
+    font-weight: 700; /* Daha kalın yazı */
+    font-size: 0.8rem; /* Yazı boyutu */
+    transition: background-color 0.3s, color 0.3s;
   }
-  .hero-slider .swiper-slide {
-    position: relative;
+  .header-top-row .top-bar-right a:hover {
+    background-color: #ffffff; /* Beyaz arkaplan */
+    color: #111;
+  }
+  .header-top-row .top-bar-right a i {
+    color: #111; /* İkonu da koyu yap */
+    transition: color 0.3s;
+    margin-right: 6px;
+  }
+
+
+  /* === STATİK HERO STİLLERİ (Slider kodları silindi) === */
+  .hero {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #fff;
+    background-size: cover;
+    background-position: center;
+    position: relative; 
+    /* 2-satırlı header için padding ayarı (mobil @media içinde) */
   }
-  .hero-slider .swiper-slide img {
+  .hero::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6); /* Resimleri karart */
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
   }
-  
-  /* Slider Okları */
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: #ffffff;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    z-index: 11; 
+  .hero > div {
+    position: relative; /* Overlay'in üstünde kalmak için */
+    z-index: 2;
   }
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    opacity: 1;
-  }
-  /* Slider Noktaları */
-  .swiper-pagination-bullet {
-    background: rgba(255, 255, 255, 0.7);
-  }
-  .swiper-pagination-bullet-active {
-    background: #ffcc66; 
-  }
-
-  /* Slider'ın ÜSTÜNDEKİ İçerik Katmanı */
-  .hero-content-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10; /* Swiper'ın üzerinde */
-    color: #fff;
-    text-align: center;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    width: 90%;
-    max-width: 800px;
-  }
-  .hero-content-overlay .hero-since {
+  .hero .hero-since {
       font-size: 1.1rem;
       font-weight: 500;
       letter-spacing: 2px;
       margin-bottom: 10px;
   }
-  .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin: 0;
+  .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      margin: 0;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
+  .hero p {
+      font-size: 1.25rem;
+      margin: 10px 0 30px 0;
   }
   
   /* Keşfet Butonu stilleri */
@@ -285,11 +273,19 @@
       align-items: flex-start;
       gap: 8px;
     }
+    .header-top-row .top-bar-right a {
+        display: inline-block; 
+        margin-top: 5px; 
+    }
     .header-bottom-row {
       padding: 10px 15px;
       height: 70px;
     }
-    .hero-content-overlay h1 {
+    .hero {
+      /* Statik hero'ya 2 satırlı header için padding ekle */
+      padding-top: 140px; 
+    }
+    .hero h1 {
       font-size: 3rem; /* Mobil'de başlık */
     }
 
@@ -319,7 +315,7 @@
       <a href="mailto:info@goldenpalace.com"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
     </div>
     <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
+      <a href="http://googleusercontent.com/maps/google.com/2" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
     </div>
   </div>
 
@@ -359,30 +355,8 @@
 </header>
 <main id="page-container">
 
-    <section class="hero page-section active hero-slider swiper" id="hero">
-      
-      <div class="swiper-wrapper">
-        
-        <div class="swiper-slide">
-          <img src="assets/otel_hero.webp" alt="Otel Projesi" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="assets/for_proje2.webp" alt="Şehir Projesi" loading="lazy">
-        </div>
-        
-        <div class="swiper-slide">
-          <img src="assets/pruva-otel.webp" alt="Pruva Otel Projesi" loading="lazy">
-        </div>
-    
-      </div>
-      
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      
-      <div class="swiper-pagination"></div>
-
-      <div class="hero-content-overlay">
+    <section id="hero" class="hero page-section active" style="background-image: url('assets/for_hero.webp');">
+      <div>
         <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
         <h1 data-key="hero_title">Golden Palace</h1>
         <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
@@ -397,10 +371,7 @@
         </div>
       </div>
     </section>
-    </main>
-
-
-<footer class="site-footer">
+    <footer class="site-footer">
     <div class="footer-grid">
 
         <div class="footer-column">
@@ -408,8 +379,8 @@
             <ul class="footer-links">
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
                 <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
-                <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
-                <li><a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a></li>
+                <li><a href="#page-services" data-page="page-services" data-key="nav_services">Hizmetler</a></li>
+                <li><a href="#page-projects" data-page="page-projects" data-key="nav_projects">Projeler</a></li>
                 <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
             </ul>
         </div>
@@ -473,23 +444,20 @@
         © 2025 Golden Palace Mimarlık. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.
     </div>
 </footer>
-<div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
-  
-  <button id="lightbox-prev" class="lightbox-nav-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
 
-  <img id="lightbox-img" src="" alt="Genişletilmiş Görüntü">
-
-  <button id="lightbox-next" class="lightbox-nav-btn" onclick="event.stopPropagation(); showNextImage();">›</button>
-
+<!-- === GÜNCELLENMİŞ LIGHTBOX (SLIDER) === -->
+<div id="lightbox" class="lightbox-container">
+  <button id="lightbox-prev" class="lightbox-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
+  <img id="lightbox-img" src="" alt="Büyük Görsel">
+  <button id="lightbox-next" class="lightbox-btn" onclick="event.stopPropagation(); showNextImage();">›</button>
 </div>
+
 
 
 <div id="house-detail" class="house-detail">
   <button onclick="closeHouseDetail()">← Geri</button>
   <div id="house-detail-content"></div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -506,24 +474,7 @@
       });
     }
 
-    // Hero Slider başlatma
-    var swiper = new Swiper(".hero-slider", {
-      loop: true,
-      effect: "fade", // Solma efekti
-      autoplay: { // Otomatik dönme
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      navigation: { // Ok işaretleri
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: { // Noktalar
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-
+    // SLIDER BAŞLATMA KODU KALDIRILDI
   });
 </script>
 
@@ -545,4 +496,4 @@
 </div>
 
 </body>
-</html>
+</html> 
