@@ -731,36 +731,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupMobileMenu();
     setupProjectReservation(); 
 
-    const cta = document.getElementById("discover-cta");
-    if (cta) {
-        const button = cta.querySelector(".btn");
-        const dropdown = cta.querySelector(".dropdown");
+document.addEventListener('DOMContentLoaded', () => {
+  const cta = document.getElementById("discover-cta");
+  if (cta) {
+      const button = cta.querySelector(".btn");
+      const dropdown = cta.querySelector(".dropdown");
 
-        button.addEventListener("click", e => {
-            e.preventDefault();
-            e.stopPropagation();
-            cta.classList.toggle("open");
-        });
-        document.addEventListener("click", e => {
-            if (cta && !cta.contains(e.target)) cta.classList.remove("open");
-        });
+      button.addEventListener("click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+          cta.classList.toggle("open");
+      });
 
-        // === Dropdown linkleri artık hash'i değiştiriyor ===
-        dropdown.querySelectorAll("a[data-page]").forEach(link => {
-            link.addEventListener("click", e => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const pageId = link.getAttribute("data-page");
-                location.hash = pageId; // Hash'i değiştir
-                
-                cta.classList.remove("open");
-            });
-        });
-    } else {
-         console.error("CTA Grubu 'discover-cta' bulunamadı!");
-    }
-    
+      document.addEventListener("click", e => {
+          if (cta && !cta.contains(e.target)) cta.classList.remove("open");
+      });
+
+      dropdown.querySelectorAll("a[data-page]").forEach(link => {
+          link.addEventListener("click", e => {
+              e.preventDefault();
+              e.stopPropagation();
+              const pageId = link.getAttribute("data-page");
+              location.hash = pageId;
+              cta.classList.remove("open");
+          });
+      });
+  } else {
+      console.error("CTA Grubu 'discover-cta' bulunamadı!");
+  }
+});
+
     // === Nav linkleri artık hash'i değiştiriyor ===
     document.querySelectorAll('.nav-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -798,19 +798,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // === HERO SLIDER OTOMATİK GEÇİŞ ===
-setInterval(() => {
-  const slides = document.querySelectorAll('.hero-slider .slide');
-  const active = document.querySelector('.hero-slider .slide.active');
-  if (!slides.length || !active) return;
+document.addEventListener('DOMContentLoaded', () => {
+  setInterval(() => {
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    const active = document.querySelector('.hero-slider .slide.active');
+    if (!slides.length || !active) return;
+    
+    let next = active.nextElementSibling;
+    if (!next || !next.classList.contains('slide')) {
+      next = slides[0];
+    }
   
-  let next = active.nextElementSibling;
-  if (!next || !next.classList.contains('slide')) {
-    next = slides[0]; // sona gelince başa dön
-  }
+    active.classList.remove('active');
+    next.classList.add('active');
+  }, 5000);
+});
 
-  active.classList.remove('active');
-  next.classList.add('active');
-}, 5000); // 5 saniyede bir değişim
 
 
 let currentImages = [];
