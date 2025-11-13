@@ -1795,4 +1795,22 @@ tant;
   box-shadow: var(--gold-shadow); /* Gölge ekle */
   transform: translateY(-3px) scale(1.05);
 }
+/* === FİNAL DÜZELTME (V6): RESTORASYON KARTI BAŞLIĞINI GÖSTER === */
+
+#page-restorasyon .house-card h3 {
+    display: block !important;
+    height: auto !important;
+    background: transparent !important;
+    color: #f5f5f5 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !imporant;
+    text-fill-color: initial !important;
+}
 /* === DÜZELTME SONU === */
