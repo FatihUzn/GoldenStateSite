@@ -1812,4 +1812,28 @@ tant;
     -webkit-text-fill-color: initial !important;
     text-fill-color: initial !important;
 }
+/* === YENİ EKLEME: 3 SANİYELİK DÖNGÜSEL METİN STİLLERİ === */
+
+/* 1. Metin Özellikleri (Fade Efekti ve Boyutları) */
+#changing-text {
+    /* Eski p etiketinin font ve margin değerlerini buraya taşıdık */
+    font-size: 1.25rem; /* Yaklaşık 20px */
+    margin: 10px 0 30px 0;
+    color: var(--text); /* Yazı rengi (Beyaz/açık) */
+    text-align: center;
+    line-height: 1.5;
+    
+    /* Fade efekti için CSS geçişleri */
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1; 
+    
+    /* ÖNEMLİ: Metin değişimi sırasında sayfanın titremesini engeller. */
+    min-height: 100px; 
+}
+
+/* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
+/* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
+.hero-links-container.action-buttons {
+    margin-top: 60px; 
+}
 /* === DÜZELTME SONU === */

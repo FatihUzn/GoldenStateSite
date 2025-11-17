@@ -282,11 +282,12 @@
   <div class="hero-content-overlay">
     <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
     <h1 data-key="hero_title">Golden Palace</h1>
-    <p data-key="hero_subtitle">Şehir ve Denizden İlham Alan Lüks Mimari</p>
     
-    <div class="hero-links-container">
+    <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
+    
+    <div class="hero-links-container action-buttons">
       <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Restorasyon Projeleri</a>
+      <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Restorasyon Projeleri</a>
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Ticari Ve Konut</a>
     </div>
 </section>
@@ -385,7 +386,6 @@ ce"></i></a>
   <div id="house-detail-content"></div>
 </div>
 
-<script src="app.js?v=1.6" defer></script>
 
 <div id="restorationImageModal" class="image-modal-overlay">
   <button class="image-modal-close-btn" data-key="btn_close_modal_x">✖</button>
@@ -400,6 +400,62 @@ ce"></i></a>
     </div>
   </div>
 </div>
+
+<script src="app.js?v=1.6" defer></script>
+
+<script>
+    const data = [
+        {
+            title: "Mimarlık",
+            description: "Teknik standartlara göre şekillendirilmiş, verimli ve sürdürülebilir mimari çözümler tasarlıyoruz."
+        },
+        {
+            title: "Kat Karşılığı Sözleşme",
+            description: "Proje teslimi, bağımsız bölüm paylaşımı ve inşaat standartlarını hukuki normlara uygun şekilde yapılandırıyoruz."
+        },
+        {
+            title: "Ticari ve Konut",
+            description: "Doğru fiyatlama, teknik raporlama ve hızlı işlem süreçleriyle satış ve kiralama süreçlerini profesyonelce yönetiyoruz."
+        },
+        {
+            title: "Restorasyon",
+            description: "Tarihi yapıları özgün değerleriyle ustalıkla yeniliyoruz."
+        }
+    ];
+
+    let index = 0; 
+    const textElement = document.getElementById('changing-text'); 
+    const intervalTime = 3000; // 3 saniye
+
+    function changeTextWithFade() {
+        // 1. Fade Out: Opaklığı sıfıra düşür
+        if(textElement) {
+            textElement.style.opacity = '0'; 
+        }
+
+        // 2. Metni 0.5 saniye sonra değiştir
+        setTimeout(() => {
+            if(textElement) {
+                const currentData = data[index];
+                
+                // Metin içeriğini Kalın Başlık ve Açıklama olarak HTML'e yaz
+                textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
+                
+                // 3. Fade In: Opaklığı tekrar 1 yap
+                textElement.style.opacity = '1'; 
+                
+                // 4. İndeksi bir sonraki öğeye ilerlet (Döngü)
+                index = (index + 1) % data.length;
+            }
+        }, 500); // CSS transition süresi ile uyumlu (0.5 saniye)
+    }
+
+    // HTML öğesi yüklü ise döngüyü başlat
+    if(textElement) {
+        changeTextWithFade();
+        setInterval(changeTextWithFade, intervalTime);
+    }
+</script>
 
 </body>
 </html>
