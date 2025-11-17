@@ -1819,24 +1819,29 @@ tant;
     /* Eski p etiketinin font ve margin değerlerini buraya taşıdık */
     font-size: 2rem; /* Yaklaşık 20px */
     margin: 10px 0 30px 0;
-    color: var(--text) !important; /* Yazı rengi (Beyaz/açık) */
-    text-align: center;
-    line-height: 1.5;
     
+    /* BURAYI DÜZELTİYORUZ */
+    color: var(--text) !important; /* Yazı rengi (Beyaz/açık) */
+    -webkit-text-fill-color: var(--text) !important; /* Zorla beyaz yap */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    
+    /* YENİ: Okunurluğu Artırmak İçin Hafif Gölge Ekleme */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.5);
+
     /* Fade efekti için CSS geçişleri */
     transition: opacity 0.5s ease-in-out;
     opacity: 1; 
     
     /* ÖNEMLİ: Metin değişimi sırasında sayfanın titremesini engeller. */
     min-height: 100px; 
-    color: var(--text) !important
-    -webkit-text-fill-color: var(--text) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
+    text-align: center; /* Ortalamayı unutmuşuz, ekledik */
 }
+
 /* Metin içindeki kalın (strong) başlık için de rengi zorla beyaz yapalım */
 #changing-text strong {
     color: var(--text) !important;
+}
 }
 /* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
 /* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
