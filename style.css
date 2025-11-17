@@ -1819,7 +1819,7 @@ tant;
     /* Eski p etiketinin font ve margin değerlerini buraya taşıdık */
     font-size: 2rem; /* Yaklaşık 20px */
     margin: 10px 0 30px 0;
-    color: var(--text); /* Yazı rengi (Beyaz/açık) */
+    color: var(--text) !important; /* Yazı rengi (Beyaz/açık) */
     text-align: center;
     line-height: 1.5;
     
@@ -1834,10 +1834,20 @@ tant;
     background: none !important;
     -webkit-background-clip: initial !important;
 }
-
+/* Metin içindeki kalın (strong) başlık için de rengi zorla beyaz yapalım */
+#changing-text strong {
+    color: var(--text) !important;
+}
 /* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
 /* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
 .hero-links-container.action-buttons {
     margin-top: 60px; 
+}
+/* style.css dosyasının en altına ekleyin */
+
+/* 2. KIRMIZI DAİRE İÇİNDEKİ FAZLADAN PRUVA OTEL KARTINI GİZLE */
+/* Bu kural, sadece o detay sayfasındaki (pruva-otel) o kartı gizler. */
+#page-pruva-otel .pruva-hero-redundant {
+    display: none !important;
 }
 /* === DÜZELTME SONU === */
