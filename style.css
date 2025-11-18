@@ -1046,6 +1046,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.9); /* ARKA PLANI KATI YAPILDI */
   backdrop-filter: blur(5px);
   z-index: 2000;
   display: none;
@@ -1390,10 +1391,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('assets/otel_hero-mobil.webp') !important;
   }
   #page-insaat .hero {
-    background-image: url('assets/insaat_hero-mobil.webp') !impor
-tant;
+    background-image: url('assets/insaat_hero-mobil.webp') !important;
+  }
+  
+  /* YENİ EKLENTİ (1. Düzeltme): Alt Sayfa Boşluğu */
+  .page-section:not(#hero) {
+    padding-top: 140px; /* Header altındaki içeriği aşağı iter */
+  }
+  
+  /* YENİ EKLENTİ (2. Düzeltme): Geri Butonu Konum ve Z-Index */
+  .btn-page-back {
+      top: 100px; /* Header küçüldüğü için konumu yukarı taşı */
+      left: 20px;
+      z-index: 1001; /* Header'dan (1000) daha yüksek */
   }
 
+  /* YENİ: Restorasyon galerisi resimlerinin boyutunu mobil için ayarla */
+  #page-pruva-otel .detail-gallery img {
+      height: 180px !important; /* Yüksekliği küçült */
+  }
+  
+  /* YENİ: Restorasyon öncesi/sonrası modalındaki resimleri mobil için düzenle */
+  .image-modal-content {
+      flex-direction: column; /* Mobil'de alt alta diz */
+      gap: 5px !important;
+  }
+  .image-modal-image-wrapper img {
+      max-height: 40vh !important; /* Ekranın yarısından fazlasını kaplamasın */
+  }
+  
+  /* YENİ: Otel/Satılık kartlarının mobil görünüm yüksekliğini küçült */
+  #page-satilik_kiralik .house-card img,
+  #page-otel .house-card img {
+      height: 200px !important; /* 260px'ten 200px'e düşür */
+  }
 }
 /* JS'den taşınan yeni CSS animasyonu */
 .card-fade-in {
@@ -1660,9 +1691,6 @@ tant;
   .hero-video-bg {
     object-position: center center;
   }
-}
-
-@media (max-width: 768px) {
   .hero-video .hero-content-overlay {
     transform: translate(-50%, -45%);
   }
@@ -1842,17 +1870,15 @@ tant;
 #changing-text strong {
     color: var(--text) !important;
 }
-}
+
 /* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
 /* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
 .hero-links-container.action-buttons {
     margin-top: 60px; 
 }
-/* style.css dosyasının en altına ekleyin */
-
+/* === DÜZELTME SONU === */
 /* 2. KIRMIZI DAİRE İÇİNDEKİ FAZLADAN PRUVA OTEL KARTINI GİZLE */
 /* Bu kural, sadece o detay sayfasındaki (pruva-otel) o kartı gizler. */
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
-/* === DÜZELTME SONU === */
