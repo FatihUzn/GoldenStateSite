@@ -7,15 +7,34 @@
         <h3 data-key="contact_form_title">İletişim Formu</h3>
         <input type="text" data-key="contact_label_name" placeholder="Adınız Soyadınız">
         <input type="email" data-key="contact_label_email" placeholder="E-posta">
+        <input type="text" data-key="contact_label_subject" placeholder="Konu">
         <textarea rows="5" data-key="contact_label_message" placeholder="Mesajınız"></textarea>
         <button class="btn" data-key="btn_send">Gönder</button>
       </div>
       
       <div class="contact-info">
         <h3 data-key="otel_contact_title">Bilgiler</h3>
-        <p><i class="fas fa-map-marker-alt"></i> <span data-key="contact_info_address_p">İstanbul, Türkiye</span></p>
-        <p><i class="fas fa-phone"></i> +90 (212) 555 1923</p>
-        <p><i class="fas fa-envelope"></i> info@goldenpalace.com</p>
+        <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i> 
+            <div>
+                <strong data-key="contact_info_address_title">Adres</strong>
+                <p data-key="contact_info_address_p">İstanbul, Türkiye</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+                <strong data-key="contact_info_phone_title">Telefon</strong>
+                <p>+90 (212) 555 1923</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+                <strong data-key="contact_info_email_title">E-posta</strong>
+                <p>info@goldenpalace.com</p>
+            </div>
+        </div>
       </div>
     </div>
 </section>
