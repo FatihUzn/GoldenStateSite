@@ -1,40 +1,122 @@
-<section id="page-contact" class="page-section">
-    <a href="#hero" class="btn-page-back" data-key="btn_back">← Geri</a>
-    <h2 data-key="contact_title">Bize Ulaşın</h2>
-    
-    <div class="contact-container">
-      <div class="contact-form">
-        <h3 data-key="contact_form_title">İletişim Formu</h3>
-        <input type="text" data-key="contact_label_name" placeholder="Adınız Soyadınız">
-        <input type="email" data-key="contact_label_email" placeholder="E-posta">
-        <input type="text" data-key="contact_label_subject" placeholder="Konu">
-        <textarea rows="5" data-key="contact_label_message" placeholder="Mesajınız"></textarea>
-        <button class="btn" data-key="btn_send">Gönder</button>
-      </div>
-      
-      <div class="contact-info">
-        <h3 data-key="otel_contact_title">Bilgiler</h3>
-        <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i> 
-            <div>
-                <strong data-key="contact_info_address_title">Adres</strong>
-                <p data-key="contact_info_address_p">İstanbul, Türkiye</p>
-            </div>
-        </div>
-        <div class="info-item">
-            <i class="fas fa-phone"></i>
-            <div>
-                <strong data-key="contact_info_phone_title">Telefon</strong>
-                <p>+90 (212) 555 1923</p>
-            </div>
-        </div>
-        <div class="info-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-                <strong data-key="contact_info_email_title">E-posta</strong>
-                <p>info@goldenpalace.com</p>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title data-key="title">Golden Palace</title>
+<link rel="icon" href="assets/golden_palace_logo.webp">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+
+<header id="main-header">
+  <div class="header-top-row">
+    <div class="top-bar-left">
+      <a href="tel:+902125551923" class="btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
+      <a href="mailto:info@goldenpalace.com" class="btn-top-info"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
+    </div>
+    <div class="language-selector desktop-only">
+        <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
+    </div>
+  </div>
+
+  <div class="header-bottom-row">
+    <div class="brand">
+      <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo">
+      <div class="brand-text-container">
+          <span class="brand-title" data-key="brand_golden_palace">Golden Palace</span>
+          <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
       </div>
     </div>
-</section>
+  
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menü"><i class="fas fa-bars"></i></button>
+    
+    <nav class="navbar" id="navbar">
+      <a data-page="hero" data-key="nav_home">Anasayfa</a>
+      <a data-page="page-about" data-key="nav_about">Kurumsal</a>
+      <a data-page="page-services" data-key="nav_services">Hizmetler</a>
+      <a data-page="page-projects" data-key="nav_projects">Projeler</a>
+      <a data-page="page-contact" data-key="nav_contact">İletişim</a>
+      
+      <div class="language-selector mobile-only" style="display:none; justify-content:center;">
+        <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+    <section class="page-section active" id="hero">
+      <div class="hero-video">
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="assets/hero_background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content-overlay">
+            <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
+            <h1 data-key="hero_title">Golden Palace</h1>
+            
+            <div id="changing-text"></div>
+            
+            <div class="hero-links-container">
+              <a href="#page-otel" data-page="page-otel" data-key="drop_hotel" class="btn-hero-link">Turizm De Biz</a>
+              <a href="#page-restorasyon" data-page="page-restorasyon" data-key="drop_restoration" class="btn-hero-link">Restorasyon</a>
+              <a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental" class="btn-hero-link">Ticari Ve Konut</a>
+            </div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+<div id="house-detail" class="house-detail" style="display:none;">
+    <button onclick="closeHouseDetail()" class="btn-page-back" style="position:fixed; top:20px; left:20px; z-index:2005;">X Kapat</button>
+    <div id="house-detail-content" style="padding: 80px 20px 40px; max-width:1000px; margin:0 auto; color:#fff;"></div>
+</div>
+
+<div id="lightbox">
+    <button id="lightbox-prev" class="lightbox-nav-btn">‹</button>
+    <img id="lightbox-img" src="" alt="Büyük Resim">
+    <button id="lightbox-next" class="lightbox-nav-btn">›</button>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-column">
+            <h3 data-key="brand_golden_palace">Golden Palace</h3>
+            <p data-key="footer_copyright" style="font-size: 13px;">© 2025 Tüm hakları saklıdır.</p>
+             <div class="social-icons" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3 data-key="nav_services">Hizmetler</h3>
+            <ul class="footer-links">
+                <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Mimari</a></li>
+                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Restorasyon</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3 data-key="nav_contact">İletişim</h3>
+            <ul class="footer-links">
+                <li><i class="fas fa-phone"></i> <a href="tel:+902125551923" style="color:inherit;">+90 (212) 555 1923</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:info@goldenpalace.com" style="color:inherit;">info@goldenpalace.com</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="app.js?v=2.0"></script>
+</body>
+</html>
