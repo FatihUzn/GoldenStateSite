@@ -1888,3 +1888,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding-top: 170px !important;
     }
 }
+/* TÜM SAYFALAR İÇİN KESİN ÇÖZÜM */
+@media (max-width: 992px) {
+    /* Başlıkları (Restorasyon, Satılık vb.) butonun altından kurtarır */
+    h2 {
+        padding-top: 100px !important;
+        display: block;
+    }
+
+    /* Eğer geri butonu hala metne çok yakınsa burayı artırın */
+    .btn-page-back {
+        z-index: 9999 !important; /* Butonu her zaman en öne getir */
+    }
+}
