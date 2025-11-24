@@ -1882,3 +1882,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
+/* MOBİL DÜZELTME YAMASI */
+@media (max-width: 992px) {
+    .page-section:not(#hero) {
+        padding-top: 170px !important;
+    }
+}
