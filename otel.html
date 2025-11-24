@@ -1,31 +1,57 @@
 <section id="page-otel" class="page-section">
   <a href="#hero" class="btn-page-back" data-key="btn_back">← Geri</a>
   
-  <div class="hero" style="background-image:url('assets/otel_hero.webp'); min-height:400px; display:flex; align-items:center; justify-content:center; background-size:cover; margin-bottom:40px;">
-    <div class="hero-content-overlay" style="text-align:center;">
+  <div class="hero" style="background-image:url('assets/otel_hero.webp'); min-height:400px; display:flex; align-items:center; justify-content:center; background-size:cover; margin-bottom:40px; position:relative;">
+     <div style="position:absolute; inset:0; background:rgba(0,0,0,0.5);"></div>
+    
+    <div class="hero-content-overlay" style="text-align:center; position:relative; z-index:2;">
       <h1 data-key="page_otel_h1">Otelimiz</h1>
       <p data-key="page_otel_p">Lüks konaklama ve deniz manzaralı suit odalar.</p>
       <a href="https://bwizmirhotel.com/odalarimiz" target="_blank" class="btn" data-key="btn_hero_reserve">Rezervasyon Yap</a>
     </div>
   </div>
 
-  <h2 data-key="page_otel_gallery_h2">Oda ve Süitlerimiz</h2>
+  <div id="otel-reservation-container">
+      <div class="project-reservation-form">
+          <h2 data-key="form_otel_h2">Müsaitlik Sorgula (Simülasyon)</h2>
+          <div class="date-picker-group">
+              <div><label data-key="form_otel_label_checkin">Giriş</label><input type="date" id="otel-checkin"></div>
+              <div><label data-key="form_otel_label_checkout">Çıkış</label><input type="date" id="otel-checkout"></div>
+          </div>
+          <div class="modal-buttons">
+              <button class="btn" id="otel-search" data-key="form_otel_btn_search">Ara</button>
+          </div>
+      </div>
+  </div>
+  
+  <div id="availability-modal" class="availability-modal">
+    <div class="modal-content">
+      <h3 id="availability-message">Sonuç...</h3>
+      <button class="btn" id="close-modal-btn">Kapat</button>
+    </div>
+  </div>
+
+  <h2 data-key="page_otel_gallery_h2" style="margin-top:60px;">Oda ve Süitlerimiz</h2>
   <div class="house-gallery">
         <div class="house-card" onclick="openHouseDetail('OTEL1')">
-            <img src="assets/ks1.webp" loading="lazy">
+            <img src="assets/ks1.webp" loading="lazy" alt="Kral Dairesi">
             <h3 data-key="page_otel_room_1">Kral Dairesi</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('OTEL2')">
-            <img src="assets/b1_plus1.webp" loading="lazy">
+            <img src="assets/b1_plus1.webp" loading="lazy" alt="Suit Oda">
             <h3 data-key="page_otel_room_2">Deniz Manzaralı Suit</h3>
         </div>
         <div class="house-card" onclick="openHouseDetail('OTEL3')">
-            <img src="assets/b2_plus1.webp" loading="lazy">
+            <img src="assets/b2_plus1.webp" loading="lazy" alt="Aile Odası">
             <h3 data-key="page_otel_room_3">Aile Odası</h3>
+        </div>
+        <div class="house-card" onclick="openHouseDetail('OTEL4')">
+            <img src="assets/fs1.webp" loading="lazy" alt="Standart Deniz">
+            <h3 data-key="page_otel_room_4">Standart Oda (Deniz)</h3>
         </div>
   </div>
   
-  <div class="otel-contact-info-container" style="margin-top:60px; text-align:center;">
+  <div class="otel-contact-info-container" style="margin-top:80px; text-align:center;">
      <h3 data-key="otel_contact_title">İletişim</h3>
      <p data-key="otel_contact_address_p">Konak/İzmir, Turkey</p>
      <p>goldenpalaceyonetim@gmail.com</p>
