@@ -1901,3 +1901,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         z-index: 9999 !important; /* Butonu her zaman en öne getir */
     }
 }
+/* --- MOBİL DÜZELTME YAMASI (EN SONA EKLE) --- */
+@media (max-width: 992px) {
+    /* Sayfa içeriğini zorla aşağı itiyoruz */
+    .page-section:not(#hero) {
+        padding-top: 170px !important;
+    }
+    
+    /* Başlıkları da ayrıca garantiye alıyoruz */
+    h2 {
+        padding-top: 50px !important;
+    }
+}
