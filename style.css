@@ -1901,37 +1901,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         z-index: 9999 !important; /* Butonu her zaman en öne getir */
     }
 }
-/* --- MOBİL DÜZELTME YAMASI (EN SONA EKLE) --- */
-@media (max-width: 992px) {
-    /* Sayfa içeriğini zorla aşağı itiyoruz */
-    .page-section:not(#hero) {
-        padding-top: 170px !important;
-    }
-    
-    /* Başlıkları da ayrıca garantiye alıyoruz */
-    h2 {
-        padding-top: 50px !important;
-    }
+/* === ÇOK YAKINDA KUTUSU STİLLERİ (Genel) === */
 .coming-soon-box {
     width: 100%;
-    height: 250px; /* ÖNEMLİ: Mevcut resimlerinizin yüksekliği neyse buraya onu yazın ki kayma olmasın */
-    background-color: #1a1a1a; /* Koyu gri/siyah arka plan */
-    border: 2px solid #d4af37; /* Altın sarısı çerçeve */
+    height: 250px; 
+    background-color: #1a1a1a; 
+    border: 2px solid #d4af37; 
     display: flex;
-    justify-content: center; /* Yatay ortalama */
-    align-items: center; /* Dikey ortalama */
-    border-radius: 8px; /* Köşeleri hafif yuvarlatır */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.8); /* İç gölge ile derinlik katar */
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 8px; 
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    margin-bottom: 20px;
 }
 
 .coming-soon-box .text {
-    color: #d4af37; /* Altın sarısı yazı rengi */
+    color: #d4af37; 
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
-    font-family: 'Times New Roman', serif; /* Sitenin fontuna göre değişebilir */
+    font-family: 'Times New Roman', serif; 
     letter-spacing: 2px;
 }
+
 /* ========================================= */
 /* === MOBİL ÇAKIŞMA DÜZELTMESİ (SON VE KESİN) === */
 /* ========================================= */
@@ -1939,14 +1931,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     
     /* 1. "Geri" Butonunu Header'ın (Logonun) altından kurtar */
     .btn-page-back {
-        top: 130px !important; /* Butonu aşağı indirdik */
+        top: 130px !important; 
         left: 20px !important;
-        z-index: 9999 !important; /* Her şeyin üstünde tut */
+        z-index: 9999 !important; 
     }
 
     /* 2. Sayfa İçeriğini (Başlık ve Kartlar) butona yer açmak için aşağı it */
     .page-section:not(#hero) {
-        padding-top: 210px !important; /* Sayfa başlangıcını iyice aşağı çektik */
+        padding-top: 210px !important; 
     }
 
     /* 3. Başlığın (h2) yukarı yapışmasını engelle */
@@ -1957,4 +1949,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         z-index: 1;
     }
 }
-
