@@ -1,68 +1,48 @@
 <section id="page-projects" class="page-section">
+  
   <style>
-    .coming-soon-box {
-      width: 100%;
-      height: 220px; /* Resimlerinizin yaklaşık boyutu */
-      background-color: #222; /* Koyu arka plan */
-      border: 2px solid #d4af37; /* Altın sarısı çerçeve */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    /* Ana kapsayıcıyı esnek kutu (flex) yapıyoruz */
+    #page-projects {
+      display: flex;            
+      flex-direction: column;   /* İçerikleri alt alta diz */
+      align-items: center;      /* Yatayda tam ortaya hizala */
+      justify-content: flex-start; /* Dikeyde en üstten başla */
+      min-height: 60vh;         /* Bölümün yüksekliği en az ekranın %60'ı olsun */
+      padding-top: 150px;       /* Üstten boşluk vererek "Orta-Üst" konuma getiriyoruz */
     }
-    .coming-soon-text {
-      color: #d4af37; /* Altın sarısı yazı */
-      font-size: 1.2rem;
+
+    /* Yazıyı kapsayan kutunun tasarımı */
+    .coming-soon-wrapper {
+      text-align: center;
+      padding: 40px 60px;
+      border: 2px solid #d4af37; /* Senin mevcut altın sarısı rengin */
+      border-radius: 10px;       /* Köşeleri yuvarlat */
+      background-color: #222;    /* Arka plan koyu renk (isteğe bağlı değiştirebilirsin) */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Hafif gölge */
+    }
+
+    /* "ÇOK YAKINDA" Yazısı */
+    .coming-soon-title {
+      font-size: 3rem;           /* Büyük yazı */
       font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      color: #d4af37;            /* Altın sarısı */
+      margin: 0;
+      text-transform: uppercase; /* Hepsi büyük harf */
+      letter-spacing: 3px;       /* Harf aralığı */
+    }
+
+    /* Alt açıklama metni */
+    .coming-soon-desc {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-top: 15px;
+      opacity: 0.8;
     }
   </style>
 
-  <div>
-    
-    <h2 data-key="projects_title_featured">Öne Çıkan Projelerimiz</h2>
-    <div class="project-grid" style="margin-bottom: 80px;">
-      
-      <div class="project-card">
-        <div class="coming-soon-box">
-          <span class="coming-soon-text">Çok Yakında</span>
-        </div>
-        <h3 data-key="project_h3_residence">Konut Projeleri</h3>
-      </div>
-
-      <div class="project-card">
-        <div class="coming-soon-box">
-          <span class="coming-soon-text">Çok Yakında</span>
-        </div>
-        <h3 data-key="project_h3_commercial">Ticari Projeler</h3>
-      </div>
-
-      <div class="project-card">
-        <div class="coming-soon-box">
-          <span class="coming-soon-text">Çok Yakında</span>
-        </div>
-        <h3 data-key="project_h3_multipurpose">Çok Amaçlı Alanlar</h3>
-      </div>
-
-    </div>
-
-    <h2 data-key="projects_title_latest">En Son Tamamlanan Projelerimiz</h2>
-    <div class="latest-grid">
-      <div class="latest-card">
-        <img src="assets/for_latest1.webp" alt="Modern Residence" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+1'"> 
-        <h3 data-key="latest_h3_1">Modern Residence</h3>
-      </div>
-      <div class="latest-card">
-        <img src="assets/for_latest2.webp" alt="Commercial Hub" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+2'">
-        <h3 data-key="latest_h3_2">Commercial Hub</h3>
-      </div>
-      <div class="latest-card">
-        <img src="assets/for_latest3.webp" alt="Multipurpose Complex" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+3'">
-        <h3 data-key="latest_h3_3">Multipurpose Complex</h3>
-      </div>
-    </div>
+  <div class="coming-soon-wrapper">
+    <h1 class="coming-soon-title" data-key="text_coming_soon">ÇOK YAKINDA</h1>
+    <p class="coming-soon-desc" data-key="text_updating">Projelerimiz güncelleniyor, takipte kalın.</p>
   </div>
+
 </section>
