@@ -1912,4 +1912,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     h2 {
         padding-top: 50px !important;
     }
+.coming-soon-box {
+    width: 100%;
+    height: 250px; /* ÖNEMLİ: Mevcut resimlerinizin yüksekliği neyse buraya onu yazın ki kayma olmasın */
+    background-color: #1a1a1a; /* Koyu gri/siyah arka plan */
+    border: 2px solid #d4af37; /* Altın sarısı çerçeve */
+    display: flex;
+    justify-content: center; /* Yatay ortalama */
+    align-items: center; /* Dikey ortalama */
+    border-radius: 8px; /* Köşeleri hafif yuvarlatır */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8); /* İç gölge ile derinlik katar */
+}
+
+.coming-soon-box .text {
+    color: #d4af37; /* Altın sarısı yazı rengi */
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', serif; /* Sitenin fontuna göre değişebilir */
+    letter-spacing: 2px;
+}
 }
