@@ -1932,26 +1932,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: 'Times New Roman', serif; /* Sitenin fontuna göre değişebilir */
     letter-spacing: 2px;
 }
-/* === MOBİL ÇAKIŞMA DÜZELTMESİ (KESİN ÇÖZÜM) === */
-@media (max-width: 768px) {
+/* ========================================= */
+/* === MOBİL ÇAKIŞMA DÜZELTMESİ (SON VE KESİN) === */
+/* ========================================= */
+@media (max-width: 992px) {
     
     /* 1. "Geri" Butonunu Header'ın (Logonun) altından kurtar */
     .btn-page-back {
-        top: 125px !important; /* Butonu aşağı indirdik */
+        top: 130px !important; /* Butonu aşağı indirdik */
         left: 20px !important;
+        z-index: 9999 !important; /* Her şeyin üstünde tut */
     }
 
     /* 2. Sayfa İçeriğini (Başlık ve Kartlar) butona yer açmak için aşağı it */
     .page-section:not(#hero) {
-        padding-top: 200px !important; /* Sayfa başlangıcını iyice aşağı çektik */
+        padding-top: 210px !important; /* Sayfa başlangıcını iyice aşağı çektik */
     }
 
-    /* 3. Başlığın (h2) butona yapışmasını engelle */
+    /* 3. Başlığın (h2) yukarı yapışmasını engelle */
     h2 {
-        margin-top: 20px !important; 
+        margin-top: 30px !important; 
         padding-top: 0 !important;
         position: relative;
         z-index: 1;
     }
 }
-}
+
